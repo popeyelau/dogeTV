@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3FFB50C7223254B23BDA804D /* Pods_dogeTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51AF8EF19DE5D5B8ACCB6AB0 /* Pods_dogeTV.framework */; };
+		792EADA822276B470030A54F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADA722276B470030A54F /* UIColorExtension.swift */; };
+		792EADAA22276B680030A54F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADA922276B680030A54F /* StringExtension.swift */; };
+		792EADAD22276BC50030A54F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADAC22276BC50030A54F /* Helpers.swift */; };
+		7935A11A222785A1009A921F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7935A119222785A1009A921F /* UIViewExtension.swift */; };
+		793A22662228E011000B7B07 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A22652228E011000B7B07 /* CategoryViewController.swift */; };
+		793A22682228ED44000B7B07 /* MediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A22672228ED44000B7B07 /* MediaListViewController.swift */; };
+		7950849F222680F100D010C9 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7950849E222680F100D010C9 /* VideoDetailViewController.swift */; };
+		7959696F222A6C4C0069B26C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7959696E222A6C4C0069B26C /* LiveViewController.swift */; };
+		796D00CE223D455700179C72 /* RankListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796D00CD223D455700179C72 /* RankListViewController.swift */; };
+		796D00D0223D457A00179C72 /* RankItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796D00CF223D457A00179C72 /* RankItemComponent.swift */; };
+		7978361D223CC5B500C59E01 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978361C223CC5B500C59E01 /* Video.swift */; };
+		7978361F223CD0A400C59E01 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978361E223CD0A400C59E01 /* UIImageViewExtension.swift */; };
+		798CD26E222800CA00E64A09 /* VideoItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD26D222800CA00E64A09 /* VideoItemComponent.swift */; };
+		798CD271222801B900E64A09 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD270222801B900E64A09 /* Response.swift */; };
+		798CD2772228046E00E64A09 /* SectionHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD2762228046E00E64A09 /* SectionHeaderComponent.swift */; };
+		798CD279222804A800E64A09 /* TopicListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD278222804A800E64A09 /* TopicListComponent.swift */; };
+		798CD27B2228053800E64A09 /* TopicListItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD27A2228053800E64A09 /* TopicListItemComponent.swift */; };
+		798CD27D2228067300E64A09 /* SearchItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD27C2228067300E64A09 /* SearchItemComponent.swift */; };
+		798CD27F222806DE00E64A09 /* TopicItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD27E222806DE00E64A09 /* TopicItemComponent.swift */; };
+		798CD2872228096600E64A09 /* EpisodeItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD2862228096600E64A09 /* EpisodeItemComponent.swift */; };
+		798CD289222809C200E64A09 /* VideoHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD288222809C200E64A09 /* VideoHeaderComponent.swift */; };
+		79A5EFE822260F7F001CA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EFE722260F7F001CA17B /* AppDelegate.swift */; };
+		79A5EFEF22260F7F001CA17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A5EFEE22260F7F001CA17B /* Assets.xcassets */; };
+		79A5EFF222260F7F001CA17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A5EFF022260F7F001CA17B /* LaunchScreen.storyboard */; };
+		79A5EFFC22261107001CA17B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EFFB22261107001CA17B /* HomeViewController.swift */; };
+		79A5EFFE22261116001CA17B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EFFD22261116001CA17B /* SearchViewController.swift */; };
+		79A5F00022265614001CA17B /* TopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EFFF22265614001CA17B /* TopicsViewController.swift */; };
+		79A5F002222661D1001CA17B /* TopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5F001222661D1001CA17B /* TopicViewController.swift */; };
+		79AD3A0D222A1CDF0007A52E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD3A0C222A1CDF0007A52E /* WebViewController.swift */; };
+		79AE11E4222C0B6900971FEF /* TopicHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AE11E3222C0B6900971FEF /* TopicHeaderComponent.swift */; };
+		79CB65CD222CAB1F00356042 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB65CC222CAB1F00356042 /* UIViewControllerExtension.swift */; };
+		79CB65D0222CBA3800356042 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB65CF222CBA3800356042 /* Router.swift */; };
+		79CB65D2222CBB8600356042 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB65D1222CBB8600356042 /* APIClient.swift */; };
+		79CD435A222BA2FC0000410F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD4359222BA2FC0000410F /* Channel.swift */; };
+		79CD435C222BA3230000410F /* ChannelItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435B222BA3230000410F /* ChannelItemComponent.swift */; };
+		79CD435E222BA3400000410F /* ChannelFooterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435D222BA3400000410F /* ChannelFooterComponent.swift */; };
+		79CD4360222BBE5B0000410F /* LivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435F222BBE5B0000410F /* LivesViewController.swift */; };
+		79D66A5C2226B6830007DFEA /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D66A5B2226B6830007DFEA /* ENV.swift */; };
+		79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */; };
+		79DCECF6223E1FB1008973D3 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF5223E1FB1008973D3 /* Episode.swift */; };
+		79DCECF8223E1FC6008973D3 /* Hot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF7223E1FC6008973D3 /* Hot.swift */; };
+		79DCECFA223E1FDD008973D3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF9223E1FDD008973D3 /* Topic.swift */; };
+		79DCECFC223E2005008973D3 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECFB223E2005008973D3 /* Ranking.swift */; };
+		79FA39BC222B7CF300EFC8CB /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA39BB222B7CF300EFC8CB /* PlayerViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		31E1E5768B2F54BE347C6DAB /* Pods-iTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTV.debug.xcconfig"; path = "Target Support Files/Pods-iTV/Pods-iTV.debug.xcconfig"; sourceTree = "<group>"; };
+		51AF8EF19DE5D5B8ACCB6AB0 /* Pods_dogeTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dogeTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		792EADA722276B470030A54F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		792EADA922276B680030A54F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		792EADAC22276BC50030A54F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		7935A119222785A1009A921F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		793A22652228E011000B7B07 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		793A22672228ED44000B7B07 /* MediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListViewController.swift; sourceTree = "<group>"; };
+		7950849E222680F100D010C9 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
+		7959696E222A6C4C0069B26C /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
+		796D00CD223D455700179C72 /* RankListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankListViewController.swift; sourceTree = "<group>"; };
+		796D00CF223D457A00179C72 /* RankItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankItemComponent.swift; sourceTree = "<group>"; };
+		7978361C223CC5B500C59E01 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		7978361E223CD0A400C59E01 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		798CD26D222800CA00E64A09 /* VideoItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoItemComponent.swift; sourceTree = "<group>"; };
+		798CD270222801B900E64A09 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		798CD2762228046E00E64A09 /* SectionHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderComponent.swift; sourceTree = "<group>"; };
+		798CD278222804A800E64A09 /* TopicListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListComponent.swift; sourceTree = "<group>"; };
+		798CD27A2228053800E64A09 /* TopicListItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicListItemComponent.swift; sourceTree = "<group>"; };
+		798CD27C2228067300E64A09 /* SearchItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemComponent.swift; sourceTree = "<group>"; };
+		798CD27E222806DE00E64A09 /* TopicItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicItemComponent.swift; sourceTree = "<group>"; };
+		798CD2862228096600E64A09 /* EpisodeItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeItemComponent.swift; sourceTree = "<group>"; };
+		798CD288222809C200E64A09 /* VideoHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoHeaderComponent.swift; sourceTree = "<group>"; };
+		79A5EFE422260F7F001CA17B /* dogeTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dogeTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79A5EFE722260F7F001CA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		79A5EFEE22260F7F001CA17B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		79A5EFF122260F7F001CA17B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		79A5EFF322260F7F001CA17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79A5EFFB22261107001CA17B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		79A5EFFD22261116001CA17B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		79A5EFFF22265614001CA17B /* TopicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsViewController.swift; sourceTree = "<group>"; };
+		79A5F001222661D1001CA17B /* TopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicViewController.swift; sourceTree = "<group>"; };
+		79AD3A0C222A1CDF0007A52E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		79AE11E3222C0B6900971FEF /* TopicHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHeaderComponent.swift; sourceTree = "<group>"; };
+		79CB65CC222CAB1F00356042 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		79CB65CF222CBA3800356042 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		79CB65D1222CBB8600356042 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		79CD4359222BA2FC0000410F /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		79CD435B222BA3230000410F /* ChannelItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemComponent.swift; sourceTree = "<group>"; };
+		79CD435D222BA3400000410F /* ChannelFooterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelFooterComponent.swift; sourceTree = "<group>"; };
+		79CD435F222BBE5B0000410F /* LivesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesViewController.swift; sourceTree = "<group>"; };
+		79D66A5B2226B6830007DFEA /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
+		79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEpisodeHeaderComponent.swift; sourceTree = "<group>"; };
+		79DCECF5223E1FB1008973D3 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		79DCECF7223E1FC6008973D3 /* Hot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hot.swift; sourceTree = "<group>"; };
+		79DCECF9223E1FDD008973D3 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		79DCECFB223E2005008973D3 /* Ranking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
+		79FA39BB222B7CF300EFC8CB /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		7E35AEA0F6F60CDBE257605A /* Pods-iTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTV.release.xcconfig"; path = "Target Support Files/Pods-iTV/Pods-iTV.release.xcconfig"; sourceTree = "<group>"; };
+		877BE6F1DB0D8460B7ADC7AA /* Pods-dogeTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dogeTV.release.xcconfig"; path = "Target Support Files/Pods-dogeTV/Pods-dogeTV.release.xcconfig"; sourceTree = "<group>"; };
+		AE3E202F7454B7E7F2FE2ADE /* Pods-BrainTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainTV.release.xcconfig"; path = "Target Support Files/Pods-BrainTV/Pods-BrainTV.release.xcconfig"; sourceTree = "<group>"; };
+		CED14281A1A84A5FF260D180 /* Pods-dogeTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dogeTV.debug.xcconfig"; path = "Target Support Files/Pods-dogeTV/Pods-dogeTV.debug.xcconfig"; sourceTree = "<group>"; };
+		D9584C3D25F93176E354E3E5 /* Pods-BrainTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainTV.debug.xcconfig"; path = "Target Support Files/Pods-BrainTV/Pods-BrainTV.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		79A5EFE122260F7F001CA17B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FFB50C7223254B23BDA804D /* Pods_dogeTV.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A70EDE32A98FA101BF712EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51AF8EF19DE5D5B8ACCB6AB0 /* Pods_dogeTV.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2E4F358FF19F89D37F945F38 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D9584C3D25F93176E354E3E5 /* Pods-BrainTV.debug.xcconfig */,
+				AE3E202F7454B7E7F2FE2ADE /* Pods-BrainTV.release.xcconfig */,
+				31E1E5768B2F54BE347C6DAB /* Pods-iTV.debug.xcconfig */,
+				7E35AEA0F6F60CDBE257605A /* Pods-iTV.release.xcconfig */,
+				CED14281A1A84A5FF260D180 /* Pods-dogeTV.debug.xcconfig */,
+				877BE6F1DB0D8460B7ADC7AA /* Pods-dogeTV.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		792EADA622276B2D0030A54F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				792EADA722276B470030A54F /* UIColorExtension.swift */,
+				792EADA922276B680030A54F /* StringExtension.swift */,
+				7935A119222785A1009A921F /* UIViewExtension.swift */,
+				79CB65CC222CAB1F00356042 /* UIViewControllerExtension.swift */,
+				7978361E223CD0A400C59E01 /* UIImageViewExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		792EADAB22276BBB0030A54F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				792EADAC22276BC50030A54F /* Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		798CD26C222800B500E64A09 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				798CD26D222800CA00E64A09 /* VideoItemComponent.swift */,
+				798CD2762228046E00E64A09 /* SectionHeaderComponent.swift */,
+				798CD278222804A800E64A09 /* TopicListComponent.swift */,
+				798CD27A2228053800E64A09 /* TopicListItemComponent.swift */,
+				798CD27C2228067300E64A09 /* SearchItemComponent.swift */,
+				798CD27E222806DE00E64A09 /* TopicItemComponent.swift */,
+				798CD2862228096600E64A09 /* EpisodeItemComponent.swift */,
+				798CD288222809C200E64A09 /* VideoHeaderComponent.swift */,
+				79CD435B222BA3230000410F /* ChannelItemComponent.swift */,
+				79CD435D222BA3400000410F /* ChannelFooterComponent.swift */,
+				79AE11E3222C0B6900971FEF /* TopicHeaderComponent.swift */,
+				796D00CF223D457A00179C72 /* RankItemComponent.swift */,
+				79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		798CD26F2228011800E64A09 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				798CD270222801B900E64A09 /* Response.swift */,
+				79CD4359222BA2FC0000410F /* Channel.swift */,
+				7978361C223CC5B500C59E01 /* Video.swift */,
+				79DCECF5223E1FB1008973D3 /* Episode.swift */,
+				79DCECF7223E1FC6008973D3 /* Hot.swift */,
+				79DCECF9223E1FDD008973D3 /* Topic.swift */,
+				79DCECFB223E2005008973D3 /* Ranking.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		79A5EFDB22260F7F001CA17B = {
+			isa = PBXGroup;
+			children = (
+				79A5EFE622260F7F001CA17B /* dogeTV */,
+				79A5EFE522260F7F001CA17B /* Products */,
+				2E4F358FF19F89D37F945F38 /* Pods */,
+				1A70EDE32A98FA101BF712EC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		79A5EFE522260F7F001CA17B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				79A5EFE422260F7F001CA17B /* dogeTV.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		79A5EFE622260F7F001CA17B /* dogeTV */ = {
+			isa = PBXGroup;
+			children = (
+				79CB65CE222CBA1200356042 /* Network */,
+				798CD26F2228011800E64A09 /* Models */,
+				798CD26C222800B500E64A09 /* Components */,
+				792EADAB22276BBB0030A54F /* Helpers */,
+				792EADA622276B2D0030A54F /* Extension */,
+				79D66A5A2226B6410007DFEA /* ENV */,
+				79D66A582226B52A0007DFEA /* Controllers */,
+				79A5EFE722260F7F001CA17B /* AppDelegate.swift */,
+				79A5EFEE22260F7F001CA17B /* Assets.xcassets */,
+				79A5EFF022260F7F001CA17B /* LaunchScreen.storyboard */,
+				79A5EFF322260F7F001CA17B /* Info.plist */,
+			);
+			path = dogeTV;
+			sourceTree = "<group>";
+		};
+		79CB65CE222CBA1200356042 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				79CB65CF222CBA3800356042 /* Router.swift */,
+				79CB65D1222CBB8600356042 /* APIClient.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		79D66A582226B52A0007DFEA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				79A5EFFB22261107001CA17B /* HomeViewController.swift */,
+				79A5EFFD22261116001CA17B /* SearchViewController.swift */,
+				79A5EFFF22265614001CA17B /* TopicsViewController.swift */,
+				79A5F001222661D1001CA17B /* TopicViewController.swift */,
+				7950849E222680F100D010C9 /* VideoDetailViewController.swift */,
+				793A22652228E011000B7B07 /* CategoryViewController.swift */,
+				793A22672228ED44000B7B07 /* MediaListViewController.swift */,
+				79AD3A0C222A1CDF0007A52E /* WebViewController.swift */,
+				7959696E222A6C4C0069B26C /* LiveViewController.swift */,
+				79FA39BB222B7CF300EFC8CB /* PlayerViewController.swift */,
+				79CD435F222BBE5B0000410F /* LivesViewController.swift */,
+				796D00CD223D455700179C72 /* RankListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		79D66A5A2226B6410007DFEA /* ENV */ = {
+			isa = PBXGroup;
+			children = (
+				79D66A5B2226B6830007DFEA /* ENV.swift */,
+			);
+			path = ENV;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79A5EFE322260F7F001CA17B /* dogeTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 79A5EFF622260F7F001CA17B /* Build configuration list for PBXNativeTarget "dogeTV" */;
+			buildPhases = (
+				544C5B959266B8A2A759FDE3 /* [CP] Check Pods Manifest.lock */,
+				79A5EFE022260F7F001CA17B /* Sources */,
+				79A5EFE122260F7F001CA17B /* Frameworks */,
+				79A5EFE222260F7F001CA17B /* Resources */,
+				75B76E24F983C0263B4A6094 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dogeTV;
+			productName = BrainTV;
+			productReference = 79A5EFE422260F7F001CA17B /* dogeTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		79A5EFDC22260F7F001CA17B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Popeye Lau";
+				TargetAttributes = {
+					79A5EFE322260F7F001CA17B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 79A5EFDF22260F7F001CA17B /* Build configuration list for PBXProject "dogeTV" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 79A5EFDB22260F7F001CA17B;
+			productRefGroup = 79A5EFE522260F7F001CA17B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79A5EFE322260F7F001CA17B /* dogeTV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		79A5EFE222260F7F001CA17B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79A5EFF222260F7F001CA17B /* LaunchScreen.storyboard in Resources */,
+				79A5EFEF22260F7F001CA17B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		544C5B959266B8A2A759FDE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dogeTV-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75B76E24F983C0263B4A6094 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dogeTV/Pods-dogeTV-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dogeTV/Pods-dogeTV-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dogeTV/Pods-dogeTV-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		79A5EFE022260F7F001CA17B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798CD2872228096600E64A09 /* EpisodeItemComponent.swift in Sources */,
+				79A5EFE822260F7F001CA17B /* AppDelegate.swift in Sources */,
+				798CD27D2228067300E64A09 /* SearchItemComponent.swift in Sources */,
+				792EADAA22276B680030A54F /* StringExtension.swift in Sources */,
+				7959696F222A6C4C0069B26C /* LiveViewController.swift in Sources */,
+				79FA39BC222B7CF300EFC8CB /* PlayerViewController.swift in Sources */,
+				79A5EFFE22261116001CA17B /* SearchViewController.swift in Sources */,
+				798CD271222801B900E64A09 /* Response.swift in Sources */,
+				792EADAD22276BC50030A54F /* Helpers.swift in Sources */,
+				796D00CE223D455700179C72 /* RankListViewController.swift in Sources */,
+				79A5F00022265614001CA17B /* TopicsViewController.swift in Sources */,
+				798CD289222809C200E64A09 /* VideoHeaderComponent.swift in Sources */,
+				79DCECF8223E1FC6008973D3 /* Hot.swift in Sources */,
+				79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */,
+				798CD27F222806DE00E64A09 /* TopicItemComponent.swift in Sources */,
+				7935A11A222785A1009A921F /* UIViewExtension.swift in Sources */,
+				79DCECFC223E2005008973D3 /* Ranking.swift in Sources */,
+				7978361F223CD0A400C59E01 /* UIImageViewExtension.swift in Sources */,
+				79CD435E222BA3400000410F /* ChannelFooterComponent.swift in Sources */,
+				798CD2772228046E00E64A09 /* SectionHeaderComponent.swift in Sources */,
+				79AD3A0D222A1CDF0007A52E /* WebViewController.swift in Sources */,
+				798CD26E222800CA00E64A09 /* VideoItemComponent.swift in Sources */,
+				79CD4360222BBE5B0000410F /* LivesViewController.swift in Sources */,
+				79A5F002222661D1001CA17B /* TopicViewController.swift in Sources */,
+				798CD279222804A800E64A09 /* TopicListComponent.swift in Sources */,
+				792EADA822276B470030A54F /* UIColorExtension.swift in Sources */,
+				79CD435A222BA2FC0000410F /* Channel.swift in Sources */,
+				79CB65D0222CBA3800356042 /* Router.swift in Sources */,
+				79CB65CD222CAB1F00356042 /* UIViewControllerExtension.swift in Sources */,
+				793A22682228ED44000B7B07 /* MediaListViewController.swift in Sources */,
+				79DCECFA223E1FDD008973D3 /* Topic.swift in Sources */,
+				79A5EFFC22261107001CA17B /* HomeViewController.swift in Sources */,
+				79AE11E4222C0B6900971FEF /* TopicHeaderComponent.swift in Sources */,
+				7978361D223CC5B500C59E01 /* Video.swift in Sources */,
+				7950849F222680F100D010C9 /* VideoDetailViewController.swift in Sources */,
+				79DCECF6223E1FB1008973D3 /* Episode.swift in Sources */,
+				796D00D0223D457A00179C72 /* RankItemComponent.swift in Sources */,
+				798CD27B2228053800E64A09 /* TopicListItemComponent.swift in Sources */,
+				793A22662228E011000B7B07 /* CategoryViewController.swift in Sources */,
+				79CB65D2222CBB8600356042 /* APIClient.swift in Sources */,
+				79D66A5C2226B6830007DFEA /* ENV.swift in Sources */,
+				79CD435C222BA3230000410F /* ChannelItemComponent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		79A5EFF022260F7F001CA17B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79A5EFF122260F7F001CA17B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		79A5EFF422260F7F001CA17B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		79A5EFF522260F7F001CA17B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		79A5EFF722260F7F001CA17B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CED14281A1A84A5FF260D180 /* Pods-dogeTV.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 983GE8X6R9;
+				INFOPLIST_FILE = "$(SRCROOT)/dogeTV/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.popeye.dogetv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		79A5EFF822260F7F001CA17B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 877BE6F1DB0D8460B7ADC7AA /* Pods-dogeTV.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 983GE8X6R9;
+				INFOPLIST_FILE = "$(SRCROOT)/dogeTV/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.popeye.dogetv;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		79A5EFDF22260F7F001CA17B /* Build configuration list for PBXProject "dogeTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79A5EFF422260F7F001CA17B /* Debug */,
+				79A5EFF522260F7F001CA17B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		79A5EFF622260F7F001CA17B /* Build configuration list for PBXNativeTarget "dogeTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79A5EFF722260F7F001CA17B /* Debug */,
+				79A5EFF822260F7F001CA17B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 79A5EFDC22260F7F001CA17B /* Project object */;
+}
