@@ -62,7 +62,7 @@ class QueryOptionsController: UIViewController {
     func render() {
         guard let query = query else { return }
         let sections = query.map { (set) -> Section in
-            let cells = set.options.prefix(30).map { CellNode(QueryItemComponent(data: $0, set: set.title)) }
+            let cells = set.options.prefix(20).map { CellNode(QueryItemComponent(data: $0, set: set.title)) }
             let header = ViewNode(QuerySetHeaderComponent(data: set.title))
             return Section(id: set.title, header: header, cells: cells)
         }

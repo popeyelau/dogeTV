@@ -29,7 +29,7 @@ struct EpisodeItemComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: (bounds.size.width - 35) / 4.0, height: 40)
+        return CGSize(width: (bounds.size.width - 15) / 4.0, height: 40)
     }
 
     func shouldContentUpdate(with next: EpisodeItemComponent) -> Bool {
@@ -41,7 +41,7 @@ class EpisodeItemContentView: UIView {
 
     lazy var episodeBtn: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor(hexString: "#434343"), for: .normal)
         button.isUserInteractionEnabled = false
         button.titleLabel?.font = .systemFont(ofSize: 11)
         return button

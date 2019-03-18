@@ -12,7 +12,7 @@ import Carbon
 
 
 struct QueryItemComponent: IdentifiableComponent {
-    typealias Content = QueryItemContentView
+    typealias Content = UILabel
     
     var id: String {
         return data.key
@@ -23,23 +23,27 @@ struct QueryItemComponent: IdentifiableComponent {
     
     func renderContent() -> Content {
         let content = Content()
+        content.font = .systemFont(ofSize: 12)
+        content.textAlignment = .center
+        content.clipsToBounds = true
+        content.layer.cornerRadius = 3
         return content
     }
     
     func render(in content: Content) {
-        content.titleLabel.text = data.text
+        content.text = data.text
         if data.isSelected {
-            content.titleLabel.backgroundColor = .gray
-            content.titleLabel.textColor = .white
+            content.backgroundColor = UIColor(hexString: "#00AA90")
+            content.textColor = .white
         } else {
-            content.titleLabel.backgroundColor = .groupTableViewBackground
-            content.titleLabel.textColor = .darkGray
+            content.backgroundColor = .groupTableViewBackground
+            content.textColor = UIColor(hexString: "#434343")
         }
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
         let width = data.text.widthOfString(usingFont: .systemFont(ofSize: 12)) + 10
-        return CGSize(width: width, height: 30)
+        return CGSize(width: max(width, 50), height: 30)
     }
     
     func shouldContentUpdate(with next: QueryItemComponent) -> Bool {
@@ -47,40 +51,11 @@ struct QueryItemComponent: IdentifiableComponent {
     }
 }
 
-class QueryItemContentView: UIView {
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
-        label.textAlignment = .center
-        label.textColor = .darkGray
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    func setupViews() {
-        backgroundColor = UIColor.groupTableViewBackground
-        clipsToBounds = true
-        layer.cornerRadius = 3
-        addSubview(titleLabel)
-        
-        titleLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
 
 
 struct QuerySetHeaderComponent: Component {
-    typealias Content = UILabel
+    typealias Content = QuerySetHeaderContentView
     
     let data: String
 
@@ -90,10 +65,8 @@ struct QuerySetHeaderComponent: Component {
     }
 
     func render(in content: Content) {
-        content.text = data
-        content.font = .systemFont(ofSize: 14)
-        content.textColor = .darkGray
-        content.textAlignment = .center
+        content.titleLabel.text = data
+     
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
@@ -105,3 +78,43 @@ struct QuerySetHeaderComponent: Component {
     }
     
 }
+
+class QuerySetHeaderContentView: UIView {
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = .lightGray
+        label.backgroundColor = .white
+        label.textAlignment = .center
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    func setupViews() {
+        backgroundColor = .white
+        let line = UIView()
+        line.backgroundColor = .groupTableViewBackground
+        addSubview(line)
+        addSubview(titleLabel)
+        
+        titleLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.greaterThanOrEqualTo(50)
+        }
+        line.snp.makeConstraints {
+            $0.height.height.equalTo(0.5)
+            $0.left.equalToSuperview().offset(16)
+            $0.right.equalToSuperview().offset(-16)
+            $0.centerY.equalToSuperview()
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+

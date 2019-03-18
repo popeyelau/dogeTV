@@ -75,6 +75,8 @@ class VideoHeaderContentView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        layer.masksToBounds = true
+        layer.cornerRadius = 6
         addSubview(backgroundImageView)
         addSubview(coverImageView)
         addSubview(titleLabel)

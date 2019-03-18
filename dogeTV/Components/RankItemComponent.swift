@@ -30,7 +30,7 @@ struct RankItemComponent: IdentifiableComponent {
         content.hotLabel.text = data.hot
         content.indexLabel.text = data.index
         if let index = Int(data.index) {
-            content.indexLabel.backgroundColor = index < 4 ? .darkGray : UIColor(hexString: "#DDDDDD")
+            content.indexLabel.backgroundColor = index < 4 ? UIColor(hexString: "#00AA90") : .groupTableViewBackground
             content.indexLabel.textColor = index < 4 ? .white : .black
         }
     }
