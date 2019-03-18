@@ -49,6 +49,7 @@ class SearchViewController: UIViewController {
         collectionView.bindFootRefreshHandler({ [weak self] in
             self?.loadMore()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
+        collectionView.footRefreshControl.autoRefreshOnFoot = true
 
     }
     

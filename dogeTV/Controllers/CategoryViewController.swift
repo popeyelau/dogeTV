@@ -50,18 +50,18 @@ class CategoryViewController: SegementSlideViewController {
         return config
     }
     override var titlesInSwitcher: [String] {
-        return VideoCategory.allCases.map { $0.title }
+        return Category.allCases.map { $0.title }
     }
 
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
         switch sourceType {
         case .normal:
             let target = MediaListViewController()
-            target.category = VideoCategory.allCases[index]
+            target.category = Category.allCases[index]
             return target
         case .rank:
             let target = RankListViewController()
-            target.category = VideoCategory.allCases[index]
+            target.category = Category.allCases[index]
             return target
         }
     }

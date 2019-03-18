@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
         var sections = [Section(id: 0, header: topicSectionHeader,cells: topicCells)]
         for (index, section) in self.hots.enumerated() {
             let cells = section.items.prefix(9).map{ CellNode(VideoItemComponent(data: $0)) }
-            let header = ViewNode(SectionHeaderComponent(title: section.title, category: VideoCategory(rawValue: index)) { [weak self] (category) in
+            let header = ViewNode(SectionHeaderComponent(title: section.title, category: Category(rawValue: index)) { [weak self] (category) in
                 guard let category = category else { return }
                 self?.showMore(of: category)
             })
@@ -97,7 +97,7 @@ class HomeViewController: UIViewController {
         renderer.render(sections)
     }
 
-    func showMore(of category: VideoCategory) {
+    func showMore(of category: Category) {
         let target = TopicViewController()
         target.sourceType = .category(category: category)
         navigationController?.pushViewController(target, animated: true)

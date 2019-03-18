@@ -16,7 +16,7 @@ import Alamofire
  Cartoon     MediaType = 4 //动漫4
  Documentary MediaType = 5 //记录片5
  */
-enum VideoCategory: Int, CaseIterable {
+enum Category: Int, CaseIterable {
     case film
     case drama
     case variety
@@ -54,9 +54,9 @@ protocol APIConfiguration: URLRequestConvertible {
 enum Router: APIConfiguration {
     case home
     case topics
-    case category(category: VideoCategory, page: Int)
-    case douban(category: VideoCategory, page: Int)
-    case rank(category: VideoCategory)
+    case category(category: Category, page: Int, query: String)
+    case douban(category: Category, page: Int)
+    case rank(category: Category)
     case topic(id: String)
     case video(id: String)
     case episodes(id: String, source: Int)
@@ -82,7 +82,7 @@ enum Router: APIConfiguration {
             return "/videos"
         case .topics:
             return "/topics"
-        case .category(let category,_):
+        case .category(let category,_,_):
             return "/videos/\(category.categoryKey)"
         case .douban(let category,_):
             return "/douban/\(category.categoryKey)"
@@ -107,8 +107,8 @@ enum Router: APIConfiguration {
         switch self {
         case .tv(let tv):
             return ["f": tv.key]
-        case .category(_, let page):
-            return ["p": page]
+        case .category(_, let page, let query):
+            return ["p": page, "query": query]
         case .douban(_, let page):
             return ["p": page]
         case .search(let keywords, let page):

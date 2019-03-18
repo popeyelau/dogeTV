@@ -15,7 +15,7 @@ import KafkaRefresh
 class TopicViewController: UIViewController {
     enum TopicViewSourceType {
         case topic(id: String)
-        case category(category: VideoCategory)
+        case category(category: Category)
     }
 
     var sourceType: TopicViewSourceType = .category(category: .film)
@@ -62,6 +62,7 @@ class TopicViewController: UIViewController {
             collectionView.bindFootRefreshHandler({ [weak self] in
                 self?.loadMore()
                 }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
+            collectionView.footRefreshControl.autoRefreshOnFoot = true
         }
 
         renderer.adapter.didSelect = { [weak self] context in
@@ -119,7 +120,7 @@ extension TopicViewController {
         }
     }
 
-    func fetchVideosInCategory(of category: VideoCategory) {
+    func fetchVideosInCategory(of category: Category) {
         APIClient.fetchDoubanList(category: category, page: 1).done { (videos) in
             self.videos = videos
             }.catch{ (error) in

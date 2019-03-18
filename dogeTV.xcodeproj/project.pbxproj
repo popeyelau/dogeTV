@@ -29,6 +29,9 @@
 		798CD27F222806DE00E64A09 /* TopicItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD27E222806DE00E64A09 /* TopicItemComponent.swift */; };
 		798CD2872228096600E64A09 /* EpisodeItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD2862228096600E64A09 /* EpisodeItemComponent.swift */; };
 		798CD289222809C200E64A09 /* VideoHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CD288222809C200E64A09 /* VideoHeaderComponent.swift */; };
+		799390F1223F39D30035B636 /* OptionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799390F0223F39D30035B636 /* OptionSet.swift */; };
+		799390F3223F3E5B0035B636 /* QueryItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799390F2223F3E5B0035B636 /* QueryItemComponent.swift */; };
+		799390F5223F82240035B636 /* QueryOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799390F4223F82240035B636 /* QueryOptionsController.swift */; };
 		79A5EFE822260F7F001CA17B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A5EFE722260F7F001CA17B /* AppDelegate.swift */; };
 		79A5EFEF22260F7F001CA17B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79A5EFEE22260F7F001CA17B /* Assets.xcassets */; };
 		79A5EFF222260F7F001CA17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79A5EFF022260F7F001CA17B /* LaunchScreen.storyboard */; };
@@ -78,6 +81,9 @@
 		798CD27E222806DE00E64A09 /* TopicItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicItemComponent.swift; sourceTree = "<group>"; };
 		798CD2862228096600E64A09 /* EpisodeItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeItemComponent.swift; sourceTree = "<group>"; };
 		798CD288222809C200E64A09 /* VideoHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoHeaderComponent.swift; sourceTree = "<group>"; };
+		799390F0223F39D30035B636 /* OptionSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSet.swift; sourceTree = "<group>"; };
+		799390F2223F3E5B0035B636 /* QueryItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemComponent.swift; sourceTree = "<group>"; };
+		799390F4223F82240035B636 /* QueryOptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryOptionsController.swift; sourceTree = "<group>"; };
 		79A5EFE422260F7F001CA17B /* dogeTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dogeTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79A5EFE722260F7F001CA17B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79A5EFEE22260F7F001CA17B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 				79AE11E3222C0B6900971FEF /* TopicHeaderComponent.swift */,
 				796D00CF223D457A00179C72 /* RankItemComponent.swift */,
 				79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */,
+				799390F2223F3E5B0035B636 /* QueryItemComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -193,6 +200,7 @@
 				79DCECF7223E1FC6008973D3 /* Hot.swift */,
 				79DCECF9223E1FDD008973D3 /* Topic.swift */,
 				79DCECFB223E2005008973D3 /* Ranking.swift */,
+				799390F0223F39D30035B636 /* OptionSet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -257,6 +265,7 @@
 				79FA39BB222B7CF300EFC8CB /* PlayerViewController.swift */,
 				79CD435F222BBE5B0000410F /* LivesViewController.swift */,
 				796D00CD223D455700179C72 /* RankListViewController.swift */,
+				799390F4223F82240035B636 /* QueryOptionsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -397,9 +406,12 @@
 				798CD289222809C200E64A09 /* VideoHeaderComponent.swift in Sources */,
 				79DCECF8223E1FC6008973D3 /* Hot.swift in Sources */,
 				79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */,
+				799390F5223F82240035B636 /* QueryOptionsController.swift in Sources */,
 				798CD27F222806DE00E64A09 /* TopicItemComponent.swift in Sources */,
+				799390F3223F3E5B0035B636 /* QueryItemComponent.swift in Sources */,
 				7935A11A222785A1009A921F /* UIViewExtension.swift in Sources */,
 				79DCECFC223E2005008973D3 /* Ranking.swift in Sources */,
+				799390F1223F39D30035B636 /* OptionSet.swift in Sources */,
 				7978361F223CD0A400C59E01 /* UIImageViewExtension.swift in Sources */,
 				79CD435E222BA3400000410F /* ChannelFooterComponent.swift in Sources */,
 				798CD2772228046E00E64A09 /* SectionHeaderComponent.swift in Sources */,

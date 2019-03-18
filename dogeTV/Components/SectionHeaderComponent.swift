@@ -13,12 +13,12 @@ import Carbon
 struct SectionHeaderComponent: Component {
     typealias Content = SectionHeaderContentView
 
-    typealias Callback = ((VideoCategory?) -> Void)
+    typealias Callback = ((Category?) -> Void)
     let title: String
-    let category: VideoCategory?
+    let category: Category?
     var onArrowSelected: Callback?
 
-    init(title: String, category: VideoCategory? = nil, onArrowSelected: Callback? = nil) {
+    init(title: String, category: Category? = nil, onArrowSelected: Callback? = nil) {
         self.title = title
         self.category = category
         self.onArrowSelected = onArrowSelected
@@ -46,10 +46,10 @@ struct SectionHeaderComponent: Component {
 }
 
 class SectionHeaderContentView: UIView {
-    typealias Callback = ((VideoCategory?) -> Void)
+    typealias Callback = ((Category?) -> Void)
 
     var onArrowSelected: Callback?
-    var category: VideoCategory?
+    var category: Category?
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()

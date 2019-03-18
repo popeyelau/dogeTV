@@ -15,7 +15,7 @@ import SegementSlide
 
 class RankListViewController: UIViewController, SegementSlideContentScrollViewDelegate {
 
-    var category: VideoCategory = .film
+    var category: Category = .film
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
