@@ -83,7 +83,6 @@ class MediaListViewController: UIViewController, SegementSlideContentScrollViewD
             self?.loadMore()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
         collectionView.footRefreshControl.autoRefreshOnFoot = true
-        
         collectionView.bindHeadRefreshHandler({ [weak self] in
             self?.refresh()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
@@ -151,6 +150,7 @@ extension MediaListViewController {
             }.catch({ (error) in
                 self.showError(error)
             }).finally {
+                self.index = 1
                 self.render()
                 self.collectionView.headRefreshControl.endRefreshing()
                 self.collectionView.footRefreshControl.resumeRefreshAvailable()
@@ -159,8 +159,12 @@ extension MediaListViewController {
     
     func loadMore() {
         index += 1
-        APIClient.fetchCategoryList(category: category, page: index).done { category in
-                self.videos.append(contentsOf: category.items)
+        APIClient.fetchCategoryList(category: category, page: index, query: selectedQuery).done { category in
+            if category.items.isEmpty {
+                self.collectionView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "已经全部加载完毕")
+                return
+            }
+            self.videos.append(contentsOf: category.items)
             }.catch{ (err) in
                 self.index = max(1, self.index-1)
                 self.showError(err)

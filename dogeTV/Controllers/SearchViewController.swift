@@ -130,6 +130,10 @@ extension SearchViewController {
         }
         index += 1
         APIClient.search(keywords: keywords, page: index).done { (videos) in
+            if videos.isEmpty {
+                self.collectionView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "已经全部加载完毕")
+                return
+            }
             self.results.append(contentsOf: videos)
             }.catch{ (error) in
                 self.index = max(1, self.index-1)
