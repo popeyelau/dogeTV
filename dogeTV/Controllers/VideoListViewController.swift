@@ -113,10 +113,15 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
         queryPanel.onSelectOptions = { [weak self] in
             self?.refresh()
         }
-        presentAsStork(queryPanel, showIndicator: true, complection: nil)
+        let height = UIScreen.main.bounds.height * 0.75
+        presentAsStork(queryPanel, height: height, showIndicator: true, complection: nil)
     }
     
     var selectedQuery: String {
+        if query == nil {
+            return "-Shot"
+        }
+        
         var queryString = ""
         let tag = query?.first { $0.title == OptionSetType.tag.rawValue }?.options.first { $0.isSelected && !$0.key.isEmpty }?.key
         let keys = query?.filter { $0.title != OptionSetType.tag.rawValue }.flatMap { $0.options }.filter { $0.isSelected && !$0.key.isEmpty }.map { $0.key }.joined(separator: "-")
@@ -141,6 +146,7 @@ extension VideoListViewController {
             APIClient.fetchCategoryList(category: category, query: self.selectedQuery)}
             .done { (category) in
                 if self.query == nil {
+                    category.query?.forEach { $0.options.first?.isSelected = true}
                     self.query = category.query
                 }
                 self.videos = category.items
@@ -151,6 +157,7 @@ extension VideoListViewController {
                 self.render()
                 self.collectionView.headRefreshControl.endRefreshing()
                 self.collectionView.footRefreshControl.resumeRefreshAvailable()
+                self.collectionView.setContentOffset(.zero, animated: true)
         }
     }
     

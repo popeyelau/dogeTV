@@ -35,8 +35,8 @@ struct VideoItemComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        let length = ceil(bounds.width * 0.3)
-        return CGSize(width: length, height: length * 1.65)
+        let width = (bounds.width - 32) / 3.0
+        return CGSize(width: width, height: width * 1.65)
     }
 
     func shouldContentUpdate(with next: VideoItemComponent) -> Bool {

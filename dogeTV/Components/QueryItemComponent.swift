@@ -33,10 +33,10 @@ struct QueryItemComponent: IdentifiableComponent {
     func render(in content: Content) {
         content.text = data.text
         if data.isSelected {
-            content.backgroundColor = UIColor(hexString: "#00AA90")
+            content.backgroundColor = UIColor(hexString: "#434343")
             content.textColor = .white
         } else {
-            content.backgroundColor = .groupTableViewBackground
+            content.backgroundColor = .white
             content.textColor = UIColor(hexString: "#434343")
         }
     }

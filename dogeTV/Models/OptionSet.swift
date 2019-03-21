@@ -26,7 +26,7 @@ class OptionSet: Decodable {
 
 class Option: Decodable, Equatable {
     static func == (lhs: Option, rhs: Option) -> Bool {
-        return lhs.key == rhs.key
+        return lhs.key == rhs.key && lhs.text == rhs.text
     }
     var text: String
     var key: String
