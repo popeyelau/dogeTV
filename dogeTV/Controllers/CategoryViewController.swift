@@ -56,7 +56,7 @@ class CategoryViewController: SegementSlideViewController {
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
         switch sourceType {
         case .normal:
-            let target = MediaListViewController()
+            let target = VideoListViewController()
             target.category = Category.allCases[index]
             return target
         case .rank:

@@ -13,7 +13,7 @@
 		792EADAD22276BC50030A54F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADAC22276BC50030A54F /* Helpers.swift */; };
 		7935A11A222785A1009A921F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7935A119222785A1009A921F /* UIViewExtension.swift */; };
 		793A22662228E011000B7B07 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A22652228E011000B7B07 /* CategoryViewController.swift */; };
-		793A22682228ED44000B7B07 /* MediaListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A22672228ED44000B7B07 /* MediaListViewController.swift */; };
+		793A22682228ED44000B7B07 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A22672228ED44000B7B07 /* VideoListViewController.swift */; };
 		7950849F222680F100D010C9 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7950849E222680F100D010C9 /* VideoDetailViewController.swift */; };
 		7959696F222A6C4C0069B26C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7959696E222A6C4C0069B26C /* LiveViewController.swift */; };
 		796D00CE223D455700179C72 /* RankListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796D00CD223D455700179C72 /* RankListViewController.swift */; };
@@ -46,7 +46,6 @@
 		79CB65D2222CBB8600356042 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CB65D1222CBB8600356042 /* APIClient.swift */; };
 		79CD435A222BA2FC0000410F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD4359222BA2FC0000410F /* Channel.swift */; };
 		79CD435C222BA3230000410F /* ChannelItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435B222BA3230000410F /* ChannelItemComponent.swift */; };
-		79CD435E222BA3400000410F /* ChannelFooterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435D222BA3400000410F /* ChannelFooterComponent.swift */; };
 		79CD4360222BBE5B0000410F /* LivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435F222BBE5B0000410F /* LivesViewController.swift */; };
 		79D66A5C2226B6830007DFEA /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D66A5B2226B6830007DFEA /* ENV.swift */; };
 		79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */; };
@@ -65,7 +64,7 @@
 		792EADAC22276BC50030A54F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		7935A119222785A1009A921F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		793A22652228E011000B7B07 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		793A22672228ED44000B7B07 /* MediaListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaListViewController.swift; sourceTree = "<group>"; };
+		793A22672228ED44000B7B07 /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
 		7950849E222680F100D010C9 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		7959696E222A6C4C0069B26C /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		796D00CD223D455700179C72 /* RankListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankListViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +99,6 @@
 		79CB65D1222CBB8600356042 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		79CD4359222BA2FC0000410F /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		79CD435B222BA3230000410F /* ChannelItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemComponent.swift; sourceTree = "<group>"; };
-		79CD435D222BA3400000410F /* ChannelFooterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelFooterComponent.swift; sourceTree = "<group>"; };
 		79CD435F222BBE5B0000410F /* LivesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesViewController.swift; sourceTree = "<group>"; };
 		79D66A5B2226B6830007DFEA /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEpisodeHeaderComponent.swift; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 				798CD2862228096600E64A09 /* EpisodeItemComponent.swift */,
 				798CD288222809C200E64A09 /* VideoHeaderComponent.swift */,
 				79CD435B222BA3230000410F /* ChannelItemComponent.swift */,
-				79CD435D222BA3400000410F /* ChannelFooterComponent.swift */,
 				79AE11E3222C0B6900971FEF /* TopicHeaderComponent.swift */,
 				796D00CF223D457A00179C72 /* RankItemComponent.swift */,
 				79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */,
@@ -259,7 +256,7 @@
 				79A5F001222661D1001CA17B /* TopicViewController.swift */,
 				7950849E222680F100D010C9 /* VideoDetailViewController.swift */,
 				793A22652228E011000B7B07 /* CategoryViewController.swift */,
-				793A22672228ED44000B7B07 /* MediaListViewController.swift */,
+				793A22672228ED44000B7B07 /* VideoListViewController.swift */,
 				79AD3A0C222A1CDF0007A52E /* WebViewController.swift */,
 				7959696E222A6C4C0069B26C /* LiveViewController.swift */,
 				79FA39BB222B7CF300EFC8CB /* PlayerViewController.swift */,
@@ -413,7 +410,6 @@
 				79DCECFC223E2005008973D3 /* Ranking.swift in Sources */,
 				799390F1223F39D30035B636 /* OptionSet.swift in Sources */,
 				7978361F223CD0A400C59E01 /* UIImageViewExtension.swift in Sources */,
-				79CD435E222BA3400000410F /* ChannelFooterComponent.swift in Sources */,
 				798CD2772228046E00E64A09 /* SectionHeaderComponent.swift in Sources */,
 				79AD3A0D222A1CDF0007A52E /* WebViewController.swift in Sources */,
 				798CD26E222800CA00E64A09 /* VideoItemComponent.swift in Sources */,
@@ -424,7 +420,7 @@
 				79CD435A222BA2FC0000410F /* Channel.swift in Sources */,
 				79CB65D0222CBA3800356042 /* Router.swift in Sources */,
 				79CB65CD222CAB1F00356042 /* UIViewControllerExtension.swift in Sources */,
-				793A22682228ED44000B7B07 /* MediaListViewController.swift in Sources */,
+				793A22682228ED44000B7B07 /* VideoListViewController.swift in Sources */,
 				79DCECFA223E1FDD008973D3 /* Topic.swift in Sources */,
 				79A5EFFC22261107001CA17B /* HomeViewController.swift in Sources */,
 				79AE11E4222C0B6900971FEF /* TopicHeaderComponent.swift in Sources */,

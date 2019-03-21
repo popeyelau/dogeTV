@@ -55,7 +55,6 @@ class VideoItemContentView: UIView {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hello World"
         label.font = .preferredFont(forTextStyle: .footnote)
         label.textAlignment = .center
         label.textColor = .darkGray

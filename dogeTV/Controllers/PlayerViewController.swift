@@ -21,10 +21,6 @@ class PlayerViewController: AVPlayerViewController {
         self.player = player
         player.play()
     }
-
-    override var shouldAutorotate: Bool {
-        return true
-    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

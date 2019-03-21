@@ -1,5 +1,5 @@
 //
-//  MediaListViewController.swift
+//  VideoListViewController.swift
 //  dogeTV
 //
 //  Created by Popeye Lau on 2019/3/1.
@@ -14,7 +14,7 @@ import KafkaRefresh
 import SegementSlide
 import SPStorkController
 
-class MediaListViewController: UIViewController, SegementSlideContentScrollViewDelegate {
+class VideoListViewController: UIViewController, SegementSlideContentScrollViewDelegate {
     
     var category: Category!
     var query: [OptionSet]?
@@ -113,28 +113,26 @@ class MediaListViewController: UIViewController, SegementSlideContentScrollViewD
         queryPanel.onSelectOptions = { [weak self] in
             self?.refresh()
         }
-        let height = UIScreen.main.bounds.height * 0.75
-        presentAsStork(queryPanel, height: height, showIndicator: true, complection: nil)
+        presentAsStork(queryPanel, showIndicator: true, complection: nil)
     }
     
     var selectedQuery: String {
-        let tag = query?.first { $0.title == OptionSetType.tag.rawValue }?.options.first { $0.isSelected }?.key ?? ""
-        var otherKeys = query?.filter { $0.title != OptionSetType.tag.rawValue }.flatMap { $0.options }.filter { $0.isSelected }.map { $0.key }.joined(separator: "-") ?? ""
-        if otherKeys.hasPrefix("-") {
-           otherKeys.removeFirst()
+        var queryString = ""
+        let tag = query?.first { $0.title == OptionSetType.tag.rawValue }?.options.first { $0.isSelected && !$0.key.isEmpty }?.key
+        let keys = query?.filter { $0.title != OptionSetType.tag.rawValue }.flatMap { $0.options }.filter { $0.isSelected && !$0.key.isEmpty }.map { $0.key }.joined(separator: "-")
+
+        if let tag = tag, !tag.isEmpty {
+            queryString += "/\(tag)"
         }
-        if otherKeys.hasSuffix("-") {
-            otherKeys.removeLast()
+        
+        if let keys = keys, !keys.isEmpty {
+           queryString += "-\(keys)"
         }
-        otherKeys = otherKeys.count > 0 ? "-\(otherKeys)" : ""
-        if tag.count > 0 {
-            return "/\(tag)\(otherKeys)"
-        }
-        return otherKeys
+        return queryString
     }
 }
 
-extension MediaListViewController {
+extension VideoListViewController {
     func refresh() {
         guard let category = self.category else {
             return
@@ -173,7 +171,3 @@ extension MediaListViewController {
         }
     }
 }
-
-
-
-

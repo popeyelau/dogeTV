@@ -72,7 +72,6 @@ class VideoEpisodeHeaderContentView: UIView {
             $0.left.equalTo(episodeBtn.snp.right).offset(8)
             $0.right.lessThanOrEqualTo(self).offset(-8)
         }
-
     }
 
     @objc func switchBtnTaped() {

@@ -45,7 +45,6 @@ class LiveViewController: UIViewController, SegementSlideContentScrollViewDelega
         refresh()
     }
 
-
     func setupViews() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -67,11 +66,8 @@ class LiveViewController: UIViewController, SegementSlideContentScrollViewDelega
     }
 
     func render() {
-        let cells = channels.map { (item) -> CellNode in
-            CellNode(ChannelItemComponent(data: item))
-        }
-        let footer = ViewNode(ChannelFooterComponent(data: "网友分享"))
-        renderer.render(Section(id: 0, cells: cells, footer: footer))
+        let cells = channels.map { CellNode(ChannelItemComponent(data: $0)) }
+        renderer.render(Section(id: 0, cells: cells))
     }
 }
 
@@ -79,7 +75,7 @@ extension LiveViewController {
     func refresh() {
         HUD.show(.progress)
             _ = APIClient.fetchTV(location).done { (channels) in
-                self.channels = channels.sorted(by: { $0.name < $1.name })
+                self.channels = channels.sorted { $0.name < $1.name }
                 }.catch({ (error) in
                     self.showError(error)
                 }).finally {

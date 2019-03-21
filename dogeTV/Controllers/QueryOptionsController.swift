@@ -50,9 +50,6 @@ class QueryOptionsController: UIViewController {
                 let item = ctx.node.component.as(QueryItemComponent.self), !item.data.isSelected else {
                     return
             }
-            if let tag = OptionSetType(rawValue: item.set), tag == .tag {
-                self.query?.forEach { $0.deSelectAllOptions() }
-            }
             self.query?[ctx.indexPath.section].setSelected(item: item.data)
             self.onSelectOptions?()
             self.render()

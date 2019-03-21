@@ -20,12 +20,7 @@ class OptionSet: Decodable {
     var options: [Option]
     
     func setSelected(item: Option) {
-        deSelectAllOptions()
-        item.isSelected = true
-    }
-    
-    func deSelectAllOptions() {
-        options.forEach { $0.isSelected = false}
+        options.forEach { $0.isSelected = $0 == item}
     }
 }
 
