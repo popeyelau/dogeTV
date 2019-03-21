@@ -28,12 +28,16 @@ struct TopicHeaderComponent: IdentifiableComponent {
 
     func render(in content: Content) {
         content.backgroundImageView.setResourceImage(with: data.cover, placeholder: UIImage(named: "blur"))
-        content.titleLabel.text = data.title
-        content.introLabel.text = data.desc
+        content.intro = data.desc.trimed
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 200)
+        let insets = UIEdgeInsets(top: 20, left: 8, bottom: 20, right: 8)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        let attributes:[NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .paragraphStyle: paragraphStyle]
+        let textHeight = data.desc.trimed.heightOfString(withConstrainedWidth: bounds.width, attributes: attributes, insets: insets)
+        return CGSize(width: bounds.width, height: textHeight)
     }
 
     func shouldContentUpdate(with next: TopicHeaderComponent) -> Bool {
@@ -51,50 +55,38 @@ class TopicHeaderContentView: UIView {
         return imageView
     }()
 
-    lazy var coverImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 40
-        return imageView
-    }()
-
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 16)
-        return label
-    }()
+    var intro: String? {
+        didSet {
+            guard let intro = intro else {
+                introLabel.text = nil
+                introLabel.attributedText = nil
+                return
+            }
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5
+            introLabel.attributedText = NSAttributedString(string: intro, attributes: [.paragraphStyle: paragraphStyle])
+        }
+    }
 
     lazy var introLabel: UILabel = {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .caption2)
         label.textColor = .groupTableViewBackground
-        label.numberOfLines = 10
+        label.numberOfLines = 0
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(backgroundImageView)
-        addSubview(titleLabel)
         addSubview(introLabel)
-
-        let padding = 8.0
 
         backgroundImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
-        titleLabel.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(padding)
-            $0.top.equalToSuperview().offset(padding)
-            $0.right.equalToSuperview().offset((-padding))
-        }
         introLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(padding)
-            $0.right.equalToSuperview().offset((-padding))
-            $0.left.equalTo(titleLabel)
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 20, left: 8, bottom: 20, right: 8))
         }
 
         let blur = UIBlurEffect(style: .dark)

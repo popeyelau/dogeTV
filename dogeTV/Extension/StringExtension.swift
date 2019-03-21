@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreText
 import CommonCrypto
 
 extension String {
@@ -41,5 +42,16 @@ extension String {
     func sizeOfString(usingFont font: UIFont) -> CGSize {
         let fontAttributes = [NSAttributedString.Key.font: font]
         return self.size(withAttributes: fontAttributes)
+    }
+
+    func heightOfString(withConstrainedWidth width: CGFloat, attributes: [NSAttributedString.Key: Any], insets: UIEdgeInsets = .zero) -> CGFloat {
+        let constraintRect = CGSize(width: width - insets.left - insets.right, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading],
+                                            attributes: attributes, context: nil)
+        return ceil(boundingBox.height) + insets.top + insets.bottom
+    }
+
+    var trimed: String {
+        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 }

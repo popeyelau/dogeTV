@@ -37,6 +37,7 @@ class TopicViewController: UIViewController {
 
     var index: Int = 1
     var videos: [Video] = []
+    var topic: Topic?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,10 +76,14 @@ class TopicViewController: UIViewController {
 
     
     func render() {
+        var header: ViewNode?
+        if let topic = topic {
+            header = ViewNode(TopicHeaderComponent(data: topic))
+        }
         let cells = videos.map {
             CellNode(VideoItemComponent(data: $0))
         }
-        renderer.render(Section(id: 0, cells: cells))
+        renderer.render(Section(id: 0, header: header, cells: cells))
     }
 }
 
@@ -96,6 +101,7 @@ extension TopicViewController {
         APIClient.fetchTopic(id: id).done { (topicInfo) in
             self.title = topicInfo.topic.title
             self.videos = topicInfo.items
+            self.topic = topicInfo.topic
             }.catch{ (error) in
                 self.showError(error)
             }.finally {
