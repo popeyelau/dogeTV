@@ -131,16 +131,20 @@ class VideoDetailViewController: UIViewController {
             showInfo("无效的地址")
             return
         }
+        
         /*
         //nPlayer 打开
         if UIApplication.shared.canOpenURL(URL(string: "nplayer-http://")!) {
-            let nPlayer = URL(string: "nplayer-\(url)")!
+            let nPlayer = URL(string: "nplayer-\(video.url)")!
             UIApplication.shared.open(nPlayer, options: [:], completionHandler: nil)
             return
         }*/
 
         UIPasteboard.general.string = video.url
         let target = PlayerViewController()
+        target.onDidDisappear = {
+            SPStorkController.updatePresentingController(modal: self)
+        }
         present(target, animated: true) {
             target.play(url: video.url, title: nil)
         }

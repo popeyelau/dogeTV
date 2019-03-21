@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 
 class PlayerViewController: AVPlayerViewController {
+    var onDidDisappear:(() -> Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -23,5 +24,10 @@ class PlayerViewController: AVPlayerViewController {
 
     override var shouldAutorotate: Bool {
         return true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        onDidDisappear?()
     }
 }

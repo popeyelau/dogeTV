@@ -73,8 +73,6 @@ class LiveViewController: UIViewController, SegementSlideContentScrollViewDelega
         let footer = ViewNode(ChannelFooterComponent(data: "网友分享"))
         renderer.render(Section(id: 0, cells: cells, footer: footer))
     }
-
- 
 }
 
 extension LiveViewController {

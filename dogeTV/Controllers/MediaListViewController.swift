@@ -57,8 +57,7 @@ class MediaListViewController: UIViewController, SegementSlideContentScrollViewD
     
     var index: Int = 1
     var videos: [Video] = []
-    var selectedKeys: [String:String] = [:]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()

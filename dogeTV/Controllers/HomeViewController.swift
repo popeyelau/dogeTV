@@ -116,18 +116,6 @@ class HomeViewController: UIViewController {
         target.title = "精选专题"
         navigationController?.pushViewController(target, animated: true)
     }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-
-    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .portrait
-    }
-
-    override var shouldAutorotate: Bool {
-        return false
-    }
 }
 
 
