@@ -23,7 +23,7 @@ extension UIViewController {
         SwiftMessageBar.showMessage(withTitle: "(╯°□°)╯︵ ┻━┻", message: message, type: .info)
     }
     
-    func showMeida(id: String) {
+    func showVideo(with id: String) {
         HUD.show(.progress)
         //TODO: get video info & episodes
         attempt(maximumRetryCount: 3) {

@@ -59,7 +59,7 @@ class RankListViewController: UIViewController, SegementSlideContentScrollViewDe
             guard let self = self, let item = ctx.node.component.as(RankItemComponent.self) else {
                 return
             }
-            self.showMeida(id: item.data.id)
+            self.showVideo(with: item.data.id)
         }
     }
 

@@ -19,8 +19,7 @@ struct QueryItemComponent: IdentifiableComponent {
     }
     
     let data: Option
-    let set: String
-    
+
     func renderContent() -> Content {
         let content = Content()
         content.font = .systemFont(ofSize: 12)

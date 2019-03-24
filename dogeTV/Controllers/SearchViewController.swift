@@ -70,7 +70,7 @@ class SearchViewController: UIViewController {
             guard let item = ctx.node.component.as(SearchItemComponent.self) else {
                 return
             }
-            self?.showMeida(id: item.id)
+            self?.showVideo(with: item.id)
         }
     }
 

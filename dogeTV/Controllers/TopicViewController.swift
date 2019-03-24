@@ -70,7 +70,7 @@ class TopicViewController: UIViewController {
             guard let item = context.node.component.as(VideoItemComponent.self) else{
                 return
             }
-            self?.showMeida(id: item.data.id)
+            self?.showVideo(with: item.data.id)
         }
     }
 

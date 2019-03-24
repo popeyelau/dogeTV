@@ -90,7 +90,7 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
             guard let self = self, let item = ctx.node.component.as(VideoItemComponent.self) else {
                 return
             }
-            self.showMeida(id: item.data.id)
+            self.showVideo(with: item.data.id)
         }
     }
     
