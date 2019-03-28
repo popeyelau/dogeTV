@@ -8,8 +8,6 @@
 
 import UIKit
 import PKHUD
-import PopMenu
-import Loaf
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,11 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
         configureUIAppearance()
-
         return true
     }
 }
-
 
 
 extension AppDelegate {
@@ -52,12 +48,5 @@ extension AppDelegate {
         
         PKHUD.sharedHUD.dimsBackground = false
         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled  = true
-
-
-        PopMenuManager.default.popMenuAppearance.popMenuBackgroundStyle = .dimmed(color: .white, opacity: 0.3)
-        PopMenuManager.default.popMenuAppearance.popMenuScrollIndicatorHidden = true
-        PopMenuManager.default.popMenuAppearance.popMenuItemSeparator = .fill(.groupTableViewBackground, height: 0.5)
-        //PopMenuManager.default.popMenuAppearance.popMenuPresentationStyle = .near(.top)
-
     }
 }

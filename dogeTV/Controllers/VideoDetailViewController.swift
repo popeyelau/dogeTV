@@ -12,13 +12,11 @@ import Carbon
 import PromiseKit
 import Kingfisher
 import PKHUD
-import PopMenu
 import SPStorkController
 
 
 class VideoDetailViewController: UIViewController {
     var resourceIndex = 0
-    lazy var menuManager = PopMenuManager.default
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
@@ -30,6 +28,7 @@ class VideoDetailViewController: UIViewController {
         return collectionView
     }()
     
+    var selectionController: SelectionViewController<Int>?
     var media: Video?
     var episodes: [Episode] = []
 
@@ -43,12 +42,32 @@ class VideoDetailViewController: UIViewController {
         return .lightContent
     }
 
-    @objc func switchResource() {
-        guard !menuManager.actions.isEmpty else {
+    @objc func switchResource(_ sender: UIButton) {
+        guard let video = media, video.source > 0 else {
             showInfo("没有其它路线可用")
             return
         }
-        menuManager.present()
+        
+        if selectionController == nil {
+            let sources = Array(0..<min(video.source, 8))
+            selectionController = SelectionViewController(sources, labels: { "线路 \($0+1)" } ){ [weak self] (source) in
+                self?.resourceIndex = source
+                self?.refreshResource(with: source)
+            }
+            selectionController?.preferredContentSize = CGSize(width: 130, height: sources.count * 44)
+        }
+        showSourceSelectionView(with: sender)
+    }
+    
+    func showSourceSelectionView(with sourceView: UIView) {
+        guard let controller = selectionController else {
+            return
+        }
+        let presentationController = PopoverPresentation.configurePresentation(forController: controller)
+        presentationController.sourceView = sourceView
+        presentationController.sourceRect = sourceView.bounds.insetBy(dx: -10, dy: 0)
+        presentationController.permittedArrowDirections = [.left]
+        present(controller, animated: true)
     }
 
     override func viewDidLoad() {
@@ -107,19 +126,9 @@ class VideoDetailViewController: UIViewController {
         }
 
         renderer.render(Section(id: 0, header: ViewNode(VideoHeaderComponent(data: video))),
-                        Section(id: 1, header: ViewNode(VideoEpisodeHeaderComponent(data: "线路\(resourceIndex+1)") { [weak self] in
-                            self?.switchResource()
+                        Section(id: 1, header: ViewNode(VideoEpisodeHeaderComponent(data: "线路\(resourceIndex+1)") { [weak self] sender in
+                            self?.switchResource(sender)
                         }), cells: cells))
-
-
-        if menuManager.actions.isEmpty && video.source > 0 {
-            let actions = (1...min(video.source, 8)).map { i -> PopMenuDefaultAction in
-                let menuItem = PopMenuDefaultAction(title: "线路\(i)", image: UIImage(named: "line"))
-                return menuItem
-            }
-            menuManager.popMenuDelegate = self
-            menuManager.actions = actions
-        }
     }
     
     func play(with video: Episode) {
@@ -161,21 +170,7 @@ class VideoDetailViewController: UIViewController {
                 HUD.hide()
         }
     }
-
-    deinit {
-        menuManager.actions = []
-    }
-
 }
-
-
-extension VideoDetailViewController: PopMenuViewControllerDelegate {
-    func popMenuDidSelectItem(_ popMenuViewController: PopMenuViewController, at index: Int) {
-        resourceIndex = index
-        refreshResource(with: index)
-    }
-}
-
 
 class VideoDetailViewAdapter: UICollectionViewFlowLayoutAdapter {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

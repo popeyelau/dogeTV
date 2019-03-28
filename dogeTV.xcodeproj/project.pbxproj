@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FFB50C7223254B23BDA804D /* Pods_dogeTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51AF8EF19DE5D5B8ACCB6AB0 /* Pods_dogeTV.framework */; };
+		7908C3F4224C6281005A59DB /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7908C3F3224C6281005A59DB /* SelectionViewController.swift */; };
 		792EADA822276B470030A54F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADA722276B470030A54F /* UIColorExtension.swift */; };
 		792EADAA22276B680030A54F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADA922276B680030A54F /* StringExtension.swift */; };
 		792EADAD22276BC50030A54F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADAC22276BC50030A54F /* Helpers.swift */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		31E1E5768B2F54BE347C6DAB /* Pods-iTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTV.debug.xcconfig"; path = "Target Support Files/Pods-iTV/Pods-iTV.debug.xcconfig"; sourceTree = "<group>"; };
 		51AF8EF19DE5D5B8ACCB6AB0 /* Pods_dogeTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dogeTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7908C3F3224C6281005A59DB /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		792EADA722276B470030A54F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		792EADA922276B680030A54F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		792EADAC22276BC50030A54F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				79CD435F222BBE5B0000410F /* LivesViewController.swift */,
 				796D00CD223D455700179C72 /* RankListViewController.swift */,
 				799390F4223F82240035B636 /* QueryOptionsController.swift */,
+				7908C3F3224C6281005A59DB /* SelectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				79DCECF6223E1FB1008973D3 /* Episode.swift in Sources */,
 				796D00D0223D457A00179C72 /* RankItemComponent.swift in Sources */,
 				798CD27B2228053800E64A09 /* TopicListItemComponent.swift in Sources */,
+				7908C3F4224C6281005A59DB /* SelectionViewController.swift in Sources */,
 				793A22662228E011000B7B07 /* CategoryViewController.swift in Sources */,
 				79CB65D2222CBB8600356042 /* APIClient.swift in Sources */,
 				79D66A5C2226B6830007DFEA /* ENV.swift in Sources */,

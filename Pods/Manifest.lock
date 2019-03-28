@@ -40,7 +40,6 @@ PODS:
     - KafkaRefresh/Default
   - Kingfisher (5.2.0)
   - Loaf (0.4.0)
-  - NewPopMenu (2.1.2)
   - PKHUD (5.2.1)
   - PromiseKit/Alamofire (6.8.3):
     - Alamofire (~> 4.0)
@@ -55,7 +54,6 @@ DEPENDENCIES:
   - KafkaRefresh
   - Kingfisher (~> 5.2.0)
   - Loaf
-  - NewPopMenu
   - PKHUD
   - PromiseKit/Alamofire (~> 6.0)
   - SegementSlide (~> 2.1.1)
@@ -70,7 +68,6 @@ SPEC REPOS:
     - KafkaRefresh
     - Kingfisher
     - Loaf
-    - NewPopMenu
     - PKHUD
     - PromiseKit
     - SegementSlide
@@ -84,13 +81,12 @@ SPEC CHECKSUMS:
   KafkaRefresh: 7e40fce9a5fb180da8b9382ab1b5a129f1f8d48d
   Kingfisher: 07067cfacf371117330dceb4b4b8f5c4b691ab42
   Loaf: 070a55b75527d541e710f69c0c7642ead3676a96
-  NewPopMenu: c6129e08e8192f6257ceb5f9a4357e1b59c6e2e7
   PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   SegementSlide: 95ebbdd2f616c0d9ab1a6046e67292bb3fb08f7c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SPStorkController: fc7c0d3e4ba9a36910720231b46248165d49b6c9
 
-PODFILE CHECKSUM: 075d2c593910c88933a17bc9c9523d88c86c4040
+PODFILE CHECKSUM: f34f05211d3af9a11f399df38b06bc23b5cf2036
 
 COCOAPODS: 1.7.0.beta.1

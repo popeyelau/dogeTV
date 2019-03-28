@@ -14,7 +14,7 @@ struct VideoEpisodeHeaderComponent: Component {
     typealias Content = VideoEpisodeHeaderContentView
 
     var data: String
-    var onSwitch: () -> Void
+    var onSwitch: (UIButton) -> Void
 
     func renderContent() -> Content {
         let content = Content()
@@ -37,7 +37,7 @@ struct VideoEpisodeHeaderComponent: Component {
 
 class VideoEpisodeHeaderContentView: UIView {
 
-    var onSwitch: (() -> Void)?
+    var onSwitch: ((UIButton) -> Void)?
     lazy var episodeBtn: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitleColor(.black, for: .normal)
@@ -45,7 +45,7 @@ class VideoEpisodeHeaderContentView: UIView {
         button.titleLabel?.font = .systemFont(ofSize: 14)
         button.setImage(UIImage(named: "line"), for: .normal)
         button.setTitle("切换路线", for: .normal)
-        button.addTarget(self, action: #selector(switchBtnTaped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(switchBtnTaped(_:)), for: .touchUpInside)
         return button
     }()
 
@@ -74,8 +74,8 @@ class VideoEpisodeHeaderContentView: UIView {
         }
     }
 
-    @objc func switchBtnTaped() {
-        onSwitch?()
+    @objc func switchBtnTaped(_ sender: UIButton) {
+        onSwitch?(sender)
     }
 
     required init?(coder aDecoder: NSCoder) {

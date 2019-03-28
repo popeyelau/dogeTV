@@ -115,7 +115,7 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
             self?.refresh()
         }
         let height = UIScreen.main.bounds.height * 0.75
-        presentAsStork(queryPanel, height: height, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
+       navigationController?.presentAsStork(queryPanel, height: height, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
     }
     
     var selectedQuery: String {

@@ -14,7 +14,6 @@ target 'dogeTV' do
   pod 'Loaf'
   pod 'SegementSlide', '~> 2.1.1'
   pod 'PKHUD'
-  pod 'NewPopMenu'
   pod 'SPStorkController', '~> 1.5.4'
 end
 
