@@ -10,8 +10,10 @@ import UIKit
 import SnapKit
 import Carbon
 
+import SwiftTheme
+
 struct EpisodeItemComponent: IdentifiableComponent {
-    typealias Content = EpisodeItemContentView
+    typealias Content = UILabel
 
     var id: String {
         return data.url
@@ -21,14 +23,17 @@ struct EpisodeItemComponent: IdentifiableComponent {
 
     func renderContent() -> Content {
         let content = Content()
+        content.font = UIFont.systemFont(ofSize: 12)
+        content.textAlignment = .center
+        content.layer.cornerRadius = 6
+        content.layer.masksToBounds = true
         return content
     }
 
     func render(in content: Content) {
-        content.episodeBtn.setTitle("\(data.title)", for: .normal)
-        content.episodeBtn.isSelected = false
-        content.theme_backgroundColor = AppColor.selectedButtonColor
-
+        content.text = data.title
+        content.theme_textColor = ["#434343", "#FFF"]
+        content.theme_backgroundColor =  ["#F1F7F8", "#1E3141"]
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
@@ -42,7 +47,7 @@ struct EpisodeItemComponent: IdentifiableComponent {
 }
 
 struct SourceItemComponent: IdentifiableComponent {
-    typealias Content = EpisodeItemContentView
+    typealias Content = UILabel
     
     var id: VideoSource {
         return data
@@ -53,18 +58,27 @@ struct SourceItemComponent: IdentifiableComponent {
 
     func renderContent() -> Content {
         let content = Content()
+        content.font = UIFont.systemFont(ofSize: 12)
+        content.textAlignment = .center
+        content.layer.cornerRadius = 6
+        content.layer.masksToBounds = true
         return content
     }
     
-    func render(in content: Content) {
-        let title = data.source == 0 ? "默认线路" : "线路-\(data.source)"
-        content.episodeBtn.setTitle(title, for: .normal)
-        content.episodeBtn.isSelected = data.isSelected
-        content.theme_backgroundColor = data.isSelected ? AppColor.selectedButtonColor : AppColor.buttonColor
+    func render(in content: UILabel) {
+        let title = data.source == 0 ? "默认线路" : "线路\(data.source)"
+        content.text = title
+
+        let textColor: ThemeColorPicker = data.isSelected ? ["#FFF", "#FFF"] :  ["#434343", "#FFF"]
+        content.theme_textColor = textColor
+
+
+        let backgroundColor: ThemeColorPicker = data.isSelected ? ["#434343", "#1E3141"] :  ["#F1F7F8", "#0D181F"]
+        content.theme_backgroundColor = backgroundColor
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        let column: CGFloat = 6.0
+        let column: CGFloat = 5.0
         let gap = (column - 1) * 5.0
         let inset: CGFloat = 20
         return CGSize(width: (bounds.size.width - inset - gap) / column, height: 35)
@@ -74,32 +88,3 @@ struct SourceItemComponent: IdentifiableComponent {
         return data != next.data
     }
 }
-
-class EpisodeItemContentView: UIView {
-
-    lazy var episodeBtn: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitleColor(.white, for: .normal)
-        button.isUserInteractionEnabled = false
-        button.titleLabel?.font = .systemFont(ofSize: 11)
-        return button
-    }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        layer.cornerRadius = 6
-        layer.masksToBounds = true
-
-        theme_backgroundColor = AppColor.selectedButtonColor
-        addSubview(episodeBtn)
-
-        episodeBtn.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
-        }
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-

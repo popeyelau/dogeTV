@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Carbon
+import SwiftTheme
 
 
 struct QueryItemComponent: IdentifiableComponent {
@@ -31,12 +32,18 @@ struct QueryItemComponent: IdentifiableComponent {
     
     func render(in content: Content) {
         content.text = data.text
-        content.textColor = .white
-        if data.isSelected {
-            content.theme_backgroundColor = AppColor.selectedButtonColor
-        } else {
-            content.theme_backgroundColor = AppColor.buttonColor
-        }
+
+
+
+        let textColor: ThemeColorPicker = data.isSelected ? ["#FFF", "#FFF"] :  ["#434343", "#FFF"]
+        content.theme_textColor = textColor
+
+
+        let backgroundColor: ThemeColorPicker = data.isSelected ? ["#434343", "#1C3242"] :  ["#4c000000", "#4c000000"]
+        content.theme_backgroundColor = backgroundColor
+
+
+     
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {

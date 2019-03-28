@@ -30,7 +30,7 @@ class LivesViewController: SegementSlideViewController {
     override var switcherConfig: SegementSlideSwitcherConfig {
         var config = SegementSlideSwitcherConfig.shared
         config.indicatorColor = AppTheme.isDark ? .white : .darkGray
-        config.normalTitleColor = .gray
+        config.normalTitleColor = .lightGray
         config.selectedTitleColor = AppTheme.isDark ? .white : .darkGray
         config.type = .tab
         return config
