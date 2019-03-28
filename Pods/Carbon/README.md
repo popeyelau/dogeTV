@@ -7,7 +7,7 @@ in UITableView and UICollectionView.</br>
 </H4>
 
 <p align="center">
-<a href="https://developer.apple.com/swift"><img alt="Swift4.2" src="https://img.shields.io/badge/language-Swift4.2-orange.svg"/></a>
+<a href="https://developer.apple.com/swift"><img alt="Swift5" src="https://img.shields.io/badge/language-Swift5-orange.svg"/></a>
 <a href="https://github.com/ra1028/Carbon/releases/latest"><img alt="Release" src="https://img.shields.io/github/release/ra1028/Carbon.svg"/></a>
 <a href="https://cocoapods.org/pods/Carbon"><img alt="CocoaPods" src="https://img.shields.io/cocoapods/v/Carbon.svg"/></a>
 <a href="https://github.com/Carthage/Carthage"><img alt="Carthage" src="https://img.shields.io/badge/carthage-compatible-yellow.svg"/></a>
@@ -458,6 +458,27 @@ github "ra1028/Carbon"
 
 Pull requests, bug reports and feature requests are welcome 🚀  
 Please see the [CONTRIBUTING](https://github.com/ra1028/Carbon/blob/master/CONTRIBUTING.md) file for learn how to contribute to Carbon.  
+
+---
+
+## Respect
+
+Libraries for list UIs using diffing algorithm that I have sincerely ❤️ and respected.  
+
+- [React](https://github.com/facebook/react/) (by [Facebook](https://github.com/facebook))  
+  I have very inspired about paradigm and API design.  
+- [IGListKit](https://github.com/Instagram/IGListKit) (by [Instagram](https://github.com/Instagram))  
+  The most popular library among list UI libraries using diffing algorithm in iOS.  
+- [Epoxy](https://github.com/airbnb/epoxy) (by [Airbnb](https://github.com/airbnb))  
+  The most popular library among list UI libraries using diffing algorithm in Android.  
+- [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources) (by [@kzaher](https://github.com/kzaher), [RxSwift Community](https://github.com/RxSwiftCommunity))  
+  A great library that can complex diffing update by very fast algorithms.  
+- [Texture](https://github.com/TextureGroup/Texture) (by [TextureGroup](https://github.com/TextureGroup), [Facebook](https://github.com/facebook), [Pinterest](https://github.com/pinterest))  
+  The one and only library for creating list UIs that pursues rendering performance.  
+- [Bento](https://github.com/Babylonpartners/Bento) (by [Babylon Health](https://github.com/Babylonpartners))  
+  Bento is an awesome declarative library that has an API design which follows React.  
+- [ReactiveLists](https://github.com/plangrid/ReactiveLists) (by [PlanGrid](https://github.com/plangrid))  
+  Uses DifferenceKit as well as Carbon for the diffing algorithm.  
 
 ---
 

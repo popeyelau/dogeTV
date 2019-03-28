@@ -7,14 +7,14 @@ target 'dogeTV' do
 
   # Pods for dogeTV
   pod 'SnapKit'
-  pod 'Kingfisher', '~> 5.2.0'
-  pod 'PromiseKit/Alamofire', '~> 6.0'
-  pod 'Carbon'
+  pod 'Kingfisher'
+  pod 'PromiseKit/Alamofire'
+  pod 'Carbon', :git => 'https://github.com/ra1028/Carbon.git'
   pod 'KafkaRefresh'
   pod 'Loaf'
-  pod 'SegementSlide', '~> 2.1.1'
+  pod 'SegementSlide'
   pod 'PKHUD'
-  pod 'SPStorkController', '~> 1.5.4'
+  pod 'SPStorkController'
   pod 'SwiftTheme'
 end
 
