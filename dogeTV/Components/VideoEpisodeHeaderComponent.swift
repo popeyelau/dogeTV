@@ -14,7 +14,12 @@ struct VideoEpisodeHeaderComponent: Component {
     typealias Content = VideoEpisodeHeaderContentView
 
     var data: String
-    var onSwitch: (UIButton) -> Void
+    var subTitle: String?
+    
+    init(title: String, subTitle: String? = nil) {
+        self.data = title
+        self.subTitle = subTitle
+    }
 
     func renderContent() -> Content {
         let content = Content()
@@ -22,8 +27,8 @@ struct VideoEpisodeHeaderComponent: Component {
     }
 
     func render(in content: Content) {
-        content.episodeBtn.setTitle(" [ \(data) ]", for: .normal)
-        content.onSwitch = onSwitch
+        content.titleLabel.text = data
+        content.subTitleLabel.text = subTitle
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
@@ -36,46 +41,52 @@ struct VideoEpisodeHeaderComponent: Component {
 }
 
 class VideoEpisodeHeaderContentView: UIView {
-
-    var onSwitch: ((UIButton) -> Void)?
-    lazy var episodeBtn: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitleColor(.black, for: .normal)
-        button.tintColor = .black
-        button.titleLabel?.font = .systemFont(ofSize: 14)
-        button.setImage(UIImage(named: "line"), for: .normal)
-        button.setTitle("切换路线", for: .normal)
-        button.addTarget(self, action: #selector(switchBtnTaped(_:)), for: .touchUpInside)
-        return button
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .black
+        return label
+    }()
+    
+    lazy var indicatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
     }()
 
-    lazy var titleLabel: UILabel = {
+    lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.textColor = .gray
-        label.text = "(☚ 点击切换线路, 线路画质从高到低)"
+        label.textAlignment = .right
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        addSubview(indicatorView)
         addSubview(titleLabel)
-        addSubview(episodeBtn)
+        addSubview(subTitleLabel)
 
-        episodeBtn.snp.makeConstraints {
+        indicatorView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
+            $0.height.equalToSuperview().multipliedBy(0.35)
+            $0.width.equalTo(2)
             $0.left.equalToSuperview().offset(8)
         }
+        
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.left.equalTo(episodeBtn.snp.right).offset(8)
-            $0.right.lessThanOrEqualTo(self).offset(-8)
+            $0.left.equalTo(indicatorView.snp.right).offset(8)
         }
-    }
-
-    @objc func switchBtnTaped(_ sender: UIButton) {
-        onSwitch?(sender)
+        
+        subTitleLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.right.equalToSuperview().offset(-8)
+            $0.left.greaterThanOrEqualTo(titleLabel.snp.right).offset(8)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -18,7 +18,7 @@ class CategoryViewController: SegementSlideViewController {
         case normal
         var title: String {
             switch self {
-            case .rank: return "排行榜"
+            case .rank: return "热度榜"
             case .normal: return "影视库"
             }
         }

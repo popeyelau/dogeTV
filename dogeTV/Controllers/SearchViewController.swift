@@ -50,7 +50,10 @@ class SearchViewController: UIViewController {
             self?.loadMore()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
         collectionView.footRefreshControl.autoRefreshOnFoot = true
-
+        
+        if searchBar.canBecomeFirstResponder {
+            searchBar.becomeFirstResponder()
+        }
     }
     
     func setupViews() {

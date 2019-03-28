@@ -16,10 +16,17 @@ import SPStorkController
 
 
 class VideoDetailViewController: UIViewController {
+    
+    enum ID {
+        case header
+        case lines
+        case episodes
+    }
+    
     var resourceIndex = 0
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -42,34 +49,6 @@ class VideoDetailViewController: UIViewController {
         return .lightContent
     }
 
-    @objc func switchResource(_ sender: UIButton) {
-        guard let video = media, video.source > 0 else {
-            showInfo("没有其它路线可用")
-            return
-        }
-        
-        if selectionController == nil {
-            let sources = Array(0..<min(video.source, 8))
-            selectionController = SelectionViewController(sources, labels: { "线路 \($0+1)" } ){ [weak self] (source) in
-                self?.resourceIndex = source
-                self?.refreshResource(with: source)
-            }
-            selectionController?.preferredContentSize = CGSize(width: 130, height: sources.count * 44)
-        }
-        showSourceSelectionView(with: sender)
-    }
-    
-    func showSourceSelectionView(with sourceView: UIView) {
-        guard let controller = selectionController else {
-            return
-        }
-        let presentationController = PopoverPresentation.configurePresentation(forController: controller)
-        presentationController.sourceView = sourceView
-        presentationController.sourceRect = sourceView.bounds.insetBy(dx: -10, dy: 0)
-        presentationController.permittedArrowDirections = [.left]
-        present(controller, animated: true)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = media?.name
@@ -80,10 +59,12 @@ class VideoDetailViewController: UIViewController {
         }
         render()
         renderer.adapter.didSelect = {[weak self] ctx in
-            guard let item = ctx.node.component.as(EpisodeItemComponent.self) else {
-                return
+            if let item = ctx.node.component.as(EpisodeItemComponent.self) {
+                self?.handleSelect(item: item.data)
+            } else if let item = ctx.node.component.as(SourceItemComponent.self) {
+                self?.resourceIndex = item.data.source
+                self?.refreshResource(with: item.data.source)
             }
-            self?.handleSelect(item: item.data)
         }
     }
 
@@ -124,12 +105,17 @@ class VideoDetailViewController: UIViewController {
         let cells = episodes.map { (item) -> CellNode in
             CellNode(EpisodeItemComponent(data: item))
         }
+        
+        let lines = (0..<min(video.source,6)).map{ (source) -> CellNode in
+            CellNode(SourceItemComponent(data: VideoSource(source: source, isSelected: resourceIndex == source)))
+        }
 
-        renderer.render(Section(id: 0, header: ViewNode(VideoHeaderComponent(data: video))),
-                        Section(id: 1, header: ViewNode(VideoEpisodeHeaderComponent(data: "线路\(resourceIndex+1)") { [weak self] sender in
-                            self?.switchResource(sender)
-                        }), cells: cells))
+        renderer.render(Section(id: ID.header, header: ViewNode(VideoHeaderComponent(data: video))),
+                        Section(id: ID.lines, header: ViewNode(VideoEpisodeHeaderComponent(title: "线路",
+                            subTitle: "线路画质从高到低")), cells: lines),
+                        Section(id: ID.episodes, header: ViewNode(VideoEpisodeHeaderComponent(title: "分集")), cells: cells))
     }
+    
     
     func play(with video: Episode) {
         if video.url.isEmpty {
@@ -160,6 +146,7 @@ class VideoDetailViewController: UIViewController {
         guard let id = media?.id else {
             return
         }
+        HUD.show(.progress)
         _ = APIClient.fetchEpisodes(id: id, source: index).done { (episodes) in
             self.episodes = episodes
             }.catch({ (error) in

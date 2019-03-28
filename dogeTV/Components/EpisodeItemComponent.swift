@@ -26,13 +26,48 @@ struct EpisodeItemComponent: IdentifiableComponent {
 
     func render(in content: Content) {
         content.episodeBtn.setTitle("\(data.title)", for: .normal)
+        content.episodeBtn.isSelected = false
+        content.backgroundColor = UIColor(hexString: "#ECF0F1")
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: (bounds.size.width - 15) / 4.0, height: 40)
+        return CGSize(width: (bounds.size.width - 15) / 4.0, height: 30)
     }
 
     func shouldContentUpdate(with next: EpisodeItemComponent) -> Bool {
+        return data != next.data
+    }
+}
+
+struct SourceItemComponent: IdentifiableComponent {
+    typealias Content = EpisodeItemContentView
+    
+    var id: VideoSource {
+        return data
+    }
+    
+    var data: VideoSource
+
+
+    func renderContent() -> Content {
+        let content = Content()
+        return content
+    }
+    
+    func render(in content: Content) {
+        let title = data.source == 0 ? "默认线路" : "线路-\(data.source)"
+        content.episodeBtn.setTitle(title, for: .normal)
+        content.episodeBtn.isSelected = data.isSelected
+        content.backgroundColor = data.isSelected ? UIColor(hexString: "#434343") : UIColor(hexString: "#ECF0F1")
+    }
+    
+    func referenceSize(in bounds: CGRect) -> CGSize? {
+        let column: CGFloat = 6.0
+        let gap = (column - 1) * 5.0
+        return CGSize(width: (bounds.size.width - gap) / column, height: 30)
+    }
+    
+    func shouldContentUpdate(with next: SourceItemComponent) -> Bool {
         return data != next.data
     }
 }
@@ -42,6 +77,7 @@ class EpisodeItemContentView: UIView {
     lazy var episodeBtn: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitleColor(UIColor(hexString: "#434343"), for: .normal)
+        button.setTitleColor(.white, for: .selected)
         button.isUserInteractionEnabled = false
         button.titleLabel?.font = .systemFont(ofSize: 11)
         return button

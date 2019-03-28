@@ -12,3 +12,8 @@ struct Episode: Decodable, Equatable {
     let title: String
     let url: String
 }
+
+struct VideoSource: Equatable, Hashable {
+    let source: Int
+    let isSelected: Bool
+}
