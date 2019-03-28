@@ -13,11 +13,14 @@ import PromiseKit
 import Kingfisher
 import PKHUD
 
-class SearchViewController: UIViewController {
+class SearchViewController: BaseViewController {
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "请输入影片名称"
         searchBar.delegate = self
+        searchBar.theme_tintColor = AppColor.tintColor
+        searchBar.removeBackgroundImageView()
+        searchBar.theme_keyboardAppearance = AppColor.keyboardAppearance
         return searchBar
     }()
 
@@ -25,7 +28,7 @@ class SearchViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.groupTableViewBackground
+        collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -57,8 +60,8 @@ class SearchViewController: UIViewController {
     }
     
     func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(searchBar)
+        view.theme_backgroundColor = AppColor.secondaryBackgroundColor
         searchBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
             $0.left.right.equalToSuperview()

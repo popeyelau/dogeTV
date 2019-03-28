@@ -15,8 +15,10 @@ class LivesViewController: SegementSlideViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "电视直播"
+        view.theme_backgroundColor = AppColor.backgroundColor
         let moreBarBtn = UIBarButtonItem(image: UIImage(named: "web"), style: .plain, target: self, action: #selector(more(_:)))
         navigationItem.rightBarButtonItems = [moreBarBtn]
+        slideSwitcherView.theme_backgroundColor = AppColor.backgroundColor
         reloadData()
         scrollToSlide(at: 0, animated: false)
     }
@@ -27,9 +29,9 @@ class LivesViewController: SegementSlideViewController {
 
     override var switcherConfig: SegementSlideSwitcherConfig {
         var config = SegementSlideSwitcherConfig.shared
-        config.indicatorColor = .darkGray
+        config.indicatorColor = AppTheme.isDark ? .white : .darkGray
         config.normalTitleColor = .gray
-        config.selectedTitleColor = .darkGray
+        config.selectedTitleColor = AppTheme.isDark ? .white : .darkGray
         config.type = .tab
         return config
     }

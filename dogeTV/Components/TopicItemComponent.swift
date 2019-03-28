@@ -117,11 +117,4 @@ class TopicItemContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        superview?.layer.shadowColor = UIColor(hexString: "#A1A1A1")!.cgColor
-        superview?.layer.shadowOpacity = 0.45
-        superview?.layer.shadowRadius = 3
-        superview?.layer.shadowOffset = CGSize(width: 1, height: 1)
-    }
 }

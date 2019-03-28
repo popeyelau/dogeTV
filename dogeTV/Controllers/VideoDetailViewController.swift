@@ -15,7 +15,7 @@ import PKHUD
 import SPStorkController
 
 
-class VideoDetailViewController: UIViewController {
+class VideoDetailViewController: BaseViewController {
     
     enum ID {
         case header
@@ -26,11 +26,11 @@ class VideoDetailViewController: UIViewController {
     var resourceIndex = 0
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.theme_backgroundColor = AppColor.secondaryBackgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -51,8 +51,8 @@ class VideoDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.theme_backgroundColor = AppColor.secondaryBackgroundColor
         title = media?.name
-        view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 8, bottom: 0, right: 8))

@@ -52,25 +52,21 @@ class SearchItemContentView: UIView {
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hello World"
         label.font = .systemFont(ofSize: 14)
+        label.theme_textColor = AppColor.textColor
         return label
     }()
 
     lazy var introLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World"
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .gray
+        label.theme_textColor = AppColor.secondaryTextColor
         label.numberOfLines = 4
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.masksToBounds = true
-        //layer.cornerRadius = 6
-        backgroundColor = .white
         addSubview(coverImageView)
         addSubview(titleLabel)
         addSubview(introLabel)
@@ -93,18 +89,18 @@ class SearchItemContentView: UIView {
             $0.right.equalToSuperview().offset((-padding))
             $0.left.equalTo(titleLabel)
         }
+        
+        let line = UIView()
+        line.theme_backgroundColor = AppColor.separatorColor
+        addSubview(line)
+        line.snp.makeConstraints {
+            $0.bottom.left.right.equalToSuperview()
+            $0.height.equalTo(0.5)
+        }
 
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        superview?.layer.shadowColor = UIColor.black.cgColor
-        superview?.layer.shadowOpacity = 0.1
-        superview?.layer.shadowRadius = 6
-        superview?.layer.shadowOffset = CGSize(width: 0, height: 1)
     }
 }

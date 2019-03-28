@@ -15,5 +15,6 @@ target 'dogeTV' do
   pod 'SegementSlide', '~> 2.1.1'
   pod 'PKHUD'
   pod 'SPStorkController', '~> 1.5.4'
+  pod 'SwiftTheme'
 end
 

@@ -29,7 +29,7 @@ struct ChannelItemComponent: IdentifiableComponent {
         content.titleLabel.text = data.name.replacingOccurrences(of: "频道超高清", with: "", options: .literal, range: nil).uppercased()
         if data.icon.isEmpty {
             content.backgroundImageView.image = nil
-            content.backgroundImageView.backgroundColor = .gray
+            content.backgroundImageView.theme_backgroundColor = AppColor.channelBackgroundColor
             content.iconImageView.image = UIImage(named: "tv_logo")
         } else {
             content.backgroundImageView.kf.setImage(with: URL(string: data.icon))

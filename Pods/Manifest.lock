@@ -48,6 +48,7 @@ PODS:
   - SegementSlide (2.1.1)
   - SnapKit (4.2.0)
   - SPStorkController (1.5.8)
+  - SwiftTheme (0.4.3)
 
 DEPENDENCIES:
   - Carbon
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - SegementSlide (~> 2.1.1)
   - SnapKit
   - SPStorkController (~> 1.5.4)
+  - SwiftTheme
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -73,6 +75,7 @@ SPEC REPOS:
     - SegementSlide
     - SnapKit
     - SPStorkController
+    - SwiftTheme
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -86,7 +89,8 @@ SPEC CHECKSUMS:
   SegementSlide: 95ebbdd2f616c0d9ab1a6046e67292bb3fb08f7c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SPStorkController: fc7c0d3e4ba9a36910720231b46248165d49b6c9
+  SwiftTheme: 628345b948068a48d330d76dffb1a990ea5f90aa
 
-PODFILE CHECKSUM: f34f05211d3af9a11f399df38b06bc23b5cf2036
+PODFILE CHECKSUM: 3d96847368f71fefbaa5d257bc984bd7639e72d3
 
 COCOAPODS: 1.7.0.beta.1

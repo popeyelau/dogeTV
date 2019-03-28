@@ -31,12 +31,11 @@ struct QueryItemComponent: IdentifiableComponent {
     
     func render(in content: Content) {
         content.text = data.text
+        content.textColor = .white
         if data.isSelected {
-            content.backgroundColor = UIColor(hexString: "#434343")
-            content.textColor = .white
+            content.theme_backgroundColor = AppColor.selectedButtonColor
         } else {
-            content.backgroundColor = .white
-            content.textColor = UIColor(hexString: "#434343")
+            content.theme_backgroundColor = AppColor.buttonColor
         }
     }
     
@@ -69,7 +68,7 @@ struct QuerySetHeaderComponent: Component {
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width , height: 30)
+        return CGSize(width: bounds.width , height: 35)
     }
     
     func shouldContentUpdate(with next: QuerySetHeaderComponent) -> Bool {
@@ -81,9 +80,9 @@ struct QuerySetHeaderComponent: Component {
 class QuerySetHeaderContentView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12)
+        label.font = .systemFont(ofSize: 14)
         label.textColor = .lightGray
-        label.backgroundColor = .white
+        label.theme_backgroundColor = AppColor.secondaryBackgroundColor
         label.textAlignment = .center
         return label
     }()
@@ -94,9 +93,8 @@ class QuerySetHeaderContentView: UIView {
     }
     
     func setupViews() {
-        backgroundColor = .white
         let line = UIView()
-        line.backgroundColor = .groupTableViewBackground
+        line.theme_backgroundColor = AppColor.separatorColor
         addSubview(line)
         addSubview(titleLabel)
         

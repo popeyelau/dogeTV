@@ -14,7 +14,7 @@ import KafkaRefresh
 import SegementSlide
 import SPStorkController
 
-class VideoListViewController: UIViewController, SegementSlideContentScrollViewDelegate {
+class VideoListViewController: BaseViewController, SegementSlideContentScrollViewDelegate {
     
     var category: Category!
     var isDouban: Bool = false
@@ -31,7 +31,7 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
         btn.setImage(UIImage(named: "filter"), for: .normal)
         btn.addTarget(self, action: #selector(showQueryPanel), for: .touchUpInside)
         btn.layer.masksToBounds = true
-        btn.layer.cornerRadius = 20
+        btn.layer.cornerRadius = 25
         btn.alpha = 0.85
         btn.isHidden = true
         return btn
@@ -46,7 +46,7 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         layout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -67,7 +67,6 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
     }
     
     func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(collectionView)
         view.addSubview(floatingBtn)
         collectionView.snp.makeConstraints {
@@ -77,7 +76,7 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
         floatingBtn.snp.makeConstraints {
             $0.right.equalToSuperview().offset(-16)
             $0.bottom.equalToSuperview().offset(-16)
-            $0.size.equalTo(40)
+            $0.size.equalTo(50)
         }
         collectionView.bindFootRefreshHandler({ [weak self] in
             self?.loadMore()

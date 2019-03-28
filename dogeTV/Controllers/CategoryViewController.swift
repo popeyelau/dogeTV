@@ -30,17 +30,19 @@ class CategoryViewController: SegementSlideViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = sourceType.title
+        view.theme_backgroundColor = AppColor.backgroundColor
         if sourceType == .normal {
             let rankBtn = UIBarButtonItem(image: UIImage(named: "ranking"), style: .plain, target: self, action: #selector(rank))
             let doubanBtn = UIBarButtonItem(image: UIImage(named: "douban"), style: .plain, target: self, action: #selector(toggleSourceType(_:)))
             navigationItem.rightBarButtonItems = [rankBtn, doubanBtn]
         }
+        slideSwitcherView.theme_backgroundColor = AppColor.backgroundColor
         refresh()
     }
     
     @objc func toggleSourceType(_ sender: UIBarButtonItem) {
         isDouban.toggle()
-        sender.tintColor =  isDouban ? UIColor(hexString: "#072") : nil
+        sender.tintColor =  isDouban ? UIColor(hexString: "#2ECC71") : nil
         refresh()
         let source = isDouban ? "豆瓣优片" : "默认片库"
         showSuccess("切换至 \(source)")
@@ -52,9 +54,9 @@ class CategoryViewController: SegementSlideViewController {
     
     override var switcherConfig: SegementSlideSwitcherConfig {
         var config = SegementSlideSwitcherConfig.shared
-        config.indicatorColor = .darkGray
+        config.indicatorColor = AppTheme.isDark ? .white : .darkGray
         config.normalTitleColor = .gray
-        config.selectedTitleColor = .darkGray
+        config.selectedTitleColor = AppTheme.isDark ? .white : .darkGray
         config.type = .tab
         return config
     }

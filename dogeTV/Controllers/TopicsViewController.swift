@@ -12,12 +12,12 @@ import Kingfisher
 import PromiseKit
 import KafkaRefresh
 
-class TopicsViewController: UIViewController {
+class TopicsViewController: BaseViewController {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -39,7 +39,6 @@ class TopicsViewController: UIViewController {
 
 
     func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()

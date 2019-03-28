@@ -13,14 +13,15 @@ import PromiseKit
 import KafkaRefresh
 import SegementSlide
 
-class RankListViewController: UIViewController, SegementSlideContentScrollViewDelegate {
+class RankListViewController: BaseViewController, SegementSlideContentScrollViewDelegate {
 
     var category: Category = .film
 
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.tableFooterView = UIView()
-        tableView.separatorColor = UIColor.groupTableViewBackground
+        tableView.theme_separatorColor = AppColor.separatorColor
+        tableView.theme_backgroundColor = AppColor.backgroundColor
         return tableView
     }()
 
@@ -45,7 +46,6 @@ class RankListViewController: UIViewController, SegementSlideContentScrollViewDe
     }
 
     func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()

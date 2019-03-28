@@ -54,13 +54,14 @@ class SectionHeaderContentView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
+        label.theme_textColor = AppColor.textColor
         return label
     }()
 
     lazy var moreBtn: UIButton = {
         let btn = UIButton(type: .custom)
         btn.titleLabel?.font = .systemFont(ofSize: 13)
-        btn.setTitleColor(.darkGray, for: .normal)
+        btn.theme_setTitleColor(AppColor.secondaryTextColor, forState: .normal)
         btn.titleLabel?.textAlignment = .right
         btn.setTitle("更多 >", for: .normal)
         btn.addTarget(self, action: #selector(more), for: .touchUpInside)
@@ -69,13 +70,13 @@ class SectionHeaderContentView: UIView {
 
     lazy var indicatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.theme_backgroundColor = AppColor.indicatorColor
         return view
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        theme_backgroundColor = AppColor.backgroundColor
         addSubview(titleLabel)
         addSubview(moreBtn)
         addSubview(indicatorView)

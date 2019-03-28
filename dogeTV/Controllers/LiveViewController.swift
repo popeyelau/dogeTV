@@ -13,7 +13,7 @@ import PromiseKit
 import SegementSlide
 import PKHUD
 
-class LiveViewController: UIViewController, SegementSlideContentScrollViewDelegate {
+class LiveViewController: BaseViewController, SegementSlideContentScrollViewDelegate {
     var location: TV = .iptv
 
     var scrollView: UIScrollView {
@@ -25,7 +25,7 @@ class LiveViewController: UIViewController, SegementSlideContentScrollViewDelega
         layout.minimumInteritemSpacing = 0
         layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -46,7 +46,7 @@ class LiveViewController: UIViewController, SegementSlideContentScrollViewDelega
     }
 
     func setupViews() {
-        view.backgroundColor = .white
+    
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()

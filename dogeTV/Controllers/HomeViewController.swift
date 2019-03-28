@@ -13,7 +13,7 @@ import PromiseKit
 import Kingfisher
 import KafkaRefresh
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     var hots: [Hot] = []
     var topics: [Topic] = []
@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         layout.minimumInteritemSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.white
+        collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -61,7 +61,6 @@ class HomeViewController: UIViewController {
     }
     
     func setupView() {
-        view.backgroundColor = .white
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -116,6 +115,12 @@ class HomeViewController: UIViewController {
         let target = TopicsViewController()
         target.title = "精选专题"
         navigationController?.pushViewController(target, animated: true)
+    }
+    
+    //切换主题
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        guard motion == .motionShake else { return }
+        AppTheme.toggle()
     }
 }
 

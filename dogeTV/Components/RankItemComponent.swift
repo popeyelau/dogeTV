@@ -31,7 +31,7 @@ struct RankItemComponent: IdentifiableComponent {
         content.indexLabel.text = data.index
         if let index = Int(data.index) {
             content.indexLabel.backgroundColor = index < 4 ? UIColor(hexString: "#00AA90") : .groupTableViewBackground
-            content.indexLabel.textColor = index < 4 ? .white : .black
+            content.indexLabel.textColor = index < 4 ? .white : .gray
         }
     }
 
@@ -49,7 +49,7 @@ class RankItemContentView: UIView {
     lazy var indexLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .white
+        label.textColor = .gray
         label.textAlignment = .center
         label.layer.cornerRadius = 3
         label.layer.masksToBounds = true
@@ -70,6 +70,7 @@ class RankItemContentView: UIView {
         label.font = .systemFont(ofSize: 14)
         label.textAlignment = .center
         label.textColor = .darkGray
+        label.theme_textColor = AppColor.textColor
         return label
     }()
 
@@ -79,7 +80,7 @@ class RankItemContentView: UIView {
     }
 
     func setupViews() {
-        backgroundColor = .white
+        theme_backgroundColor = AppColor.backgroundColor
         clipsToBounds = true
         addSubview(titleLabel)
         addSubview(indexLabel)

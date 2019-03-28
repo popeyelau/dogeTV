@@ -57,7 +57,7 @@ class VideoItemContentView: UIView {
         let label = UILabel()
         label.font = .preferredFont(forTextStyle: .footnote)
         label.textAlignment = .center
-        label.textColor = .darkGray
+        label.theme_textColor = AppColor.textColor
         return label
     }()
     
@@ -81,7 +81,7 @@ class VideoItemContentView: UIView {
     }
 
     func setupViews() {
-        backgroundColor = .white
+        theme_backgroundColor = AppColor.backgroundColor
         clipsToBounds = true
         addSubview(coverImageView)
         addSubview(titleLabel)

@@ -27,11 +27,13 @@ struct EpisodeItemComponent: IdentifiableComponent {
     func render(in content: Content) {
         content.episodeBtn.setTitle("\(data.title)", for: .normal)
         content.episodeBtn.isSelected = false
-        content.backgroundColor = UIColor(hexString: "#ECF0F1")
+        content.theme_backgroundColor = AppColor.selectedButtonColor
+
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: (bounds.size.width - 15) / 4.0, height: 30)
+        let inset: CGFloat = 20
+        return CGSize(width: (bounds.size.width - inset - 15) / 4.0, height: 35)
     }
 
     func shouldContentUpdate(with next: EpisodeItemComponent) -> Bool {
@@ -58,13 +60,14 @@ struct SourceItemComponent: IdentifiableComponent {
         let title = data.source == 0 ? "默认线路" : "线路-\(data.source)"
         content.episodeBtn.setTitle(title, for: .normal)
         content.episodeBtn.isSelected = data.isSelected
-        content.backgroundColor = data.isSelected ? UIColor(hexString: "#434343") : UIColor(hexString: "#ECF0F1")
+        content.theme_backgroundColor = data.isSelected ? AppColor.selectedButtonColor : AppColor.buttonColor
     }
     
     func referenceSize(in bounds: CGRect) -> CGSize? {
         let column: CGFloat = 6.0
         let gap = (column - 1) * 5.0
-        return CGSize(width: (bounds.size.width - gap) / column, height: 30)
+        let inset: CGFloat = 20
+        return CGSize(width: (bounds.size.width - inset - gap) / column, height: 35)
     }
     
     func shouldContentUpdate(with next: SourceItemComponent) -> Bool {
@@ -76,8 +79,7 @@ class EpisodeItemContentView: UIView {
 
     lazy var episodeBtn: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitleColor(UIColor(hexString: "#434343"), for: .normal)
-        button.setTitleColor(.white, for: .selected)
+        button.setTitleColor(.white, for: .normal)
         button.isUserInteractionEnabled = false
         button.titleLabel?.font = .systemFont(ofSize: 11)
         return button
@@ -88,7 +90,7 @@ class EpisodeItemContentView: UIView {
         layer.cornerRadius = 6
         layer.masksToBounds = true
 
-        backgroundColor = UIColor(hexString: "#ECF0F1")
+        theme_backgroundColor = AppColor.selectedButtonColor
         addSubview(episodeBtn)
 
         episodeBtn.snp.makeConstraints {

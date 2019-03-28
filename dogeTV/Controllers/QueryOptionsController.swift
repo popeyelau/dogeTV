@@ -12,7 +12,7 @@ import Carbon
 import KafkaRefresh
 import SPStorkController
 
-class QueryOptionsController: UIViewController {
+class QueryOptionsController: BaseViewController {
     var query: [OptionSet]?
     var onSelectOptions: (() -> Void)?
     
@@ -22,7 +22,7 @@ class QueryOptionsController: UIViewController {
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.theme_backgroundColor = AppColor.secondaryBackgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -44,7 +44,7 @@ class QueryOptionsController: UIViewController {
     }
     
     func setupViews() {
-        view.backgroundColor = .white
+        view.theme_backgroundColor = AppColor.secondaryBackgroundColor
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0))

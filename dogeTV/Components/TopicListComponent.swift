@@ -52,7 +52,7 @@ class TopicListContentView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()

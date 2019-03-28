@@ -48,6 +48,8 @@
 		79CD435A222BA2FC0000410F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD4359222BA2FC0000410F /* Channel.swift */; };
 		79CD435C222BA3230000410F /* ChannelItemComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435B222BA3230000410F /* ChannelItemComponent.swift */; };
 		79CD4360222BBE5B0000410F /* LivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CD435F222BBE5B0000410F /* LivesViewController.swift */; };
+		79D5DC8F224C960F0031911F /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5DC8E224C960F0031911F /* AppTheme.swift */; };
+		79D5DC91224CA0590031911F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D5DC90224CA0590031911F /* BaseViewController.swift */; };
 		79D66A5C2226B6830007DFEA /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D66A5B2226B6830007DFEA /* ENV.swift */; };
 		79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */; };
 		79DCECF6223E1FB1008973D3 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF5223E1FB1008973D3 /* Episode.swift */; };
@@ -102,6 +104,8 @@
 		79CD4359222BA2FC0000410F /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		79CD435B222BA3230000410F /* ChannelItemComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemComponent.swift; sourceTree = "<group>"; };
 		79CD435F222BBE5B0000410F /* LivesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesViewController.swift; sourceTree = "<group>"; };
+		79D5DC8E224C960F0031911F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		79D5DC90224CA0590031911F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		79D66A5B2226B6830007DFEA /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEpisodeHeaderComponent.swift; sourceTree = "<group>"; };
 		79DCECF5223E1FB1008973D3 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -249,6 +253,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		79D5DC8D224C95FF0031911F /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				79D5DC8E224C960F0031911F /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		79D66A582226B52A0007DFEA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +278,7 @@
 				796D00CD223D455700179C72 /* RankListViewController.swift */,
 				799390F4223F82240035B636 /* QueryOptionsController.swift */,
 				7908C3F3224C6281005A59DB /* SelectionViewController.swift */,
+				79D5DC90224CA0590031911F /* BaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +286,7 @@
 		79D66A5A2226B6410007DFEA /* ENV */ = {
 			isa = PBXGroup;
 			children = (
+				79D5DC8D224C95FF0031911F /* Theme */,
 				79D66A5B2226B6830007DFEA /* ENV.swift */,
 			);
 			path = ENV;
@@ -395,6 +409,7 @@
 				798CD2872228096600E64A09 /* EpisodeItemComponent.swift in Sources */,
 				79A5EFE822260F7F001CA17B /* AppDelegate.swift in Sources */,
 				798CD27D2228067300E64A09 /* SearchItemComponent.swift in Sources */,
+				79D5DC8F224C960F0031911F /* AppTheme.swift in Sources */,
 				792EADAA22276B680030A54F /* StringExtension.swift in Sources */,
 				7959696F222A6C4C0069B26C /* LiveViewController.swift in Sources */,
 				79FA39BC222B7CF300EFC8CB /* PlayerViewController.swift in Sources */,
@@ -403,6 +418,7 @@
 				792EADAD22276BC50030A54F /* Helpers.swift in Sources */,
 				796D00CE223D455700179C72 /* RankListViewController.swift in Sources */,
 				79A5F00022265614001CA17B /* TopicsViewController.swift in Sources */,
+				79D5DC91224CA0590031911F /* BaseViewController.swift in Sources */,
 				798CD289222809C200E64A09 /* VideoHeaderComponent.swift in Sources */,
 				79DCECF8223E1FC6008973D3 /* Hot.swift in Sources */,
 				79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */,

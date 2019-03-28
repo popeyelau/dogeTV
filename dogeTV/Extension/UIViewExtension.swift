@@ -20,3 +20,21 @@ extension UIView {
         layer.mask = shape
     }
 }
+
+extension UISearchBar {
+    func removeBackgroundImageView(){
+        if let view:UIView = self.subviews.first {
+            for curr in view.subviews {
+                guard let searchBarBackgroundClass = NSClassFromString("UISearchBarBackground") else {
+                    return
+                }
+                if curr.isKind(of:searchBarBackgroundClass){
+                    if let imageView = curr as? UIImageView{
+                        imageView.removeFromSuperview()
+                        break
+                    }
+                }
+            }
+        }
+    }
+}

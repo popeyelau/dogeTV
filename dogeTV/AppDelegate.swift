@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import SwiftTheme
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,30 +21,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
         configureUIAppearance()
+        AppTheme.restore()
         return true
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        AppTheme.save()
     }
 }
 
 
 extension AppDelegate {
     func configureUIAppearance() {
+        
+        UIApplication.shared.theme_setStatusBarStyle(AppColor.statusBarStyle, animated: true)
         let appearance = UINavigationBar.appearance()
         appearance.prefersLargeTitles = false
-        appearance.isTranslucent = true
-        appearance.tintColor = .black
-        if let font = UIFont(name: "PingFangSC-light", size: 20) {
-            appearance.titleTextAttributes = [.font: font]
-        }
-        if let font = UIFont(name: "PingFangSC-light", size: 32) {
-            appearance.largeTitleTextAttributes = [.font: font]
+        appearance.isTranslucent = false
+        
+        appearance.theme_tintColor = AppColor.tintColor
+        appearance.theme_barTintColor = AppColor.backgroundColor
+        
+        let titleAttributes = AppColor.barTextColors.map { hexString -> [NSAttributedString.Key: AnyObject] in
+            return [
+                .foregroundColor: UIColor(rgba: hexString),
+                .font: UIFont(name: "PingFangSC-light", size: 20)!
+            ]
         }
         
         appearance.shadowImage = UIImage()
+        appearance.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
 
         UIBarButtonItem.appearance(whenContainedInInstancesOf:[UINavigationBar.self]).setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
         UIBarButtonItem.appearance(whenContainedInInstancesOf:[UINavigationBar.self]).setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .highlighted)
         
-        UISearchBar.appearance().tintColor = .black
         UITextField.appearance().tintColor = .black
         
         PKHUD.sharedHUD.dimsBackground = false

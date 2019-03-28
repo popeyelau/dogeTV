@@ -45,27 +45,26 @@ class VideoEpisodeHeaderContentView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17)
-        label.textColor = .black
+        label.theme_textColor = AppColor.textColor
         return label
     }()
     
     lazy var indicatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.theme_backgroundColor = AppColor.indicatorColor
         return view
     }()
 
     lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .gray
+        label.theme_textColor = AppColor.secondaryTextColor
         label.textAlignment = .right
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
         addSubview(indicatorView)
         addSubview(titleLabel)
         addSubview(subTitleLabel)

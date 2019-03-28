@@ -54,7 +54,7 @@ class TopicListItemContentView: UIView {
         label.text = "Hello World"
         label.font = .systemFont(ofSize: 12)
         label.textAlignment = .center
-        label.textColor = .darkGray
+        label.theme_textColor = AppColor.textColor
         return label
     }()
 
