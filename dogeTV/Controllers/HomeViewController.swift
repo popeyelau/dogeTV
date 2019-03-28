@@ -98,8 +98,9 @@ class HomeViewController: UIViewController {
     }
 
     func showMore(of category: Category) {
-        let target = TopicViewController()
-        target.sourceType = .category(category: category)
+        let target = VideoListViewController()
+        target.category = category
+        target.title = category.title
         navigationController?.pushViewController(target, animated: true)
     }
     
@@ -107,7 +108,7 @@ class HomeViewController: UIViewController {
         let target = TopicViewController()
         let topic = topics[index]
         target.title = topic.title
-        target.sourceType = .topic(id: topic.id)
+        target.topicId = topic.id
         navigationController?.pushViewController(target, animated: true)
     }
 

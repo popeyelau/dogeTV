@@ -8,7 +8,7 @@
 
 import UIKit
 import PKHUD
-import SwiftMessageBar
+import Loaf
 import SPStorkController
 import PromiseKit
 import Kingfisher
@@ -16,11 +16,15 @@ import Carbon
 
 extension UIViewController {
     func showError(_ error: Error) {
-        SwiftMessageBar.showMessage(withTitle: "(╯°□°)╯︵ ┻━┻", message: error.localizedDescription, type: .error)
+        Loaf(error.localizedDescription, state: .error, location: .bottom, sender: self).show()
     }
     
     func showInfo(_ message: String) {
-        SwiftMessageBar.showMessage(withTitle: "(╯°□°)╯︵ ┻━┻", message: message, type: .info)
+        Loaf(message, state: .info, location: .bottom, sender: self).show()
+    }
+    
+    func showSuccess(_ message: String) {
+        Loaf(message, state: .success, location: .bottom, sender: self).show()
     }
     
     func showVideo(with id: String) {
@@ -37,7 +41,7 @@ extension UIViewController {
                 modal.media = video
                 modal.episodes = episodes
                 modal.modalPresentationCapturesStatusBarAppearance = true
-                navigationController.presentAsStork(modal, showIndicator: true, complection: nil)
+                navigationController.presentAsStork(modal, height: nil, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
             }.catch{ error in
                 print(error)
                 self.showError(error)

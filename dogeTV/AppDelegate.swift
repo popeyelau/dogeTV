@@ -9,7 +9,7 @@
 import UIKit
 import PKHUD
 import PopMenu
-import SwiftMessageBar
+import Loaf
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -49,16 +49,6 @@ extension AppDelegate {
         
         UISearchBar.appearance().tintColor = .black
         UITextField.appearance().tintColor = .black
-
-        let config = SwiftMessageBar.Config.Builder()
-            .withInfoColor(UIColor(hexString: "#EFBB24")!)
-            .withErrorColor(UIColor(hexString: "#BB282E")!)
-            .withSuccessColor(UIColor(hexString: "#00AA90")!)
-            .withTitleFont(.boldSystemFont(ofSize: 17))
-            .withMessageFont(.systemFont(ofSize: 14))
-            .build()
-        SwiftMessageBar.setSharedConfig(config)
-        
         
         PKHUD.sharedHUD.dimsBackground = false
         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled  = true

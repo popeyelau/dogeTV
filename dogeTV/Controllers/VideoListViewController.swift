@@ -17,6 +17,7 @@ import SPStorkController
 class VideoListViewController: UIViewController, SegementSlideContentScrollViewDelegate {
     
     var category: Category!
+    var isDouban: Bool = false
     var query: [OptionSet]?
     lazy var queryPanel: QueryOptionsController = {
         let queryPanel = QueryOptionsController()
@@ -32,6 +33,7 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 20
         btn.alpha = 0.85
+        btn.isHidden = true
         return btn
     }()
     
@@ -64,14 +66,13 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
         collectionView.headRefreshControl.beginRefreshing()
     }
     
-  
-    
     func setupViews() {
         view.backgroundColor = .white
         view.addSubview(collectionView)
         view.addSubview(floatingBtn)
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.left.right.bottom.equalToSuperview()
         }
         floatingBtn.snp.makeConstraints {
             $0.right.equalToSuperview().offset(-16)
@@ -114,7 +115,7 @@ class VideoListViewController: UIViewController, SegementSlideContentScrollViewD
             self?.refresh()
         }
         let height = UIScreen.main.bounds.height * 0.75
-        presentAsStork(queryPanel, height: height, showIndicator: true, complection: nil)
+        presentAsStork(queryPanel, height: height, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
     }
     
     var selectedQuery: String {
@@ -143,11 +144,12 @@ extension VideoListViewController {
             return
         }
         attempt(maximumRetryCount: 3) {
-            APIClient.fetchCategoryList(category: category, query: self.selectedQuery)}
+            APIClient.fetchCategoryList(category: category, isDouban: self.isDouban, query: self.selectedQuery)}
             .done { (category) in
                 if self.query == nil {
                     category.query?.forEach { $0.options.first?.isSelected = true}
                     self.query = category.query
+                    self.floatingBtn.isHidden = false
                 }
                 self.videos = category.items
             }.catch({ (error) in
@@ -163,7 +165,7 @@ extension VideoListViewController {
     
     func loadMore() {
         index += 1
-        APIClient.fetchCategoryList(category: category, page: index, query: selectedQuery).done { category in
+        APIClient.fetchCategoryList(category: category, page: index, isDouban: isDouban, query: selectedQuery).done { category in
             if category.items.isEmpty {
                 self.collectionView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "已经全部加载完毕")
                 return

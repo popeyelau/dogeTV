@@ -6,7 +6,7 @@ Preview GIF is loading `3mb`. Please, wait.
 
 <img src="https://github.com/IvanVorobei/SPStorkController/blob/master/Resources/Preview.gif" width="500">
 
-You can download example [from AppStore](https://itunes.apple.com/app/id1446635818) or see [video preview](https://xcode-shop.com/assets/preview/debts.mov). If you want to buy source code of the full app, please go to [xcode-shop.com](https://xcode-shop.com). Price: $200.
+You can download example [from AppStore](https://itunes.apple.com/app/id1446635818) or see [video preview](https://xcode-shop.com/assets/preview/debts.mov). If you want to buy source code of the full app (plus app for Apple Watch), please go to [xcode-shop.com](https://xcode-shop.com). Price: $200 only GitHub users!
 
 <img src="https://github.com/IvanVorobei/SPStorkController/blob/master/Resources/Shop.svg"/>
 
@@ -109,6 +109,10 @@ transitionDelegate.translateForDismiss = 100
 ```swift
 transitionDelegate.tapAroundToDismissEnabled = true
 ```
+- Parameter `showCloseButton` added circle button with dismiss action. Default is `false`:
+```swift
+transitionDelegate.showCloseButton = false
+```
 
 - Parameter `showIndicator` shows or hides top arrow indicator. Default is `true`:
 ```swift
@@ -118,6 +122,11 @@ transitionDelegate.showIndicator = true
 - Parameter `indicatorColor` for customize color of arrow. Default is `gray`:
 ```swift
 transitionDelegate.indicatorColor = UIColor.white
+```
+
+- Parameter `hideIndicatorWhenScroll` shows or hides indicator when scrolling. Default is `false`:
+```swift
+transitionDelegate.hideIndicatorWhenScroll = true
 ```
 
 - Parameter `cornerRadius` for customize corner radius of controller's view. Default is `10`:
@@ -140,6 +149,7 @@ You may want to add a navigation bar to your modal controller. Since it became i
 
 ```swift
 import UIKit
+import SPFakeBar
 
 class ModalController: UIViewController {
     
@@ -163,10 +173,10 @@ You only need to add a navigation bar to the main view, it will automatically la
 
 <img src="https://github.com/IvanVorobei/SPStorkController/blob/master/Resources/Navigation%20Bar.jpg"/>
 
-To use `SPFakeBarView` you need to install [SparrowKit](https://github.com/IvanVorobei/SparrowKit) pod: 
+To use `SPFakeBarView` you need to install [SPFakeBar](https://github.com/IvanVorobei/SPFakeBar) pod: 
 
 ```ruby
-pod 'SparrowKit'
+pod 'SPFakeBar'
 ```
 
 ### Working with UIScrollView
@@ -192,6 +202,14 @@ tableView.scrollIndicatorInsets.top = self.navBar.height
 
 Please, also use `SPStorkController.scrollViewDidScroll` function in scroll delegate for more interactiveness with your collection or table view.
 
+### Delegate
+
+You can check events by implement `SPStorkControllerDelegate` and set delegate for `transitionDelegate`:
+
+```swift
+transitionDelegate.storkDelegate = self
+```
+
 ### Modal presentation of different controller
 
 If you want to present modal controller on SPStorkController, please set:
@@ -210,13 +228,6 @@ Here I would like to offer you my other projects.
 Project [SPPermission](https://github.com/IvanVorobei/SPPermission) for managing permissions with customizable visual effects. Beautiful dialog increases the chance of approval (which is important when we request notification). Simple control of this module saves you hours of development. You can start using project with just two lines of code and easy customization!
 
 <img src="https://github.com/IvanVorobei/SPPermission/blob/master/Resources/Preview.gif" width="500">
-
-### SparrowKit
-`SPStorkController` was formerly a part of [SparrowKit](https://github.com/IvanVorobei/SparrowKit) library. In the library you can find many useful extensions & classes. To install via CocoaPods use:
-
-```ruby
-pod 'SparrowKit'
-```
 
 ## License
 `SPStorkController` is released under the MIT license. Check `LICENSE.md` for details.

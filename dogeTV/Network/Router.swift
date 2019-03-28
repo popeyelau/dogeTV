@@ -54,8 +54,7 @@ protocol APIConfiguration: URLRequestConvertible {
 enum Router: APIConfiguration {
     case home
     case topics
-    case category(category: Category, page: Int, query: String)
-    case douban(category: Category, page: Int)
+    case category(category: Category, page: Int, isDouban: Bool, query: String)
     case rank(category: Category)
     case topic(id: String)
     case video(id: String)
@@ -82,10 +81,8 @@ enum Router: APIConfiguration {
             return "/videos"
         case .topics:
             return "/topics"
-        case .category(let category,_,_):
-            return "/videos/\(category.categoryKey)"
-        case .douban(let category,_):
-            return "/douban/\(category.categoryKey)"
+        case .category(let category,_,let isDouban,_):
+            return isDouban ? "/douban/\(category.categoryKey)" : "/videos/\(category.categoryKey)"
         case .rank(let category):
             return "/ranking/\(category.categoryKey)"
         case .topic(let id):
@@ -107,10 +104,8 @@ enum Router: APIConfiguration {
         switch self {
         case .tv(let tv):
             return ["f": tv.key]
-        case .category(_, let page, let query):
+        case .category(_, let page,_,let query):
             return ["p": page, "query": query]
-        case .douban(_, let page):
-            return ["p": page]
         case .search(let keywords, let page):
             return ["wd": keywords, "p": page]
         case .resolve(let url):

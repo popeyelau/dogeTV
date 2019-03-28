@@ -109,17 +109,10 @@ struct APIClient {
     }
 
     
-    static func fetchCategoryList(category: Category, page: Int = 1, query: String = "") -> Promise<VideoCategory> {
-        return AlamofireManager.shared.request(Router.category(category: category, page: page, query: query))
+    static func fetchCategoryList(category: Category, page: Int = 1, isDouban: Bool = false, query: String = "") -> Promise<VideoCategory> {
+        return AlamofireManager.shared.request(Router.category(category: category, page: page, isDouban: isDouban, query: query))
             .validate(validate)
             .responseDecodable(Response<VideoCategory>.self)
-            .map { $0.data }
-    }
-
-    static func fetchDoubanList(category: Category, page: Int = 1) -> Promise<[Video]> {
-        return AlamofireManager.shared.request(Router.douban(category: category, page: page))
-            .validate(validate)
-            .responseDecodable(Response<[Video]>.self)
             .map { $0.data }
     }
 

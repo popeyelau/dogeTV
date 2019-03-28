@@ -1,6 +1,0 @@
-framework module SwiftMessageBar {
-  umbrella header "SwiftMessageBar-umbrella.h"
-
-  export *
-  module * { export * }
-}

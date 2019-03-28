@@ -25,16 +25,25 @@ class CategoryViewController: SegementSlideViewController {
     }
 
     var sourceType: CategoryViewSourceType = .normal
+    var isDouban = false
 
     override func viewDidLoad() {
-
         super.viewDidLoad()
         title = sourceType.title
         if sourceType == .normal {
             let rankBtn = UIBarButtonItem(image: UIImage(named: "ranking"), style: .plain, target: self, action: #selector(rank))
-            navigationItem.rightBarButtonItem = rankBtn
+            let doubanBtn = UIBarButtonItem(image: UIImage(named: "douban"), style: .plain, target: self, action: #selector(toggleSourceType(_:)))
+            navigationItem.rightBarButtonItems = [rankBtn, doubanBtn]
         }
         refresh()
+    }
+    
+    @objc func toggleSourceType(_ sender: UIBarButtonItem) {
+        isDouban.toggle()
+        sender.tintColor =  isDouban ? UIColor(hexString: "#072") : nil
+        refresh()
+        let source = isDouban ? "豆瓣优片" : "默认片库"
+        showSuccess("切换至 \(source)")
     }
     
     override var bouncesType: BouncesType {
@@ -58,6 +67,7 @@ class CategoryViewController: SegementSlideViewController {
         case .normal:
             let target = VideoListViewController()
             target.category = Category.allCases[index]
+            target.isDouban = isDouban
             return target
         case .rank:
             let target = RankListViewController()
@@ -74,10 +84,10 @@ class CategoryViewController: SegementSlideViewController {
 }
 
 
-
 extension CategoryViewController {
     func refresh() {
         self.reloadData()
-        self.scrollToSlide(at: 0, animated: false)
+        let index = currentIndex ?? 0
+        self.scrollToSlide(at: index, animated: false)
     }
 }

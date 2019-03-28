@@ -1,5 +1,9 @@
 # dogeTV
 
+![Demo](./screenshots/logo.png)
+
+---
+
 ![Demo](./screenshots/demo1.png)
 ![Demo](./screenshots/demo2.png)
 ![Demo](./screenshots/demo3.png)

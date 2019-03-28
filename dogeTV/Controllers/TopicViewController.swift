@@ -13,12 +13,7 @@ import PromiseKit
 import KafkaRefresh
 
 class TopicViewController: UIViewController {
-    enum TopicViewSourceType {
-        case topic(id: String)
-        case category(category: Category)
-    }
-
-    var sourceType: TopicViewSourceType = .category(category: .film)
+    var topicId: String?
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
@@ -57,15 +52,6 @@ class TopicViewController: UIViewController {
             self?.refresh()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
 
-
-        if case let TopicViewSourceType.category(category) = sourceType {
-            title = category.title
-            collectionView.bindFootRefreshHandler({ [weak self] in
-                self?.loadMore()
-                }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
-            collectionView.footRefreshControl.autoRefreshOnFoot = true
-        }
-
         renderer.adapter.didSelect = { [weak self] context in
             guard let item = context.node.component.as(VideoItemComponent.self) else{
                 return
@@ -89,12 +75,10 @@ class TopicViewController: UIViewController {
 
 extension TopicViewController {
     func refresh() {
-        switch sourceType {
-        case .topic(let id):
-            return fetchTopic(id: id)
-        case .category(let category):
-            return fetchVideosInCategory(of: category)
+        guard let topicId = topicId else {
+            return
         }
+        fetchTopic(id: topicId)
     }
 
     func fetchTopic(id: String) {
@@ -102,33 +86,6 @@ extension TopicViewController {
             self.title = topicInfo.topic.title
             self.videos = topicInfo.items
             self.topic = topicInfo.topic
-            }.catch{ (error) in
-                self.showError(error)
-            }.finally {
-                self.render()
-                self.collectionView.headRefreshControl.endRefreshing()
-        }
-    }
-
-    func loadMore() {
-        guard case let TopicViewSourceType.category(category) = sourceType else {
-            return
-        }
-        index += 1
-        APIClient.fetchDoubanList(category: category, page: index).done { (videos) in
-             self.videos.append(contentsOf: videos)
-            }.catch{ (error) in
-                self.index = max(1, self.index-1)
-                self.showError(error)
-            }.finally {
-                self.render()
-                self.collectionView.footRefreshControl.endRefreshing()
-        }
-    }
-
-    func fetchVideosInCategory(of category: Category) {
-        APIClient.fetchDoubanList(category: category, page: 1).done { (videos) in
-            self.videos = videos
             }.catch{ (error) in
                 self.showError(error)
             }.finally {

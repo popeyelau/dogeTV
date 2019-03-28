@@ -16,7 +16,7 @@ private var heightConstraintKey: Void?
 
 internal extension UIView {
     
-    internal var topConstraint: NSLayoutConstraint? {
+    var topConstraint: NSLayoutConstraint? {
         get {
             if let value = objc_getAssociatedObject(self, &topConstraintKey) as? NSLayoutConstraint {
                 return value
@@ -26,12 +26,14 @@ internal extension UIView {
         }
         set {
             topConstraint?.isActive = false
+            if let newValue = newValue {
+                newValue.isActive = true
+            }
             objc_setAssociatedObject(self, &topConstraintKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            newValue?.isActive = true
         }
     }
     
-    internal var bottomConstraint: NSLayoutConstraint? {
+    var bottomConstraint: NSLayoutConstraint? {
         get {
             if let value = objc_getAssociatedObject(self, &bottomConstraintKey) as? NSLayoutConstraint {
                 return value
@@ -41,12 +43,14 @@ internal extension UIView {
         }
         set {
             bottomConstraint?.isActive = false
+            if let newValue = newValue {
+                newValue.isActive = true
+            }
             objc_setAssociatedObject(self, &bottomConstraintKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            newValue?.isActive = true
         }
     }
     
-    internal var leadingConstraint: NSLayoutConstraint? {
+    var leadingConstraint: NSLayoutConstraint? {
         get {
             if let value = objc_getAssociatedObject(self, &leadingConstraintKey) as? NSLayoutConstraint {
                 return value
@@ -56,12 +60,14 @@ internal extension UIView {
         }
         set {
             leadingConstraint?.isActive = false
+            if let newValue = newValue {
+                newValue.isActive = true
+            }
             objc_setAssociatedObject(self, &leadingConstraintKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            newValue?.isActive = true
         }
     }
     
-    internal var trailingConstraint: NSLayoutConstraint? {
+    var trailingConstraint: NSLayoutConstraint? {
         get {
             if let value = objc_getAssociatedObject(self, &trailingConstraintKey) as? NSLayoutConstraint {
                 return value
@@ -71,12 +77,14 @@ internal extension UIView {
         }
         set {
             trailingConstraint?.isActive = false
+            if let newValue = newValue {
+                newValue.isActive = true
+            }
             objc_setAssociatedObject(self, &trailingConstraintKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            newValue?.isActive = true
         }
     }
     
-    internal var widthConstraint: NSLayoutConstraint? {
+    var widthConstraint: NSLayoutConstraint? {
         get {
             if let value = objc_getAssociatedObject(self, &widthConstraintKey) as? NSLayoutConstraint {
                 return value
@@ -86,12 +94,14 @@ internal extension UIView {
         }
         set {
             widthConstraint?.isActive = false
+            if let newValue = newValue {
+                newValue.isActive = true
+            }
             objc_setAssociatedObject(self, &widthConstraintKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            newValue?.isActive = true
         }
     }
     
-    internal var heightConstraint: NSLayoutConstraint? {
+    var heightConstraint: NSLayoutConstraint? {
         get {
             if let value = objc_getAssociatedObject(self, &heightConstraintKey) as? NSLayoutConstraint {
                 return value
@@ -101,8 +111,10 @@ internal extension UIView {
         }
         set {
             heightConstraint?.isActive = false
+            if let newValue = newValue {
+                newValue.isActive = true
+            }
             objc_setAssociatedObject(self, &heightConstraintKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-            newValue?.isActive = true
         }
     }
     
@@ -110,7 +122,7 @@ internal extension UIView {
 
 internal extension UIView {
     
-    internal func constraintToSuperview() {
+    func constraintToSuperview() {
         guard let superview = superview else { return }
         translatesAutoresizingMaskIntoConstraints = false
         topConstraint = topAnchor.constraint(equalTo: superview.topAnchor)
@@ -119,7 +131,7 @@ internal extension UIView {
         trailingConstraint = trailingAnchor.constraint(equalTo: superview.trailingAnchor)
     }
     
-    internal func removeAllConstraints() {
+    func removeAllConstraints() {
         topConstraint = nil
         bottomConstraint = nil
         leadingConstraint = nil

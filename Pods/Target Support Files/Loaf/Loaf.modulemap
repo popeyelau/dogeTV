@@ -1,0 +1,6 @@
+framework module Loaf {
+  umbrella header "Loaf-umbrella.h"
+
+  export *
+  module * { export * }
+}
