@@ -26,6 +26,11 @@ extension UIViewController {
     func showSuccess(_ message: String) {
         Loaf(message, state: .success, location: .bottom, sender: self).show()
     }
+
+    func push(viewController: UIViewController, animated: Bool) {
+        viewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(viewController, animated: animated)
+    }
     
     func showVideo(with id: String) {
         HUD.show(.progress)
@@ -49,5 +54,4 @@ extension UIViewController {
                 HUD.hide()
         }
     }
-    
 }

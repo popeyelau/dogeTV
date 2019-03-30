@@ -26,19 +26,42 @@ class CategoryViewController: SegementSlideViewController {
 
     var sourceType: CategoryViewSourceType = .normal
     var isDouban = false
+    var selected: Category = .film {
+        didSet {
+            if isLoaded {
+                let index = selected.rawValue
+                self.scrollToSlide(at: index, animated: false)
+            }
+        }
+    }
+    var isLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = sourceType.title
         view.theme_backgroundColor = AppColor.backgroundColor
+        slideContentView.theme_backgroundColor =  AppColor.backgroundColor
         if sourceType == .normal {
             let rankBtn = UIBarButtonItem(image: UIImage(named: "ranking"), style: .plain, target: self, action: #selector(rank))
             let doubanBtn = UIBarButtonItem(image: UIImage(named: "douban"), style: .plain, target: self, action: #selector(toggleSourceType(_:)))
             navigationItem.rightBarButtonItems = [rankBtn, doubanBtn]
         }
-        slideSwitcherView.theme_backgroundColor = AppColor.backgroundColor
+        slideSwitcherView.theme_backgroundColor = AppColor.slideSwitcherColor
         refresh()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(themeDidUpdated),
+            name: NSNotification.Name(rawValue: "ThemeUpdateNotification"),
+            object: nil
+        )
+        isLoaded = true
     }
+
+    @objc func themeDidUpdated() {
+        reloadSwitcher()
+    }
+
     
     @objc func toggleSourceType(_ sender: UIBarButtonItem) {
         isDouban.toggle()
@@ -47,16 +70,20 @@ class CategoryViewController: SegementSlideViewController {
         let source = isDouban ? "豆瓣优片" : "默认片库"
         showSuccess("切换至 \(source)")
     }
-    
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     override var bouncesType: BouncesType {
         return .child
     }
     
     override var switcherConfig: SegementSlideSwitcherConfig {
         var config = SegementSlideSwitcherConfig.shared
-        config.indicatorColor = AppTheme.isDark ? .white : .darkGray
+        config.indicatorColor = AppTheme.isDark ? .groupTableViewBackground : .darkGray
         config.normalTitleColor = .lightGray
-        config.selectedTitleColor = AppTheme.isDark ? .white : .darkGray
+        config.selectedTitleColor = AppTheme.isDark ? .groupTableViewBackground : .darkGray
         config.type = .tab
         return config
     }
@@ -65,6 +92,7 @@ class CategoryViewController: SegementSlideViewController {
     }
 
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
+        selected = Category(rawValue: index)  ?? .film
         switch sourceType {
         case .normal:
             let target = VideoListViewController()
@@ -81,7 +109,7 @@ class CategoryViewController: SegementSlideViewController {
     @objc func rank() {
         let target = CategoryViewController()
         target.sourceType = .rank
-        navigationController?.pushViewController(target, animated: true)
+        push(viewController: target, animated: true)
     }
 }
 
@@ -89,7 +117,7 @@ class CategoryViewController: SegementSlideViewController {
 extension CategoryViewController {
     func refresh() {
         self.reloadData()
-        let index = currentIndex ?? 0
+        let index = selected.rawValue
         self.scrollToSlide(at: index, animated: false)
     }
 }

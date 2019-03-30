@@ -27,6 +27,7 @@ class SearchViewController: BaseViewController {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        layout.minimumLineSpacing = 0
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
@@ -64,7 +65,8 @@ class SearchViewController: BaseViewController {
         view.theme_backgroundColor = AppColor.secondaryBackgroundColor
         searchBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
-            $0.left.right.equalToSuperview()
+            $0.left.equalToSuperview().offset(8)
+            $0.right.equalToSuperview().offset(-8)
             $0.height.equalTo(44)
         }
         view.addSubview(collectionView)

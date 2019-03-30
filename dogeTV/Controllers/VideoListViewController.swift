@@ -27,12 +27,12 @@ class VideoListViewController: BaseViewController, SegementSlideContentScrollVie
     
     lazy var floatingBtn: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.backgroundColor = .darkGray
+        btn.backgroundColor = UIColor(hexString: "#0C1C27")
         btn.setImage(UIImage(named: "filter"), for: .normal)
         btn.addTarget(self, action: #selector(showQueryPanel), for: .touchUpInside)
         btn.layer.masksToBounds = true
         btn.layer.cornerRadius = 25
-        btn.alpha = 0.85
+        btn.alpha = 0.75
         btn.isHidden = true
         return btn
     }()

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let root = HomeViewController()
         window?.rootViewController = UINavigationController(rootViewController: root)
-        window?.backgroundColor = .white
+        window?.theme_backgroundColor = AppColor.backgroundColor
         window?.makeKeyAndVisible()
         configureUIAppearance()
         AppTheme.restore()
@@ -40,20 +40,21 @@ extension AppDelegate {
         appearance.isTranslucent = false
         
         appearance.theme_tintColor = AppColor.tintColor
-        appearance.theme_barTintColor = AppColor.backgroundColor
+        appearance.theme_barTintColor = AppColor.barTintColor
+        appearance.shadowImage = UIImage()
         
         let titleAttributes = AppColor.barTextColors.map { hexString -> [NSAttributedString.Key: AnyObject] in
             return [
                 .foregroundColor: UIColor(rgba: hexString),
-                .font: UIFont(name: "PingFangSC-light", size: 20)!
+                .font: UIFont(name: "PingFangSC-light", size: 18)!
             ]
         }
-        
-        appearance.shadowImage = UIImage()
+
         appearance.theme_titleTextAttributes = ThemeDictionaryPicker.pickerWithAttributes(titleAttributes)
 
-        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UINavigationBar.self]).setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf:[UINavigationBar.self]).setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .highlighted)
+        let backButtonAppearance = UIBarButtonItem.appearance(whenContainedInInstancesOf:[UINavigationBar.self])
+        backButtonAppearance.setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
+        backButtonAppearance.setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .highlighted)
         
         UITextField.appearance().tintColor = .black
         

@@ -106,7 +106,7 @@ class VideoDetailViewController: BaseViewController {
             CellNode(EpisodeItemComponent(data: item))
         }
         
-        let lines = (0..<min(video.source,6)).map{ (source) -> CellNode in
+        let lines = (0..<min(video.source,10)).map{ (source) -> CellNode in
             CellNode(SourceItemComponent(data: VideoSource(source: source, isSelected: resourceIndex == source)))
         }
 

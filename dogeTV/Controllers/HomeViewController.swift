@@ -97,9 +97,8 @@ class HomeViewController: BaseViewController {
     }
 
     func showMore(of category: Category) {
-        let target = VideoListViewController()
-        target.category = category
-        target.title = category.title
+        let target = CategoryViewController()
+        target.selected = category
         navigationController?.pushViewController(target, animated: true)
     }
     
@@ -108,21 +107,24 @@ class HomeViewController: BaseViewController {
         let topic = topics[index]
         target.title = topic.title
         target.topicId = topic.id
+        target.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(target, animated: true)
     }
 
     func showTopics() {
         let target = TopicsViewController()
         target.title = "精选专题"
+        target.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(target, animated: true)
     }
-    
+
     //切换主题
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         guard motion == .motionShake else { return }
         AppTheme.toggle()
     }
 }
+
 
 
 extension HomeViewController {

@@ -18,6 +18,7 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.theme_backgroundColor = AppColor.backgroundColor
         title = "电视节目"
         view.addSubview(webView)
         webView.snp.makeConstraints {

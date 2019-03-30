@@ -33,7 +33,7 @@ struct VideoHeaderComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: UIScreen.main.bounds.height * 0.3)
+        return CGSize(width: bounds.width, height: UIScreen.main.bounds.height * 0.35)
     }
 
     func shouldContentUpdate(with next: VideoHeaderComponent) -> Bool {

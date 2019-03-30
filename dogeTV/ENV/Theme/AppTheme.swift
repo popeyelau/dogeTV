@@ -12,19 +12,21 @@ import PKHUD
 
 
 enum AppColor {
-    static let backgroundColor: ThemeColorPicker = ["#FFF", "#17222D"]
-    static let secondaryBackgroundColor: ThemeColorPicker = ["#FFF", "#181C24"]
+    static let slideSwitcherColor: ThemeColorPicker = ["#FFF", "#101C26"]
+    static let backgroundColor: ThemeColorPicker = ["#FFF", "#18222D"]
+    static let secondaryBackgroundColor: ThemeColorPicker = ["#FFF", "#131C25"]
     
-    static let textColor: ThemeColorPicker = ["#01040D", "#FFF"]
+    static let textColor: ThemeColorPicker = ["#01040D", "#EEE"]
     static let secondaryTextColor: ThemeColorPicker = ["#656765", "#CCC"]
     
-    static let indicatorColor: ThemeColorPicker = ["#17222D", "#FFF"]
+    static let indicatorColor: ThemeColorPicker = ["#17222D", "#CCC"]
     
     static let barTextColors = ["#000","#FFF"]
     static let barTextColor = ThemeColorPicker.pickerWithColors(barTextColors)
     
     static let separatorColor:ThemeColorPicker = ["#EEE","#0E1720"]
-    static let tintColor: ThemeColorPicker = ["#17222D", "#FFFFFF"]
+    static let tintColor: ThemeColorPicker = ["#17222D", "#EEE"]
+    static let barTintColor: ThemeColorPicker = ["#FFF", "#101C26"]
 
     static let channelBackgroundColor: ThemeColorPicker = ["#2F3236", "#16263A"]
 

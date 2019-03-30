@@ -31,7 +31,7 @@ struct SearchItemComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width - 16, height: 120)
+        return CGSize(width: bounds.width - 16, height: 140)
     }
 
     func shouldContentUpdate(with next: SearchItemComponent) -> Bool {

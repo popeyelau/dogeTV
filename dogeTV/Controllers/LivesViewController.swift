@@ -18,9 +18,26 @@ class LivesViewController: SegementSlideViewController {
         view.theme_backgroundColor = AppColor.backgroundColor
         let moreBarBtn = UIBarButtonItem(image: UIImage(named: "web"), style: .plain, target: self, action: #selector(more(_:)))
         navigationItem.rightBarButtonItems = [moreBarBtn]
-        slideSwitcherView.theme_backgroundColor = AppColor.backgroundColor
+        slideSwitcherView.theme_backgroundColor = AppColor.slideSwitcherColor
         reloadData()
         scrollToSlide(at: 0, animated: false)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(themeDidUpdated),
+            name: NSNotification.Name(rawValue: "ThemeUpdateNotification"),
+            object: nil
+        )
+    }
+
+    @objc func themeDidUpdated() {
+        reloadSwitcher()
+    }
+
+
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override var bouncesType: BouncesType {
@@ -29,9 +46,9 @@ class LivesViewController: SegementSlideViewController {
 
     override var switcherConfig: SegementSlideSwitcherConfig {
         var config = SegementSlideSwitcherConfig.shared
-        config.indicatorColor = AppTheme.isDark ? .white : .darkGray
+        config.indicatorColor = AppTheme.isDark ? .groupTableViewBackground : .darkGray
         config.normalTitleColor = .lightGray
-        config.selectedTitleColor = AppTheme.isDark ? .white : .darkGray
+        config.selectedTitleColor = AppTheme.isDark ? .groupTableViewBackground : .darkGray
         config.type = .tab
         return config
     }
@@ -43,7 +60,7 @@ class LivesViewController: SegementSlideViewController {
 
     @objc func more(_ sender: UIBarButtonItem) {
         let target = WebViewController()
-        navigationController?.pushViewController(target, animated: true)
+        push(viewController: target, animated: true)
     }
 
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {

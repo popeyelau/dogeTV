@@ -11,6 +11,7 @@ import UIKit
 class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         view.theme_backgroundColor = AppColor.backgroundColor
     }
 }

@@ -32,8 +32,10 @@ struct EpisodeItemComponent: IdentifiableComponent {
 
     func render(in content: Content) {
         content.text = data.title
+        content.layer.borderWidth = 1.0
         content.theme_textColor = ["#434343", "#FFF"]
-        content.theme_backgroundColor =  ["#F1F7F8", "#1E3141"]
+        content.layer.theme_borderColor = ["#F0F7F8", "#203040"]
+        content.backgroundColor = .clear
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
@@ -72,8 +74,10 @@ struct SourceItemComponent: IdentifiableComponent {
         let textColor: ThemeColorPicker = data.isSelected ? ["#FFF", "#FFF"] :  ["#434343", "#FFF"]
         content.theme_textColor = textColor
 
+        content.layer.borderWidth = 1.0
+        content.layer.theme_borderColor = ["#F0F7F8", "#203040"]
 
-        let backgroundColor: ThemeColorPicker = data.isSelected ? ["#434343", "#1E3141"] :  ["#F1F7F8", "#0D181F"]
+        let backgroundColor: ThemeColorPicker = data.isSelected ? ["#434343", "#1E3141"] :  ["#4c000000", "#4c000000"]
         content.theme_backgroundColor = backgroundColor
     }
     

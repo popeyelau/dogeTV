@@ -41,6 +41,7 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "电视"
         setupViews()
         refresh()
     }

@@ -53,7 +53,7 @@ class TopicsViewController: BaseViewController {
             }
             let target = TopicViewController()
             target.topicId = item.data.id
-            self?.navigationController?.pushViewController(target, animated: true)
+           self?.push(viewController: target, animated: true)
         }
     }
 
