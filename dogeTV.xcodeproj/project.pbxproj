@@ -15,6 +15,7 @@
 		7935A11A222785A1009A921F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7935A119222785A1009A921F /* UIViewExtension.swift */; };
 		793A22662228E011000B7B07 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A22652228E011000B7B07 /* CategoryViewController.swift */; };
 		793A22682228ED44000B7B07 /* VideoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A22672228ED44000B7B07 /* VideoListViewController.swift */; };
+		793FF71C225B798C0001431C /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793FF71B225B798C0001431C /* NSAttributedStringExtension.swift */; };
 		7950849F222680F100D010C9 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7950849E222680F100D010C9 /* VideoDetailViewController.swift */; };
 		7959696F222A6C4C0069B26C /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7959696E222A6C4C0069B26C /* LiveViewController.swift */; };
 		796D00CE223D455700179C72 /* RankListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796D00CD223D455700179C72 /* RankListViewController.swift */; };
@@ -69,6 +70,7 @@
 		7935A119222785A1009A921F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		793A22652228E011000B7B07 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		793A22672228ED44000B7B07 /* VideoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListViewController.swift; sourceTree = "<group>"; };
+		793FF71B225B798C0001431C /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		7950849E222680F100D010C9 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
 		7959696E222A6C4C0069B26C /* LiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		796D00CD223D455700179C72 /* RankListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankListViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				7935A119222785A1009A921F /* UIViewExtension.swift */,
 				79CB65CC222CAB1F00356042 /* UIViewControllerExtension.swift */,
 				7978361E223CD0A400C59E01 /* UIImageViewExtension.swift */,
+				793FF71B225B798C0001431C /* NSAttributedStringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				79DCECF8223E1FC6008973D3 /* Hot.swift in Sources */,
 				79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */,
 				799390F5223F82240035B636 /* QueryOptionsController.swift in Sources */,
+				793FF71C225B798C0001431C /* NSAttributedStringExtension.swift in Sources */,
 				798CD27F222806DE00E64A09 /* TopicItemComponent.swift in Sources */,
 				799390F3223F3E5B0035B636 /* QueryItemComponent.swift in Sources */,
 				7935A11A222785A1009A921F /* UIViewExtension.swift in Sources */,

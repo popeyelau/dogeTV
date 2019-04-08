@@ -23,7 +23,7 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 0, right: 8)
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
@@ -68,10 +68,19 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
                 return
             }
 
-            UIPasteboard.general.string = item.data.url
+            let url = item.data.url
+            UIPasteboard.general.string = url
+            
+            //nPlayer 打开
+            if ENV.usingnPlayer && UIApplication.shared.canOpenURL(URL(string: "nplayer-http://")!) {
+                let nPlayer = URL(string: "nplayer-\(url)")!
+                UIApplication.shared.open(nPlayer, options: [:], completionHandler: nil)
+                return
+            }
+
             let target = PlayerViewController()
             self?.present(target, animated: true) {
-                target.play(url: item.data.url, title: nil)
+                target.play(url: url, title: nil)
             }
         }
     }
@@ -79,7 +88,8 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     func render() {
         let sections = groups.map { (category) -> Section in
             let cells = category.channels.map { CellNode(ChannelItemComponent(data: $0)) }
-            let section = Section(id: category.categoryName, cells: cells)
+            let header = groups.count > 1  ? ViewNode(VideoEpisodeHeaderComponent(title: category.categoryName))  : nil
+            let section = Section(id: category.categoryName, header: header, cells: cells)
             return section
         }
         renderer.render(sections)

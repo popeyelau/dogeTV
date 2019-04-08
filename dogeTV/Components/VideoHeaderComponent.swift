@@ -28,11 +28,17 @@ struct VideoHeaderComponent: IdentifiableComponent {
     func render(in content: Content) {
         content.coverImageView.setResourceImage(with: data.cover)
         content.titleLabel.text = data.name
-        content.introLabel.text = "导演: \(data.director)\n主演: \(data.actor)\n国家/地区: \(data.area)\n上映: \(data.year )\n类型: \(data.tag)\n\(data.state)"
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        let attributes:[NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 12), .paragraphStyle: paragraphStyle]
+        let text =  "导演: \(data.director)\n主演: \(data.actor)\n国家/地区: \(data.area)\n上映: \(data.year )\n类型: \(data.tag)\n\(data.state)"
+        let attr =  NSAttributedString(string: text, attributes: attributes)
+        let pattern = "([\u{4e00}-\u{9fa5}]+(/)?[\u{4e00}-\u{9fa5}]+:)" // FIXME
+        content.introLabel.attributedText = attr.applying(attributes: [.font: UIFont.boldSystemFont(ofSize: 12)], toRangesMatching: pattern)
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: bounds.height * 0.25)
+        return CGSize(width: bounds.width, height: 200)
     }
 
     func shouldContentUpdate(with next: VideoHeaderComponent) -> Bool {
@@ -49,8 +55,8 @@ class VideoHeaderContentView: UIView {
         imageView.layer.masksToBounds = false
         imageView.layer.shadowColor = UIColor.black.cgColor
         imageView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        imageView.layer.shadowOpacity = 0.24
-        imageView.layer.shadowRadius = CGFloat(2.0)
+        imageView.layer.shadowOpacity = 0.5
+        imageView.layer.shadowRadius = 5.0
         return imageView
     }()
 
