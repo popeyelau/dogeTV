@@ -37,7 +37,7 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     )
 
     var index: Int = 1
-    var channels: [Channel] = []
+    var groups: [ChannelGroup] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,16 +67,20 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     }
 
     func render() {
-        let cells = channels.map { CellNode(ChannelItemComponent(data: $0)) }
-        renderer.render(Section(id: 0, cells: cells))
+        let sections = groups.map { (category) -> Section in
+            let cells = category.channels.map { CellNode(ChannelItemComponent(data: $0)) }
+            let section = Section(id: category.categoryName, cells: cells)
+            return section
+        }
+        renderer.render(sections)
     }
 }
 
 extension LiveViewController {
     func refresh() {
         HUD.show(.progress)
-            _ = APIClient.fetchTV(location).done { (channels) in
-                self.channels = channels.sorted { $0.name < $1.name }
+            _ = APIClient.fetchTV(location).done { (groups) in
+                self.groups = groups
                 }.catch({ (error) in
                     self.showError(error)
                 }).finally {

@@ -14,26 +14,22 @@ struct Channel: Decodable {
     let url: String
 }
 
+struct ChannelGroup: Decodable {
+    let categoryName: String
+    let channels: [Channel]
+}
+
 
 enum TV: Int, CaseIterable {
     case iptv
-    case mainland
-    case hk
-    case jp
-    case us
+    case hwtv
 
     var title: String {
         switch self {
         case .iptv:
-            return "IPTV"
-        case .mainland:
-            return "大陆"
-        case .hk:
-            return "港澳台"
-        case .jp:
-            return "日韩"
-        case .us:
-            return "欧美"
+            return "联通IPTV"
+        case .hwtv:
+            return "华文电视"
         }
     }
 
@@ -41,14 +37,8 @@ enum TV: Int, CaseIterable {
         switch self {
         case .iptv:
             return "iptv"
-        case .mainland:
-            return "cn"
-        case .hk:
-            return "hktw"
-        case .jp:
-            return "jpkr"
-        case .us:
-            return "us"
+        case .hwtv:
+            return "hwtv"
         }
     }
 }

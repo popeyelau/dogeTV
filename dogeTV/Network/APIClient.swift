@@ -137,10 +137,10 @@ struct APIClient {
             .map { $0.data }
     }
     
-    static func fetchTV(_ tv: TV) -> Promise<[Channel]> {
+    static func fetchTV(_ tv: TV) -> Promise<[ChannelGroup]> {
         return AlamofireManager.shared.request(Router.tv(tv: tv))
             .validate(validate)
-            .responseDecodable(Response<[Channel]>.self)
+            .responseDecodable(Response<[ChannelGroup]>.self)
             .map { $0.data }
     }
 
