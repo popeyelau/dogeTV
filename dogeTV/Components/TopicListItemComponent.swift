@@ -30,7 +30,7 @@ struct TopicListItemComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: 80, height: 120)
+        return CGSize(width: 90, height: 130)
     }
 
     func shouldContentUpdate(with next: TopicListItemComponent) -> Bool {
@@ -44,7 +44,7 @@ class TopicListItemContentView: UIView {
         let imageView = UIImageView()
         imageView.backgroundColor = .groupTableViewBackground
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 40
+        imageView.layer.cornerRadius = 45
         imageView.layer.masksToBounds = true
         return imageView
     }()
@@ -67,7 +67,7 @@ class TopicListItemContentView: UIView {
         addSubview(coverImageView)
         addSubview(titleLabel)
         coverImageView.snp.makeConstraints {
-            $0.size.equalTo(CGSize(width: 80, height: 80))
+            $0.size.equalTo(90)
             $0.top.centerX.equalToSuperview()
         }
         titleLabel.snp.makeConstraints {

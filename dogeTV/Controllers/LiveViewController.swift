@@ -23,7 +23,7 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
+        layout.sectionInset = UIEdgeInsets(top: 16, left: 8, bottom: 0, right: 8)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
@@ -41,13 +41,23 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "电视"
+        let toggleBarBtn = UIBarButtonItem(image: UIImage(named: "toggle"), style: .plain, target: self, action: #selector(toggle(_:)))
+        navigationItem.rightBarButtonItem = toggleBarBtn
         setupViews()
+        updateTitle()
         refresh()
+    }
+    
+    @objc func toggle(_ sender: UIBarButtonItem) {
+        location = location.next()
+        refresh()
+    }
+    
+    func updateTitle() {
+       title = location.title
     }
 
     func setupViews() {
-    
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -81,11 +91,13 @@ extension LiveViewController {
         HUD.show(.progress)
             _ = APIClient.fetchTV(location).done { (groups) in
                 self.groups = groups
+                self.updateTitle()
                 }.catch({ (error) in
                     self.showError(error)
                 }).finally {
                     HUD.hide()
                     self.render()
+                    self.collectionView.setContentOffset(.zero, animated: true)
             }
     }
 }

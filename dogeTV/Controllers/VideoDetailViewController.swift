@@ -31,7 +31,7 @@ class VideoDetailViewController: BaseViewController {
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.theme_backgroundColor = AppColor.secondaryBackgroundColor
+        collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -52,7 +52,7 @@ class VideoDetailViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.theme_backgroundColor = AppColor.secondaryBackgroundColor
+        view.theme_backgroundColor = AppColor.backgroundColor
        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {

@@ -31,7 +31,7 @@ struct TopicListComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width - 16, height: 120)
+        return CGSize(width: bounds.width - 16, height: 130)
     }
 
     func shouldContentUpdate(with next: TopicListComponent) -> Bool {
@@ -51,6 +51,7 @@ class TopicListContentView: UIView {
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 8
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsHorizontalScrollIndicator = false

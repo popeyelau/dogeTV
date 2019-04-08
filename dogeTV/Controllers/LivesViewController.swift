@@ -16,6 +16,7 @@ class LivesViewController: SegementSlideViewController {
         super.viewDidLoad()
         title = "电视直播"
         view.theme_backgroundColor = AppColor.backgroundColor
+        slideContentView.theme_backgroundColor =  AppColor.backgroundColor
         let moreBarBtn = UIBarButtonItem(image: UIImage(named: "web"), style: .plain, target: self, action: #selector(more(_:)))
         navigationItem.rightBarButtonItems = [moreBarBtn]
         slideSwitcherView.theme_backgroundColor = AppColor.slideSwitcherColor
@@ -33,8 +34,6 @@ class LivesViewController: SegementSlideViewController {
     @objc func themeDidUpdated() {
         reloadSwitcher()
     }
-
-
 
     deinit {
         NotificationCenter.default.removeObserver(self)

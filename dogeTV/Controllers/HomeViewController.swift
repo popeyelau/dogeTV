@@ -56,7 +56,7 @@ class HomeViewController: BaseViewController {
         navigationController?.pushViewController(target, animated: true)
     }
     @objc func tv(_ sender: UIBarButtonItem) {
-        let target = LivesViewController()
+        let target = LiveViewController()
         navigationController?.pushViewController(target, animated: true)
     }
     
@@ -105,16 +105,13 @@ class HomeViewController: BaseViewController {
     func showTopic(at index: Int) {
         let target = TopicViewController()
         let topic = topics[index]
-        target.title = topic.title
         target.topicId = topic.id
-        target.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(target, animated: true)
     }
 
     func showTopics() {
         let target = TopicsViewController()
         target.title = "精选专题"
-        target.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(target, animated: true)
     }
 

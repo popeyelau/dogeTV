@@ -41,4 +41,10 @@ enum TV: Int, CaseIterable {
             return "hwtv"
         }
     }
+    
+    func next() -> TV {
+        var next = rawValue + 1
+        if next > TV.allCases.last!.rawValue { next = 0 }
+        return TV(rawValue: next)!
+    }
 }
