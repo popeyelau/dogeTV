@@ -32,9 +32,9 @@ struct EpisodeItemComponent: IdentifiableComponent {
 
     func render(in content: Content) {
         content.text = data.title
-        content.layer.borderWidth = 1.0
+        content.layer.borderWidth = 0.5
         content.theme_textColor = ["#434343", "#FFF"]
-        content.layer.theme_borderColor = ["#F0F7F8", "#203040"]
+        content.layer.theme_borderColor = ["#BFBFBF", "#203040"]
         content.backgroundColor = .clear
     }
 
@@ -74,8 +74,8 @@ struct SourceItemComponent: IdentifiableComponent {
         let textColor: ThemeColorPicker = data.isSelected ? ["#FFF", "#FFF"] :  ["#434343", "#FFF"]
         content.theme_textColor = textColor
 
-        content.layer.borderWidth = 1.0
-        content.layer.theme_borderColor = ["#F0F7F8", "#203040"]
+        content.layer.borderWidth = data.isSelected ? 0.0 : 0.5
+        content.layer.theme_borderColor = ["#BFBFBF", "#203040"]
 
         let backgroundColor: ThemeColorPicker = data.isSelected ? ["#434343", "#1E3141"] :  ["#4c000000", "#4c000000"]
         content.theme_backgroundColor = backgroundColor

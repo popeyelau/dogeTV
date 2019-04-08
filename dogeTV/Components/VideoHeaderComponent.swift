@@ -27,7 +27,6 @@ struct VideoHeaderComponent: IdentifiableComponent {
 
     func render(in content: Content) {
         content.coverImageView.setResourceImage(with: data.cover)
-        content.backgroundImageView.setResourceImage(with: data.cover, placeholder: UIImage(named: "blur"))
         content.titleLabel.text = data.name
         content.introLabel.text = "导演: \(data.director)\n主演: \(data.actor)\n国家/地区: \(data.area)\n上映: \(data.year )\n类型: \(data.tag)\n\(data.state)"
     }
@@ -44,23 +43,20 @@ struct VideoHeaderComponent: IdentifiableComponent {
 
 
 class VideoHeaderContentView: UIView {
-    lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        return imageView
-    }()
-
     lazy var coverImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = false
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        imageView.layer.shadowOpacity = 0.24
+        imageView.layer.shadowRadius = CGFloat(2.0)
         return imageView
     }()
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
+        label.theme_textColor = AppColor.textColor
         label.font = .preferredFont(forTextStyle: .callout)
         return label
     }()
@@ -68,23 +64,19 @@ class VideoHeaderContentView: UIView {
     lazy var introLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .groupTableViewBackground
+        label.theme_textColor = AppColor.textColor
         label.numberOfLines = 10
         return label
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(backgroundImageView)
         addSubview(coverImageView)
         addSubview(titleLabel)
         addSubview(introLabel)
 
         let padding = 8.0
 
-        backgroundImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
         coverImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.top.left.equalToSuperview().offset(padding)
@@ -99,13 +91,6 @@ class VideoHeaderContentView: UIView {
             $0.top.equalTo(titleLabel.snp.bottom).offset(padding)
             $0.right.equalToSuperview().offset((-padding))
             $0.left.equalTo(titleLabel)
-        }
-
-        let blur = UIBlurEffect(style: .dark)
-        let effectView = UIVisualEffectView(effect: blur)
-        backgroundImageView.addSubview(effectView)
-        effectView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
     }
 
