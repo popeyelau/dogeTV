@@ -33,7 +33,7 @@ struct VideoHeaderComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: UIScreen.main.bounds.height * 0.35)
+        return CGSize(width: bounds.width, height: bounds.height * 0.25)
     }
 
     func shouldContentUpdate(with next: VideoHeaderComponent) -> Bool {
@@ -54,7 +54,7 @@ class VideoHeaderContentView: UIView {
     lazy var coverImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
 
@@ -75,8 +75,6 @@ class VideoHeaderContentView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layer.masksToBounds = true
-        layer.cornerRadius = 6
         addSubview(backgroundImageView)
         addSubview(coverImageView)
         addSubview(titleLabel)
@@ -87,12 +85,10 @@ class VideoHeaderContentView: UIView {
         backgroundImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-
         coverImageView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.left.equalToSuperview().offset(padding)
-            $0.height.equalToSuperview().offset(-padding*2).multipliedBy(0.9)
-            $0.width.equalTo(coverImageView.snp.height).dividedBy(1.5)
+            $0.top.left.equalToSuperview().offset(padding)
+            $0.width.equalTo(coverImageView.snp.height).dividedBy(1.35)
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(coverImageView)

@@ -23,6 +23,11 @@ struct Video: Decodable, Equatable {
     let source: Int
 }
 
+struct VideoDetail: Decodable {
+    let info: Video
+    let recommends: [Video]?
+}
+
 
 struct VideoCategory: Decodable {
     var query: [OptionSet]?

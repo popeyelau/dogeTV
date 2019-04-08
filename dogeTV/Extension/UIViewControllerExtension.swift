@@ -38,15 +38,17 @@ extension UIViewController {
         attempt(maximumRetryCount: 3) {
             when(fulfilled: APIClient.fetchVideo(id: id),
                  APIClient.fetchEpisodes(id: id))
-            }.done { video, episodes in
+            }.done { detail, episodes in
                 guard let  navigationController = self.navigationController else {
                     return
                 }
                 let modal = VideoDetailViewController()
-                modal.media = video
+                modal.detail = detail
                 modal.episodes = episodes
+                /*
                 modal.modalPresentationCapturesStatusBarAppearance = true
-                navigationController.presentAsStork(modal, height: nil, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
+                navigationController.presentAsStork(modal, height: nil, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)*/
+                navigationController.pushViewController(modal, animated: true)
             }.catch{ error in
                 print(error)
                 self.showError(error)

@@ -21,12 +21,13 @@ class VideoDetailViewController: BaseViewController {
         case header
         case lines
         case episodes
+        case recommends
     }
     
     var resourceIndex = 0
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -36,7 +37,7 @@ class VideoDetailViewController: BaseViewController {
     }()
     
     var selectionController: SelectionViewController<Int>?
-    var media: Video?
+    var detail: VideoDetail?
     var episodes: [Episode] = []
 
     lazy var renderer = Renderer(
@@ -52,10 +53,10 @@ class VideoDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.theme_backgroundColor = AppColor.secondaryBackgroundColor
-        title = media?.name
+       
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 8, bottom: 0, right: 8))
+            $0.edges.equalToSuperview()
         }
         render()
         renderer.adapter.didSelect = {[weak self] ctx in
@@ -64,6 +65,8 @@ class VideoDetailViewController: BaseViewController {
             } else if let item = ctx.node.component.as(SourceItemComponent.self) {
                 self?.resourceIndex = item.data.source
                 self?.refreshResource(with: item.data.source)
+            } else if let item = ctx.node.component.as(VideoItemComponent.self){
+                self?.showVideo(with: item.id)
             }
         }
     }
@@ -101,19 +104,36 @@ class VideoDetailViewController: BaseViewController {
     }
 
     func render() {
-        guard let video = self.media else { return }
+        guard let detail = self.detail else { return }
+        
+        title = detail.info.name
+        
+        // 头部
+        let header = Section(id: ID.header, header: ViewNode(VideoHeaderComponent(data: detail.info)))
+
+        // 线路
+        let lines = (0..<min(detail.info.source,10)).map{ (source) -> CellNode in
+            CellNode(SourceItemComponent(data: VideoSource(source: source, isSelected: resourceIndex == source)))
+        }
+        let lineSection = Section(id: ID.lines, header: ViewNode(VideoEpisodeHeaderComponent(title: "线路",
+                                                                           subTitle: "线路画质从高到低")), cells: lines)
+
+        // 分集
         let cells = episodes.map { (item) -> CellNode in
             CellNode(EpisodeItemComponent(data: item))
         }
+        let episodeSection = Section(id: ID.episodes, header: ViewNode(VideoEpisodeHeaderComponent(title: "分集")), cells: cells)
         
-        let lines = (0..<min(video.source,10)).map{ (source) -> CellNode in
-            CellNode(SourceItemComponent(data: VideoSource(source: source, isSelected: resourceIndex == source)))
+        var sections: [Section] = [header, lineSection, episodeSection];
+        
+        // 推荐
+        if let recommends = detail.recommends {
+            let cells = recommends.prefix(6).compactMap{ (item) -> CellNode in CellNode(VideoItemComponent(data: item)) }
+            let recommendSection = Section(id: ID.recommends, header: ViewNode(VideoEpisodeHeaderComponent(title: "猜你喜欢")), cells: cells)
+            sections.append(recommendSection)
         }
 
-        renderer.render(Section(id: ID.header, header: ViewNode(VideoHeaderComponent(data: video))),
-                        Section(id: ID.lines, header: ViewNode(VideoEpisodeHeaderComponent(title: "线路",
-                            subTitle: "线路画质从高到低")), cells: lines),
-                        Section(id: ID.episodes, header: ViewNode(VideoEpisodeHeaderComponent(title: "分集")), cells: cells))
+        renderer.render(sections)
     }
     
     
@@ -143,7 +163,7 @@ class VideoDetailViewController: BaseViewController {
 
 
     func refreshResource(with index: Int) {
-        guard let id = media?.id else {
+        guard let id = detail?.info.id else {
             return
         }
         HUD.show(.progress)

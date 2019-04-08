@@ -101,10 +101,10 @@ struct APIClient {
             .map { $0.data }
     }
 
-    static func fetchVideo(id: String) -> Promise<Video> {
+    static func fetchVideo(id: String) -> Promise<VideoDetail> {
         return AlamofireManager.shared.request(Router.video(id: id))
             .validate(validate)
-            .responseDecodable(Response<Video>.self)
+            .responseDecodable(Response<VideoDetail>.self)
             .map { $0.data }
     }
 
