@@ -165,7 +165,6 @@ class VideoDetailViewController: BaseViewController {
             return
         }
 
-        UIPasteboard.general.string = video.url
         let target = PlayerViewController()
         present(target, animated: true) {
             target.play(url: video.url, title: nil)

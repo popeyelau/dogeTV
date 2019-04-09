@@ -16,7 +16,7 @@ class PlayerViewController: AVPlayerViewController {
     }
 
     func play(url: String, title: String?) {
-
+        UIPasteboard.general.string = url
         let player = AVPlayer(url: URL(string: url)!)
         self.player = player
         player.play()
@@ -25,5 +25,9 @@ class PlayerViewController: AVPlayerViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         onDidDisappear?()
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return false
     }
 }

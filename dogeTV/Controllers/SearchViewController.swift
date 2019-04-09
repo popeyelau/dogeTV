@@ -14,9 +14,29 @@ import Kingfisher
 import PKHUD
 
 class SearchViewController: BaseViewController {
+
+    enum Segment: Int, CaseIterable {
+        case search
+        case parse
+
+        var title: String {
+            switch self {
+            case .search: return "搜索"
+            case .parse: return "云解析"
+            }
+        }
+
+        var placeholder: String {
+            switch self {
+            case .search: return "搜索电影/演员/导演"
+            case .parse: return "爱奇艺/优酷/腾讯/芒果/B站 链接"
+            }
+        }
+    }
+
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Search..."
+        searchBar.placeholder = Segment.search.placeholder
         searchBar.delegate = self
         searchBar.theme_tintColor = AppColor.tintColor
         searchBar.removeBackgroundImageView()
@@ -24,10 +44,19 @@ class SearchViewController: BaseViewController {
         return searchBar
     }()
 
+    lazy var segmentTitleView: UISegmentedControl = {
+        let segment = UISegmentedControl(items: Segment.allCases.map { $0.title })
+        segment.selectedSegmentIndex = 0
+        Segment.allCases.forEach{ segment.setWidth(80, forSegmentAt: $0.rawValue) }
+        segment.addTarget(self, action: #selector(segmentIndexChanged(_:)), for: .valueChanged)
+        return segment
+    }()
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false
@@ -37,7 +66,8 @@ class SearchViewController: BaseViewController {
 
     var index: Int = 1
     var results: [Video] = []
-    var keywords: String?
+    var parseResult: CloudParse?
+    var input: String?
 
     lazy var renderer = Renderer(
         target: collectionView,
@@ -46,21 +76,35 @@ class SearchViewController: BaseViewController {
     )
     
     lazy var emptySection: Section = {
-        return Section(id: "empty", header: ViewNode(EmptyComponent(text: "💌 How to use?\n\n 1. 搜索电影/演员/导演 \n\n2. 云解析 腾讯/优酷/爱奇艺/芒果TV 等会员视频")))
+        return Section(id: "empty", header: ViewNode(EmptyComponent(text: "💌 How to use?\n\n 1. [搜索] 电影/演员/导演 \n\n2. [云解析] 爱奇艺/优酷/腾讯/芒果/B站...会员视频")))
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "搜索"
+        navigationItem.titleView = segmentTitleView
         setupViews()
 
-        collectionView.bindFootRefreshHandler({ [weak self] in
-            self?.loadMore()
-            }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
-        collectionView.footRefreshControl.autoRefreshOnFoot = true
-        
         if searchBar.canBecomeFirstResponder {
             searchBar.becomeFirstResponder()
+        }
+        render()
+    }
+
+    @objc func segmentIndexChanged(_ sender: UISegmentedControl) {
+        view.endEditing(true)
+        searchBar.text = nil
+        switch sender.selectedSegmentIndex {
+        case Segment.search.rawValue:
+            searchBar.placeholder = Segment.search.placeholder
+            collectionView.bindFootRefreshHandler({ [weak self] in
+                self?.loadMore()
+                }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
+            collectionView.footRefreshControl.autoRefreshOnFoot = true
+        case Segment.parse.rawValue:
+            searchBar.placeholder = Segment.parse.placeholder
+            collectionView.footRefreshControl = nil
+        default:
+            break
         }
         render()
     }
@@ -79,21 +123,44 @@ class SearchViewController: BaseViewController {
             $0.top.equalTo(searchBar.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
         }
+
         renderer.adapter.didSelect = {[weak self] ctx in
-            guard let item = ctx.node.component.as(SearchItemComponent.self) else {
-                return
+            if let item = ctx.node.component.as(SearchItemComponent.self) {
+                self?.showVideo(with: item.id)
+            } else if let item = ctx.node.component.as(EpisodeItemComponent.self) {
+                self?.play(url: item.data.url)
             }
-            self?.showVideo(with: item.id)
         }
     }
 
 
     func render() {
-        if results.isEmpty {
+        switch segmentTitleView.selectedSegmentIndex {
+        case Segment.search.rawValue: renderSearchResult()
+        case Segment.parse.rawValue: renderParseResult()
+        default: break
+        }
+    }
+
+    func renderParseResult() {
+        guard let result = parseResult else {
             renderer.render(emptySection)
             return
         }
-        
+
+        let header = ViewNode(VideoEpisodeHeaderComponent(title: result.title))
+        let cells = result.episodes.map { (item) -> CellNode in
+            CellNode(EpisodeItemComponent(data: item))
+        }
+        let section = Section(id: "episodes", header: header , cells: cells)
+        renderer.render(section)
+    }
+
+    func renderSearchResult() {
+        guard !results.isEmpty else {
+            renderer.render(emptySection)
+            return
+        }
         let cells = results.map { (item) -> CellNode in
             CellNode(SearchItemComponent(data: item))
         }
@@ -101,44 +168,43 @@ class SearchViewController: BaseViewController {
     }
     
     func play(url: String) {
-        guard !url.isEmpty, var streamURL = URL(string: url) else { return }
-        
-        if let querys = streamURL.queryParameters,
-            let source = querys["url"],
-            let decode = source.removingPercentEncoding {
-            streamURL = URL(string: decode)!
+        guard !url.isEmpty, let streamURL = URL(string: url) else {
+            showInfo("无效的链接")
+            return
         }
         
-        self.showSuccess("解析成功, 即将跳转播放") { _ in
-            let target = PlayerViewController()
-            self.present(target, animated: true) {
+        let target = PlayerViewController()
+        self.present(target, animated: true) {
                 target.play(url: streamURL.absoluteString, title: nil)
-            }
-            self.searchBar.text = nil
         }
+        self.searchBar.text = nil
     }
-}
 
-extension URL {
-    public var queryParameters: [String: String]? {
-        guard
-            let components = URLComponents(url: self, resolvingAgainstBaseURL: true),
-            let queryItems = components.queryItems else { return nil }
-        return queryItems.reduce(into: [String: String]()) { (result, item) in
-            result[item.name] = item.value
+    func execute(text: String) {
+        // Search
+        if segmentTitleView.selectedSegmentIndex == Segment.search.rawValue {
+            search(keywords: text)
+            return
         }
+
+        // Parse
+        guard let url = URL(string: text) else {
+            showInfo("链接地址有误")
+            return
+        }
+
+        parse(url: url)
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.keywords = searchBar.text
-        guard let keywords = keywords, keywords.count > 0 else { return }
-        if keywords.lowercased().hasPrefix("http") {
-            parse(url: keywords)
-        } else {
-            search(keywords: keywords)
+        guard self.input != searchBar.text else {
+            return
         }
+        self.input = searchBar.text
+        guard let input = searchBar.text, input.count > 0 else { return }
+        execute(text: input)
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -158,21 +224,21 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController {
-    
-    func parse(url: String) {
+
+    func parse(url: URL) {
         HUD.show(.progress)
-        _ = APIClient.cloudParse(url: url)
+        _ = APIClient.cloudParse(url: url.absoluteString)
             .done { (result) in
-                guard !result.url.isEmpty else { return }
-                self.play(url: result.url)
+                self.parseResult = result
             }.catch({ (error) in
                 print(error)
                 self.showError(error)
             }).finally {
+                self.render()
                 HUD.hide()
         }
     }
-    
+
     func search(keywords: String) {
         HUD.show(.progress)
         _ = APIClient.search(keywords: keywords)
@@ -183,20 +249,20 @@ extension SearchViewController {
                 self.showError(error)
             }).finally {
                 self.index = 1
-                self.collectionView.footRefreshControl.resumeRefreshAvailable()
+                self.collectionView.footRefreshControl?.resumeRefreshAvailable()
                 HUD.hide()
                 self.render()
         }
     }
 
     func loadMore() {
-        guard let keywords = keywords else {
+        guard let keywords = input else {
             return
         }
         index += 1
         APIClient.search(keywords: keywords, page: index).done { (videos) in
             if videos.isEmpty {
-                self.collectionView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "已经全部加载完毕")
+                self.collectionView.footRefreshControl?.endRefreshingAndNoLongerRefreshing(withAlertText: "已经全部加载完毕")
                 return
             }
             self.results.append(contentsOf: videos)
@@ -205,7 +271,7 @@ extension SearchViewController {
                 self.showError(error)
             }.finally {
                 self.render()
-                self.collectionView.footRefreshControl.endRefreshing()
+                self.collectionView.footRefreshControl?.endRefreshing()
         }
     }
 }

@@ -69,8 +69,7 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
             }
 
             let url = item.data.url
-            UIPasteboard.general.string = url
-            
+
             //nPlayer 打开
             if ENV.usingnPlayer && UIApplication.shared.canOpenURL(URL(string: "nplayer-http://")!) {
                 let nPlayer = URL(string: "nplayer-\(url)")!

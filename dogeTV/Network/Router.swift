@@ -116,7 +116,7 @@ enum Router: APIConfiguration {
         case .episodes(_, let source):
             return ["source": source]
         case .parse(let url):
-            return ["url": url]
+            return ["url": url.base64String]
         default:
             return nil
         }

@@ -9,8 +9,6 @@
 import Foundation
 
 struct CloudParse: Decodable {
-    let type: String
-    let player: String
     let title: String
-    let url: String
+    let episodes: [Episode]
 }

@@ -151,4 +151,10 @@ struct APIClient {
             .map { $0.data }
     }
 
+    static func parse(url: String) -> Promise<CloudParse> {
+        return AlamofireManager.shared.request(Router.parse(url: url))
+            .validate(validate)
+            .responseDecodable(Response<CloudParse>.self)
+            .map { $0.data }
+    }
 }

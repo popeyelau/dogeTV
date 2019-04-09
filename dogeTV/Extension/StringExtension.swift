@@ -21,6 +21,15 @@ extension String {
         return hash.map { String(format: "%02x", $0) }.joined()
     }
 
+    
+    var base64String: String {
+        guard let data = self.data(using: String.Encoding.utf8) else {
+            return ""
+        }
+        
+        return data.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0))
+    }
+
 
     func widthOfString(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [NSAttributedString.Key.font: font]
