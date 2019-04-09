@@ -67,20 +67,7 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
             guard let item = ctx.node.component.as(ChannelItemComponent.self) else{
                 return
             }
-
-            let url = item.data.url
-
-            //nPlayer 打开
-            if ENV.usingnPlayer && UIApplication.shared.canOpenURL(URL(string: "nplayer-http://")!) {
-                let nPlayer = URL(string: "nplayer-\(url)")!
-                UIApplication.shared.open(nPlayer, options: [:], completionHandler: nil)
-                return
-            }
-
-            let target = PlayerViewController()
-            self?.present(target, animated: true) {
-                target.play(url: url, title: nil)
-            }
+            self?.player(with: item.data.url)
         }
     }
 

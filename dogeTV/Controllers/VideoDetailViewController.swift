@@ -92,7 +92,7 @@ class VideoDetailViewController: BaseViewController {
             || item.url.hasSuffix(".m3u")
             || item.url.hasSuffix(".mp4")
             || item.url.hasSuffix(".avi"){
-            play(with: item)
+            player(with: item.url)
             return
         }
 
@@ -100,7 +100,7 @@ class VideoDetailViewController: BaseViewController {
         HUD.show(.progress)
         _ = APIClient.resolveUrl(url: item.url)
             .done { (url) in
-                self.play(with: Episode(title: item.title, url: url))
+                self.player(with: url)
             }.catch({ (error) in
                 print(error)
                 self.showError(error)
@@ -150,27 +150,6 @@ class VideoDetailViewController: BaseViewController {
 
         renderer.render(sections)
     }
-    
-    
-    func play(with video: Episode) {
-        if video.url.isEmpty {
-            showInfo("无效的地址")
-            return
-        }
-
-        //nPlayer 打开
-        if ENV.usingnPlayer && UIApplication.shared.canOpenURL(URL(string: "nplayer-http://")!) {
-            let nPlayer = URL(string: "nplayer-\(video.url)")!
-            UIApplication.shared.open(nPlayer, options: [:], completionHandler: nil)
-            return
-        }
-
-        let target = PlayerViewController()
-        present(target, animated: true) {
-            target.play(url: video.url, title: nil)
-        }
-    }
-
 
     func refreshResource(with index: Int) {
         guard let id = detail?.info.id else {

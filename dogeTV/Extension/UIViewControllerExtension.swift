@@ -55,4 +55,23 @@ extension UIViewController {
                 HUD.hide()
         }
     }
+
+    func player(with streamURL: String) {
+        if streamURL.isEmpty {
+            showInfo("无效的地址")
+            return
+        }
+
+        //nPlayer 打开
+        if ENV.usingnPlayer && UIApplication.shared.canOpenURL(URL(string: "nplayer-http://")!) {
+            let nPlayer = URL(string: "nplayer-\(streamURL)")!
+            UIApplication.shared.open(nPlayer, options: [:], completionHandler: nil)
+            return
+        }
+
+        let target = PlayerViewController()
+        present(target, animated: true) {
+            target.play(url: streamURL, title: nil)
+        }
+    }
 }

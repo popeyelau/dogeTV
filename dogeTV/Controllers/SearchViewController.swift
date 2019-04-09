@@ -128,7 +128,8 @@ class SearchViewController: BaseViewController {
             if let item = ctx.node.component.as(SearchItemComponent.self) {
                 self?.showVideo(with: item.id)
             } else if let item = ctx.node.component.as(EpisodeItemComponent.self) {
-                self?.play(url: item.data.url)
+                self?.player(with: item.data.url)
+                self?.searchBar.text = nil
             }
         }
     }
@@ -167,19 +168,6 @@ class SearchViewController: BaseViewController {
         renderer.render(Section(id: 0, cells: cells))
     }
     
-    func play(url: String) {
-        guard !url.isEmpty, let streamURL = URL(string: url) else {
-            showInfo("无效的链接")
-            return
-        }
-        
-        let target = PlayerViewController()
-        self.present(target, animated: true) {
-                target.play(url: streamURL.absoluteString, title: nil)
-        }
-        self.searchBar.text = nil
-    }
-
     func execute(text: String) {
         // Search
         if segmentTitleView.selectedSegmentIndex == Segment.search.rawValue {
