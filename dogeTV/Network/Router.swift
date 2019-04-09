@@ -63,6 +63,7 @@ enum Router: APIConfiguration {
     case resolve(url: String)
     case resource(id: String)
     case tv(tv: TV)
+    case parse(url: String)
 
     var method: HTTPMethod {
         switch self {
@@ -97,6 +98,8 @@ enum Router: APIConfiguration {
             return "/video/resolve"
         case .resource(let id):
             return "/resource/\(id)"
+        case .parse:
+            return "/parse"
         }
     }
 
@@ -112,6 +115,8 @@ enum Router: APIConfiguration {
             return ["url": url]
         case .episodes(_, let source):
             return ["source": source]
+        case .parse(let url):
+            return ["url": url]
         default:
             return nil
         }

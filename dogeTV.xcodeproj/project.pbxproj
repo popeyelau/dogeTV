@@ -58,6 +58,8 @@
 		79DCECFA223E1FDD008973D3 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECF9223E1FDD008973D3 /* Topic.swift */; };
 		79DCECFC223E2005008973D3 /* Ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DCECFB223E2005008973D3 /* Ranking.swift */; };
 		79FA39BC222B7CF300EFC8CB /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FA39BB222B7CF300EFC8CB /* PlayerViewController.swift */; };
+		79FB3982225C57FC004A46F9 /* CloudParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FB3981225C57FC004A46F9 /* CloudParse.swift */; };
+		79FB3984225C618F004A46F9 /* EmptyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FB3983225C618F004A46F9 /* EmptyComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,8 @@
 		79DCECF9223E1FDD008973D3 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		79DCECFB223E2005008973D3 /* Ranking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ranking.swift; sourceTree = "<group>"; };
 		79FA39BB222B7CF300EFC8CB /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		79FB3981225C57FC004A46F9 /* CloudParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudParse.swift; sourceTree = "<group>"; };
+		79FB3983225C618F004A46F9 /* EmptyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyComponent.swift; sourceTree = "<group>"; };
 		7E35AEA0F6F60CDBE257605A /* Pods-iTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTV.release.xcconfig"; path = "Target Support Files/Pods-iTV/Pods-iTV.release.xcconfig"; sourceTree = "<group>"; };
 		877BE6F1DB0D8460B7ADC7AA /* Pods-dogeTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dogeTV.release.xcconfig"; path = "Target Support Files/Pods-dogeTV/Pods-dogeTV.release.xcconfig"; sourceTree = "<group>"; };
 		AE3E202F7454B7E7F2FE2ADE /* Pods-BrainTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BrainTV.release.xcconfig"; path = "Target Support Files/Pods-BrainTV/Pods-BrainTV.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				796D00CF223D457A00179C72 /* RankItemComponent.swift */,
 				79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */,
 				799390F2223F3E5B0035B636 /* QueryItemComponent.swift */,
+				79FB3983225C618F004A46F9 /* EmptyComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				79DCECF9223E1FDD008973D3 /* Topic.swift */,
 				79DCECFB223E2005008973D3 /* Ranking.swift */,
 				799390F0223F39D30035B636 /* OptionSet.swift */,
+				79FB3981225C57FC004A46F9 /* CloudParse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				798CD2872228096600E64A09 /* EpisodeItemComponent.swift in Sources */,
+				79FB3982225C57FC004A46F9 /* CloudParse.swift in Sources */,
 				79A5EFE822260F7F001CA17B /* AppDelegate.swift in Sources */,
 				798CD27D2228067300E64A09 /* SearchItemComponent.swift in Sources */,
 				79D5DC8F224C960F0031911F /* AppTheme.swift in Sources */,
@@ -447,6 +454,7 @@
 				79DCECFA223E1FDD008973D3 /* Topic.swift in Sources */,
 				79A5EFFC22261107001CA17B /* HomeViewController.swift in Sources */,
 				79AE11E4222C0B6900971FEF /* TopicHeaderComponent.swift in Sources */,
+				79FB3984225C618F004A46F9 /* EmptyComponent.swift in Sources */,
 				7978361D223CC5B500C59E01 /* Video.swift in Sources */,
 				7950849F222680F100D010C9 /* VideoDetailViewController.swift in Sources */,
 				79DCECF6223E1FB1008973D3 /* Episode.swift in Sources */,

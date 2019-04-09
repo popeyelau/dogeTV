@@ -15,16 +15,16 @@ import Kingfisher
 import Carbon
 
 extension UIViewController {
-    func showError(_ error: Error) {
-        Loaf(error.localizedDescription, state: .error, location: .bottom, sender: self).show()
+    func showError(_ error: Error, completionHandler: ((Bool) -> Void)? = nil) {
+        Loaf(error.localizedDescription, state: .error, location: .bottom, sender: self).show(.short, completionHandler: completionHandler)
     }
     
-    func showInfo(_ message: String) {
-        Loaf(message, state: .info, location: .bottom, sender: self).show()
+    func showInfo(_ message: String, completionHandler: ((Bool) -> Void)? = nil) {
+        Loaf(message, state: .info, location: .bottom, sender: self).show(.short, completionHandler: completionHandler)
     }
     
-    func showSuccess(_ message: String) {
-        Loaf(message, state: .success, location: .bottom, sender: self).show()
+    func showSuccess(_ message: String, completionHandler: ((Bool) -> Void)? = nil) {
+        Loaf(message, state: .success, location: .bottom, sender: self).show(.short, completionHandler: completionHandler)
     }
 
     func push(viewController: UIViewController, animated: Bool) {

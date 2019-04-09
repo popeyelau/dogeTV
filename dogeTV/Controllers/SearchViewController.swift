@@ -16,7 +16,7 @@ import PKHUD
 class SearchViewController: BaseViewController {
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "请输入影片名称"
+        searchBar.placeholder = "Search..."
         searchBar.delegate = self
         searchBar.theme_tintColor = AppColor.tintColor
         searchBar.removeBackgroundImageView()
@@ -44,6 +44,10 @@ class SearchViewController: BaseViewController {
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
+    
+    lazy var emptySection: Section = {
+        return Section(id: "empty", header: ViewNode(EmptyComponent(text: "💌 How to use?\n\n 1. 搜索电影/演员/导演 \n\n2. 云解析 腾讯/优酷/爱奇艺/芒果TV 等会员视频")))
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +62,9 @@ class SearchViewController: BaseViewController {
         if searchBar.canBecomeFirstResponder {
             searchBar.becomeFirstResponder()
         }
+        render()
     }
-    
+
     func setupViews() {
         view.addSubview(searchBar)
         view.theme_backgroundColor = AppColor.secondaryBackgroundColor
@@ -84,10 +89,44 @@ class SearchViewController: BaseViewController {
 
 
     func render() {
+        if results.isEmpty {
+            renderer.render(emptySection)
+            return
+        }
+        
         let cells = results.map { (item) -> CellNode in
             CellNode(SearchItemComponent(data: item))
         }
         renderer.render(Section(id: 0, cells: cells))
+    }
+    
+    func play(url: String) {
+        guard !url.isEmpty, var streamURL = URL(string: url) else { return }
+        
+        if let querys = streamURL.queryParameters,
+            let source = querys["url"],
+            let decode = source.removingPercentEncoding {
+            streamURL = URL(string: decode)!
+        }
+        
+        self.showSuccess("解析成功, 即将跳转播放") { _ in
+            let target = PlayerViewController()
+            self.present(target, animated: true) {
+                target.play(url: streamURL.absoluteString, title: nil)
+            }
+            self.searchBar.text = nil
+        }
+    }
+}
+
+extension URL {
+    public var queryParameters: [String: String]? {
+        guard
+            let components = URLComponents(url: self, resolvingAgainstBaseURL: true),
+            let queryItems = components.queryItems else { return nil }
+        return queryItems.reduce(into: [String: String]()) { (result, item) in
+            result[item.name] = item.value
+        }
     }
 }
 
@@ -95,7 +134,11 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.keywords = searchBar.text
         guard let keywords = keywords, keywords.count > 0 else { return }
-        search(keywords: keywords)
+        if keywords.lowercased().hasPrefix("http") {
+            parse(url: keywords)
+        } else {
+            search(keywords: keywords)
+        }
     }
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -115,8 +158,22 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController {
+    
+    func parse(url: String) {
+        HUD.show(.progress)
+        _ = APIClient.cloudParse(url: url)
+            .done { (result) in
+                guard !result.url.isEmpty else { return }
+                self.play(url: result.url)
+            }.catch({ (error) in
+                print(error)
+                self.showError(error)
+            }).finally {
+                HUD.hide()
+        }
+    }
+    
     func search(keywords: String) {
-
         HUD.show(.progress)
         _ = APIClient.search(keywords: keywords)
             .done { (items) in
