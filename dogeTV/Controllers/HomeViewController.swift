@@ -80,7 +80,7 @@ class HomeViewController: BaseViewController {
 
     func render() {
         let topicSectionHeader = ViewNode(SectionHeaderComponent(title: "精选专题") { [weak self] (_) in self?.showTopics() })
-        let topicCells = [CellNode(TopicListComponent(names: topics){ [weak self] (index) in
+        let topicCells = [CellNode(TopicListComponent(items: topics){ [weak self] (index) in
             self?.showTopic(at: index)
         })]
         
@@ -115,10 +115,10 @@ class HomeViewController: BaseViewController {
         navigationController?.pushViewController(target, animated: true)
     }
 
-    //切换主题
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         guard motion == .motionShake else { return }
-        AppTheme.toggle()
+        let target =  SettingsViewController()
+        navigationController?.presentAsStork(target, height: view.bounds.height * 0.5, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
     }
 }
 

@@ -31,7 +31,7 @@ struct EpisodeItemComponent: IdentifiableComponent {
     }
 
     func render(in content: Content) {
-        content.text = data.title
+        content.text = " \(data.title) "
         content.layer.borderWidth = 1
         content.theme_textColor = ["#434343", "#FFF"]
         content.layer.theme_borderColor = ["#E1E1E1", "#1E3141"]
@@ -92,3 +92,5 @@ struct SourceItemComponent: IdentifiableComponent {
         return data != next.data
     }
 }
+
+

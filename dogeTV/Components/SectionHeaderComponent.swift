@@ -83,7 +83,7 @@ class SectionHeaderContentView: UIView {
 
         indicatorView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(0.35)
+            $0.height.equalToSuperview().multipliedBy(0.5)
             $0.width.equalTo(2)
             $0.left.equalToSuperview().offset(8)
         }

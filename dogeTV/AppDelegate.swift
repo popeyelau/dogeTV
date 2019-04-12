@@ -24,10 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppTheme.restore()
         return true
     }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        AppTheme.save()
-    }
 }
 
 

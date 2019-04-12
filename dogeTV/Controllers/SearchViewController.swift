@@ -29,7 +29,7 @@ class SearchViewController: BaseViewController {
         var placeholder: String {
             switch self {
             case .search: return "搜索电影/演员/导演"
-            case .parse: return "爱奇艺/优酷/腾讯/芒果/B站 链接"
+            case .parse: return "爱奇艺/优酷/腾讯/芒果/B站地址"
             }
         }
     }
@@ -76,23 +76,23 @@ class SearchViewController: BaseViewController {
     )
     
     lazy var emptySection: Section = {
-        return Section(id: "empty", header: ViewNode(EmptyComponent(text: "💌 How to use?\n\n 1. [搜索] 电影/演员/导演 \n\n2. [云解析] 爱奇艺/优酷/腾讯/芒果/B站...会员视频")))
+        return Section(id: "empty", header: ViewNode(EmptyComponent(text: "💌 How to use?\n\n 1. [搜索] 电影/演员/导演 \n\n2. [云解析] 爱奇艺/优酷/腾讯/芒果/B站 会员视频")))
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = segmentTitleView
         setupViews()
-
+        segmentIndexChanged(segmentTitleView)
         if searchBar.canBecomeFirstResponder {
             searchBar.becomeFirstResponder()
         }
-        render()
     }
 
     @objc func segmentIndexChanged(_ sender: UISegmentedControl) {
         view.endEditing(true)
         searchBar.text = nil
+        searchBar.keyboardType = .default
         switch sender.selectedSegmentIndex {
         case Segment.search.rawValue:
             searchBar.placeholder = Segment.search.placeholder
@@ -101,8 +101,10 @@ class SearchViewController: BaseViewController {
                 }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
             collectionView.footRefreshControl.autoRefreshOnFoot = true
         case Segment.parse.rawValue:
+            searchBar.keyboardType = .URL
             searchBar.placeholder = Segment.parse.placeholder
             collectionView.footRefreshControl = nil
+            searchBar.textContentType = .URL
         default:
             break
         }
@@ -118,9 +120,18 @@ class SearchViewController: BaseViewController {
             $0.right.equalToSuperview().offset(-8)
             $0.height.equalTo(44)
         }
+        let line = UIView()
+        line.theme_backgroundColor = AppColor.separatorColor
+        view.addSubview(line)
+        line.snp.makeConstraints {
+            $0.height.equalTo(1)
+            $0.top.equalTo(searchBar.snp.bottom)
+            $0.left.right.equalToSuperview()
+        }
+        
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(searchBar.snp.bottom)
+            $0.top.equalTo(searchBar.snp.bottom).offset(1)
             $0.left.right.bottom.equalToSuperview()
         }
 
@@ -128,7 +139,7 @@ class SearchViewController: BaseViewController {
             if let item = ctx.node.component.as(SearchItemComponent.self) {
                 self?.showVideo(with: item.id)
             } else if let item = ctx.node.component.as(EpisodeItemComponent.self) {
-                self?.player(with: item.data.url)
+                self?.handleSelect(item: item.data)
                 self?.searchBar.text = nil
             }
         }
@@ -140,6 +151,25 @@ class SearchViewController: BaseViewController {
         case Segment.search.rawValue: renderSearchResult()
         case Segment.parse.rawValue: renderParseResult()
         default: break
+        }
+    }
+    
+    func handleSelect(item: Episode) {
+        if item.canPlay {
+            play(with: item.url)
+            return
+        }
+        
+        //call resolve api
+        HUD.show(.progress)
+        _ = APIClient.resolveUrl(url: item.url)
+            .done { (url) in
+                self.play(with: url)
+            }.catch({ (error) in
+                print(error)
+                self.showError(error)
+            }).finally {
+                HUD.hide()
         }
     }
 
@@ -187,10 +217,10 @@ class SearchViewController: BaseViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        guard self.input != searchBar.text else {
+        guard searchBar.showsCancelButton, let text = searchBar.text, !text.isEmpty, self.input != searchBar.text else {
             return
         }
-        self.input = searchBar.text
+        self.input = text
         guard let input = searchBar.text, input.count > 0 else { return }
         execute(text: input)
     }
@@ -205,8 +235,8 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.endEditing(true)
     }
 
 }

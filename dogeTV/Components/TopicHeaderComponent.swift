@@ -35,7 +35,7 @@ struct TopicHeaderComponent: IdentifiableComponent {
         let insets = UIEdgeInsets(top: 20, left: 8, bottom: 20, right: 8)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
-        let attributes:[NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .caption2), .paragraphStyle: paragraphStyle]
+        let attributes:[NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 12), .paragraphStyle: paragraphStyle]
         let textHeight = data.desc.trimed.heightOfString(withConstrainedWidth: bounds.width, attributes: attributes, insets: insets)
         return CGSize(width: bounds.width, height: textHeight)
     }
@@ -70,7 +70,7 @@ class TopicHeaderContentView: UIView {
 
     lazy var introLabel: UILabel = {
         let label = UILabel()
-        label.font = .preferredFont(forTextStyle: .caption2)
+        label.font = .systemFont(ofSize: 12)
         label.textColor = .groupTableViewBackground
         label.numberOfLines = 0
         return label

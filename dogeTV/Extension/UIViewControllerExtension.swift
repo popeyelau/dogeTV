@@ -16,15 +16,23 @@ import Carbon
 
 extension UIViewController {
     func showError(_ error: Error, completionHandler: ((Bool) -> Void)? = nil) {
-        Loaf(error.localizedDescription, state: .error, location: .bottom, sender: self).show(.short, completionHandler: completionHandler)
+        loaf(error.localizedDescription, state: .error, completionHandler: completionHandler)
     }
     
     func showInfo(_ message: String, completionHandler: ((Bool) -> Void)? = nil) {
-        Loaf(message, state: .info, location: .bottom, sender: self).show(.short, completionHandler: completionHandler)
+        loaf(message, state: .info, completionHandler: completionHandler)
+    }
+    
+    func showWarning(_ message: String, completionHandler: ((Bool) -> Void)? = nil) {
+        loaf(message, state: .warning, completionHandler: completionHandler)
     }
     
     func showSuccess(_ message: String, completionHandler: ((Bool) -> Void)? = nil) {
-        Loaf(message, state: .success, location: .bottom, sender: self).show(.short, completionHandler: completionHandler)
+        loaf(message, state: .success, completionHandler: completionHandler)
+    }
+    
+    private func loaf(_ message: String,  state: Loaf.State, completionHandler: ((Bool) -> Void)? = nil) {
+        Loaf(message, state: state, location: .bottom, sender: self).show(.short, completionHandler: completionHandler)
     }
 
     func push(viewController: UIViewController, animated: Bool) {
@@ -56,12 +64,12 @@ extension UIViewController {
         }
     }
 
-    func player(with streamURL: String) {
+    func play(with streamURL: String) {
         if streamURL.isEmpty {
             showInfo("无效的地址")
             return
         }
-
+        
         //nPlayer 打开
         if ENV.usingnPlayer && UIApplication.shared.canOpenURL(URL(string: "nplayer-http://")!) {
             let nPlayer = URL(string: "nplayer-\(streamURL)")!

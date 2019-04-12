@@ -51,6 +51,12 @@ class VideoDetailViewController: BaseViewController {
         toggleBarBtn.tintColor =  ENV.usingnPlayer ? UIColor(hexString: "#2ECC71") : nil
         return toggleBarBtn
     }()
+    
+    lazy var shareBarBtn: UIBarButtonItem = {
+        let shareBarBtn = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(share(_:)))
+        shareBarBtn.tintColor =  ENV.usingnPlayer ? UIColor(hexString: "#2ECC71") : nil
+        return shareBarBtn
+    }()
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -67,6 +73,10 @@ class VideoDetailViewController: BaseViewController {
         toggleBarBtn.tintColor =  ENV.usingnPlayer ? UIColor(hexString: "#2ECC71") : nil
     }
 
+    @objc func share(_ sender: UIBarButtonItem) {
+        //TODO:
+    }
+    
     func setupViews() {
         view.theme_backgroundColor = AppColor.backgroundColor
         view.addSubview(collectionView)
@@ -87,12 +97,8 @@ class VideoDetailViewController: BaseViewController {
     }
 
     func handleSelect(item: Episode) {
-        //FIXME:
-        if item.url.hasSuffix(".m3u8")
-            || item.url.hasSuffix(".m3u")
-            || item.url.hasSuffix(".mp4")
-            || item.url.hasSuffix(".avi"){
-            player(with: item.url)
+        if item.canPlay {
+            play(with: item.url)
             return
         }
 
@@ -100,7 +106,7 @@ class VideoDetailViewController: BaseViewController {
         HUD.show(.progress)
         _ = APIClient.resolveUrl(url: item.url)
             .done { (url) in
-                self.player(with: url)
+                self.play(with: url)
             }.catch({ (error) in
                 print(error)
                 self.showError(error)
@@ -137,7 +143,7 @@ class VideoDetailViewController: BaseViewController {
         let cells = episodes.map { (item) -> CellNode in
             CellNode(EpisodeItemComponent(data: item))
         }
-        let episodeSection = Section(id: ID.episodes, header: ViewNode(VideoEpisodeHeaderComponent(title: "分集")), cells: cells)
+        let episodeSection = Section(id: ID.episodes, header: ViewNode(VideoEpisodeHeaderComponent(title: "分集", subTitle: "无法播放? 尝试切换线路")), cells: cells)
         
         var sections: [Section] = [header, lineSection, episodeSection];
         

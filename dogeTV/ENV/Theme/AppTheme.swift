@@ -50,6 +50,7 @@ enum AppTheme: Int {
         before = current
         ThemeManager.setTheme(index: theme.rawValue)
         PKHUD.sharedHUD.effect = UIBlurEffect(style: current == .dark ? .dark : .light)
+        save()
     }
     
     static func toggle() {

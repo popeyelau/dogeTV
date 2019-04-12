@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3FFB50C7223254B23BDA804D /* Pods_dogeTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51AF8EF19DE5D5B8ACCB6AB0 /* Pods_dogeTV.framework */; };
 		7908C3F4224C6281005A59DB /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7908C3F3224C6281005A59DB /* SelectionViewController.swift */; };
+		7926735C225EC2FF00817F0A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7926735B225EC2FF00817F0A /* SettingsViewController.swift */; };
+		7926735E225EC3CD00817F0A /* FormSwitchComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7926735D225EC3CD00817F0A /* FormSwitchComponent.swift */; };
 		792EADA822276B470030A54F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADA722276B470030A54F /* UIColorExtension.swift */; };
 		792EADAA22276B680030A54F /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADA922276B680030A54F /* StringExtension.swift */; };
 		792EADAD22276BC50030A54F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792EADAC22276BC50030A54F /* Helpers.swift */; };
@@ -66,6 +68,8 @@
 		31E1E5768B2F54BE347C6DAB /* Pods-iTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iTV.debug.xcconfig"; path = "Target Support Files/Pods-iTV/Pods-iTV.debug.xcconfig"; sourceTree = "<group>"; };
 		51AF8EF19DE5D5B8ACCB6AB0 /* Pods_dogeTV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dogeTV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7908C3F3224C6281005A59DB /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
+		7926735B225EC2FF00817F0A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7926735D225EC3CD00817F0A /* FormSwitchComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSwitchComponent.swift; sourceTree = "<group>"; };
 		792EADA722276B470030A54F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		792EADA922276B680030A54F /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		792EADAC22276BC50030A54F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				79DCECF1223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift */,
 				799390F2223F3E5B0035B636 /* QueryItemComponent.swift */,
 				79FB3983225C618F004A46F9 /* EmptyComponent.swift */,
+				7926735D225EC3CD00817F0A /* FormSwitchComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 				799390F4223F82240035B636 /* QueryOptionsController.swift */,
 				7908C3F3224C6281005A59DB /* SelectionViewController.swift */,
 				79D5DC90224CA0590031911F /* BaseViewController.swift */,
+				7926735B225EC2FF00817F0A /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				798CD289222809C200E64A09 /* VideoHeaderComponent.swift in Sources */,
 				79DCECF8223E1FC6008973D3 /* Hot.swift in Sources */,
 				79DCECF2223DDAAE008973D3 /* VideoEpisodeHeaderComponent.swift in Sources */,
+				7926735E225EC3CD00817F0A /* FormSwitchComponent.swift in Sources */,
 				799390F5223F82240035B636 /* QueryOptionsController.swift in Sources */,
 				793FF71C225B798C0001431C /* NSAttributedStringExtension.swift in Sources */,
 				798CD27F222806DE00E64A09 /* TopicItemComponent.swift in Sources */,
@@ -444,6 +451,7 @@
 				79AD3A0D222A1CDF0007A52E /* WebViewController.swift in Sources */,
 				798CD26E222800CA00E64A09 /* VideoItemComponent.swift in Sources */,
 				79CD4360222BBE5B0000410F /* LivesViewController.swift in Sources */,
+				7926735C225EC2FF00817F0A /* SettingsViewController.swift in Sources */,
 				79A5F002222661D1001CA17B /* TopicViewController.swift in Sources */,
 				798CD279222804A800E64A09 /* TopicListComponent.swift in Sources */,
 				792EADA822276B470030A54F /* UIColorExtension.swift in Sources */,

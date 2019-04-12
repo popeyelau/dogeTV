@@ -67,7 +67,7 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
             guard let item = ctx.node.component.as(ChannelItemComponent.self) else{
                 return
             }
-            self?.player(with: item.data.url)
+            self?.play(with: item.data.url)
         }
     }
 

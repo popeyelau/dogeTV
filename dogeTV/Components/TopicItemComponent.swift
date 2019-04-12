@@ -32,7 +32,7 @@ struct TopicItemComponent: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width - 40, height: 120)
+        return CGSize(width: bounds.width - 16, height: 200)
     }
 
     func shouldContentUpdate(with next: TopicItemComponent) -> Bool {
@@ -63,6 +63,7 @@ class TopicItemContentView: UIView {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .callout)
         label.textColor = .white
+        label.numberOfLines = 2
         return label
     }()
 
@@ -70,7 +71,7 @@ class TopicItemContentView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
         label.textColor = .groupTableViewBackground
-        label.numberOfLines = 3
+        label.numberOfLines = 0
         return label
     }()
 
@@ -82,27 +83,28 @@ class TopicItemContentView: UIView {
         addSubview(coverImageView)
         addSubview(titleLabel)
         addSubview(introLabel)
-
+        
         let padding = 8.0
 
         backgroundImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-
+        
         coverImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.left.equalToSuperview().offset(padding)
+            $0.top.left.equalToSuperview().offset(padding)
             $0.size.equalTo(90)
         }
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(coverImageView)
+            $0.centerY.equalTo(coverImageView)
             $0.left.equalTo(coverImageView.snp.right).offset(padding)
             $0.right.equalToSuperview().offset((-padding))
         }
+        
         introLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(padding)
-            $0.right.equalToSuperview().offset((-padding))
-            $0.left.equalTo(titleLabel)
+            $0.top.equalTo(coverImageView.snp.bottom).offset(padding)
+            $0.right.equalTo(titleLabel)
+            $0.left.equalTo(coverImageView)
+            $0.bottom.lessThanOrEqualTo(self.snp.bottom).offset(-8)
         }
 
         let blur = UIBlurEffect(style: .dark)

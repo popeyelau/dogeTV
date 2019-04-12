@@ -31,7 +31,7 @@ struct VideoHeaderComponent: IdentifiableComponent {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
         let attributes:[NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 12), .paragraphStyle: paragraphStyle]
-        let text =  "导演: \(data.director)\n主演: \(data.actor)\n国家/地区: \(data.area)\n上映: \(data.year )\n类型: \(data.tag)\n\(data.state)"
+        let text =  "导演: \(data.director)\n主演: \(data.actor.trunc(length: 40))\n国家/地区: \(data.area)\n上映: \(data.year )\n类型: \(data.tag)\n\(data.state)"
         let attr =  NSAttributedString(string: text, attributes: attributes)
         let pattern = "([\u{4e00}-\u{9fa5}]+(/)?[\u{4e00}-\u{9fa5}]+:)" // FIXME
         content.introLabel.attributedText = attr.applying(attributes: [.font: UIFont.boldSystemFont(ofSize: 12)], toRangesMatching: pattern)
@@ -71,7 +71,7 @@ class VideoHeaderContentView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12)
         label.theme_textColor = AppColor.textColor
-        label.numberOfLines = 10
+        label.numberOfLines = 9
         return label
     }()
 

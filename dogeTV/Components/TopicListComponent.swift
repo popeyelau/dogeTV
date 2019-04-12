@@ -13,7 +13,7 @@ import Carbon
 struct TopicListComponent: IdentifiableComponent {
     typealias Content = TopicListContentView
 
-    let names: [Topic]
+    let items: [Topic]
     var onSelect: (Int) -> Void
 
     var id: Int {
@@ -27,7 +27,7 @@ struct TopicListComponent: IdentifiableComponent {
     }
 
     func render(in content: Content) {
-        content.names = names
+        content.items = items
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
@@ -35,13 +35,15 @@ struct TopicListComponent: IdentifiableComponent {
     }
 
     func shouldContentUpdate(with next: TopicListComponent) -> Bool {
-        return names != next.names
+        return items != next.items
     }
 }
 
 
+
+
 class TopicListContentView: UIView {
-    var names: [Topic] = [] {
+    var  items: [Topic] = [] {
         didSet {
             render()
         }
@@ -85,7 +87,7 @@ class TopicListContentView: UIView {
     }
 
     func render() {
-        let cells = names.map { (item) -> CellNode in
+        let cells = items.map { (item) -> CellNode in
             CellNode(TopicListItemComponent(data: item))
         }
         renderer.render(

@@ -58,4 +58,8 @@ extension String {
     var trimed: String {
         return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
+    
+    func trunc(length: Int, trailing: String = "…") -> String {
+        return (self.count > length) ? self.prefix(length) + trailing : self
+    }
 }
