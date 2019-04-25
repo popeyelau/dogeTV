@@ -133,7 +133,7 @@ class VideoDetailViewController: BaseViewController {
         let header = Section(id: ID.header, header: ViewNode(VideoHeaderComponent(data: detail.info)))
 
         // 线路
-        let lines = (0..<min(detail.info.source,10)).map{ (source) -> CellNode in
+        let lines = (0..<min(detail.info.source,5)).map{ (source) -> CellNode in
             CellNode(SourceItemComponent(data: VideoSource(source: source, isSelected: resourceIndex == source)))
         }
         let lineSection = Section(id: ID.lines, header: ViewNode(VideoEpisodeHeaderComponent(title: "线路",
