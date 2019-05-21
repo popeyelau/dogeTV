@@ -1,7 +1,5 @@
 # dogeTV
 
-![Demo](./screenshots/logo.png)
-
 ---
 
 ![Demo](./screenshots/demo1.png)
