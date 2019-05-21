@@ -26,7 +26,6 @@ class RankListViewController: BaseViewController, SegementSlideContentScrollView
     }()
 
     lazy var renderer = Renderer(
-        target: tableView,
         adapter: UITableViewAdapter(),
         updater: UITableViewUpdater()
     )
@@ -55,6 +54,7 @@ class RankListViewController: BaseViewController, SegementSlideContentScrollView
             self?.refresh()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
 
+        renderer.target = tableView
         renderer.adapter.didSelect = { [weak self] ctx in
             guard let self = self, let item = ctx.node.component.as(RankItemComponent.self) else {
                 return

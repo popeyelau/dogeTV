@@ -25,6 +25,7 @@ enum AppColor {
     static let barTextColor = ThemeColorPicker.pickerWithColors(barTextColors)
     
     static let separatorColor:ThemeColorPicker = ["#EEE","#0E1720"]
+    static let borderColor:ThemeCGColorPicker = ["#656765","#CCC"]
     static let tintColor: ThemeColorPicker = ["#17222D", "#EEE"]
     static let barTintColor: ThemeColorPicker = ["#FFF", "#101C26"]
 

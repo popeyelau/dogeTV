@@ -70,7 +70,6 @@ class SearchViewController: BaseViewController {
     var input: String?
 
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -135,6 +134,7 @@ class SearchViewController: BaseViewController {
             $0.left.right.bottom.equalToSuperview()
         }
 
+        renderer.target = collectionView
         renderer.adapter.didSelect = {[weak self] ctx in
             if let item = ctx.node.component.as(SearchItemComponent.self) {
                 self?.showVideo(with: item.id)

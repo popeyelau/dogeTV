@@ -25,7 +25,6 @@ class TopicViewController: BaseViewController {
     }()
     
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -50,7 +49,8 @@ class TopicViewController: BaseViewController {
         collectionView.bindHeadRefreshHandler({ [weak self] in
             self?.refresh()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
-
+        
+        renderer.target = collectionView
         renderer.adapter.didSelect = { [weak self] context in
             guard let item = context.node.component.as(VideoItemComponent.self) else{
                 return

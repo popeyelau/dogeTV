@@ -8,43 +8,13 @@
 
 import Foundation
 
-struct Channel: Decodable {
+struct IPTV: Decodable {
+    let id: String
+    let category: String
+}
+
+struct IPTVChannel: Decodable {
     let name: String
-    let icon: String
     let url: String
-}
-
-struct ChannelGroup: Decodable {
-    let categoryName: String
-    let channels: [Channel]
-}
-
-
-enum TV: Int, CaseIterable {
-    case iptv
-    case hwtv
-
-    var title: String {
-        switch self {
-        case .iptv:
-            return "联通IPTV"
-        case .hwtv:
-            return "华文电视"
-        }
-    }
-
-    var key: String {
-        switch self {
-        case .iptv:
-            return "iptv"
-        case .hwtv:
-            return "hwtv"
-        }
-    }
-    
-    func next() -> TV {
-        var next = rawValue + 1
-        if next > TV.allCases.last!.rawValue { next = 0 }
-        return TV(rawValue: next)!
-    }
+    let schedule: [String]?
 }

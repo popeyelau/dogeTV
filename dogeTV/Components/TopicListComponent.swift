@@ -62,7 +62,6 @@ class TopicListContentView: UIView {
 
 
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -74,6 +73,7 @@ class TopicListContentView: UIView {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        renderer.target = collectionView
         render()
         renderer.adapter.didSelect = didSelect
     }

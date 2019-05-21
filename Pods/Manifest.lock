@@ -1,8 +1,8 @@
 PODS:
   - Alamofire (4.8.2)
-  - Carbon (0.2.0):
+  - Carbon (0.3.0):
     - DifferenceKit/Core (~> 1.1)
-  - DifferenceKit/Core (1.1.1)
+  - DifferenceKit/Core (1.1.2)
   - KafkaRefresh (1.4.0):
     - KafkaRefresh/Category (= 1.4.0)
     - KafkaRefresh/Configuration (= 1.4.0)
@@ -38,7 +38,7 @@ PODS:
   - KafkaRefresh/UIKit/LayerKit (1.4.0):
     - KafkaRefresh/Category
     - KafkaRefresh/Default
-  - Kingfisher (5.3.1)
+  - Kingfisher (5.5.0)
   - Loaf (0.4.0)
   - PKHUD (5.2.1)
   - PromiseKit/Alamofire (6.8.4):
@@ -46,12 +46,12 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/CorePromise (6.8.4)
   - SegementSlide (2.1.1)
-  - SnapKit (4.2.0)
-  - SPStorkController (1.6)
-  - SwiftTheme (0.4.3)
+  - SnapKit (5.0.0)
+  - SPStorkController (1.6.5)
+  - SwiftTheme (0.4.4)
 
 DEPENDENCIES:
-  - Carbon (from `https://github.com/ra1028/Carbon.git`)
+  - Carbon
   - KafkaRefresh
   - Kingfisher
   - Loaf
@@ -65,6 +65,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Carbon
     - DifferenceKit
     - KafkaRefresh
     - Kingfisher
@@ -76,29 +77,20 @@ SPEC REPOS:
     - SPStorkController
     - SwiftTheme
 
-EXTERNAL SOURCES:
-  Carbon:
-    :git: https://github.com/ra1028/Carbon.git
-
-CHECKOUT OPTIONS:
-  Carbon:
-    :commit: a9a8d5ec8a742731769756c83912d0ac03047588
-    :git: https://github.com/ra1028/Carbon.git
-
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Carbon: 4e8b4ba31570483a16de071314303bab6d925cd9
-  DifferenceKit: cf1b84e2207ea45c3640381cb229cf46c1647466
+  Carbon: 184148b60fddb7d069a9d35a02e12b20f44aa7a8
+  DifferenceKit: 3a1cff9ac9a9cdf2a3f205671067797e83c3f066
   KafkaRefresh: 7e40fce9a5fb180da8b9382ab1b5a129f1f8d48d
-  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
+  Kingfisher: 6fe5e67a90fd335e49b0f5c075ff55ac5ebedd94
   Loaf: 070a55b75527d541e710f69c0c7642ead3676a96
   PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
   SegementSlide: 95ebbdd2f616c0d9ab1a6046e67292bb3fb08f7c
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SPStorkController: 54293a8a1ca3c691a09eb6274b6e487b602e975a
-  SwiftTheme: 628345b948068a48d330d76dffb1a990ea5f90aa
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  SPStorkController: f74a60dbcd3c35180c996688873f6eadac839642
+  SwiftTheme: a381f983da92153908b7a9eeb961b18b6d94d614
 
-PODFILE CHECKSUM: 655deac2c886836404ebd079cb2cbfa9ed5487e2
+PODFILE CHECKSUM: da4beccfff5c26c8e12944f361ba8ce2a86ba198
 
 COCOAPODS: 1.7.0.beta.3

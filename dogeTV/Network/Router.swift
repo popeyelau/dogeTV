@@ -62,7 +62,8 @@ enum Router: APIConfiguration {
     case search(keywords: String, page: Int)
     case resolve(url: String)
     case resource(id: String)
-    case tv(tv: TV)
+    case iptvCategory
+    case iptvChannels(tid: String)
     case parse(url: String)
 
     var method: HTTPMethod {
@@ -76,8 +77,6 @@ enum Router: APIConfiguration {
     
     var path: String {
         switch self {
-        case .tv:
-            return "/tv"
         case .home:
             return "/videos"
         case .topics:
@@ -98,6 +97,8 @@ enum Router: APIConfiguration {
             return "/video/resolve"
         case .resource(let id):
             return "/resource/\(id)"
+        case .iptvCategory, .iptvChannels:
+            return "/iptv"
         case .parse:
             return "/parse"
         }
@@ -105,8 +106,6 @@ enum Router: APIConfiguration {
 
     var parameters: Parameters? {
         switch self {
-        case .tv(let tv):
-            return ["f": tv.key]
         case .category(_, let page,_,let query):
             return ["p": page, "query": query]
         case .search(let keywords, let page):
@@ -115,6 +114,8 @@ enum Router: APIConfiguration {
             return ["url": url]
         case .episodes(_, let source):
             return ["source": source]
+        case .iptvChannels(let tid):
+            return ["tid": tid]
         case .parse(let url):
             return ["url": url.base64String]
         default:

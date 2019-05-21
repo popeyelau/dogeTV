@@ -21,7 +21,6 @@ class SettingsViewController: BaseViewController {
     }()
     
     lazy var renderer = Renderer(
-        target: tableView,
         adapter: SettingsTableViewAdapter(),
         updater: UITableViewUpdater()
     )
@@ -45,6 +44,7 @@ class SettingsViewController: BaseViewController {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0))
         }
+        renderer.target = tableView
     }
     
     func render() {

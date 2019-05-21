@@ -41,7 +41,6 @@ class VideoDetailViewController: BaseViewController {
     var episodes: [Episode] = []
 
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: VideoDetailViewAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -83,7 +82,7 @@ class VideoDetailViewController: BaseViewController {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        render()
+        renderer.target = collectionView
         renderer.adapter.didSelect = {[weak self] ctx in
             if let item = ctx.node.component.as(EpisodeItemComponent.self) {
                 self?.handleSelect(item: item.data)
@@ -94,6 +93,7 @@ class VideoDetailViewController: BaseViewController {
                 self?.showVideo(with: item.id)
             }
         }
+        render()
     }
 
     func handleSelect(item: Episode) {

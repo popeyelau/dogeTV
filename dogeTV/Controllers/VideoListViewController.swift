@@ -52,7 +52,6 @@ class VideoListViewController: BaseViewController, SegementSlideContentScrollVie
     }()
     
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -86,6 +85,7 @@ class VideoListViewController: BaseViewController, SegementSlideContentScrollVie
             self?.refresh()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
         
+        renderer.target = collectionView
         renderer.adapter.didSelect = { [weak self] ctx in
             guard let self = self, let item = ctx.node.component.as(VideoItemComponent.self) else {
                 return
@@ -114,7 +114,7 @@ class VideoListViewController: BaseViewController, SegementSlideContentScrollVie
             self?.refresh()
         }
         let height = UIScreen.main.bounds.height * 0.75
-       navigationController?.presentAsStork(queryPanel, height: height, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
+        navigationController?.presentAsStork(queryPanel, height: height, showIndicator: true, showCloseButton: false)
     }
     
     var selectedQuery: String {

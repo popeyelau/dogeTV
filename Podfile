@@ -9,7 +9,7 @@ target 'dogeTV' do
   pod 'SnapKit'
   pod 'Kingfisher'
   pod 'PromiseKit/Alamofire'
-  pod 'Carbon', :git => 'https://github.com/ra1028/Carbon.git'
+  pod 'Carbon'
   pod 'KafkaRefresh'
   pod 'Loaf'
   pod 'SegementSlide'

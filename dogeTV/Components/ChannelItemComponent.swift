@@ -18,7 +18,7 @@ struct ChannelItemComponent: IdentifiableComponent {
         return data.url
     }
 
-    var data: Channel
+    var data: IPTVChannel
 
     func renderContent() -> Content {
         let content = Content()
@@ -26,15 +26,7 @@ struct ChannelItemComponent: IdentifiableComponent {
     }
 
     func render(in content: Content) {
-        content.titleLabel.text = data.name.replacingOccurrences(of: "频道超高清", with: "", options: .literal, range: nil).uppercased()
-        if data.icon.isEmpty {
-            content.backgroundImageView.image = nil
-            content.backgroundImageView.theme_backgroundColor = AppColor.channelBackgroundColor
-            content.iconImageView.image = UIImage(named: "tv_logo")
-        } else {
-            content.backgroundImageView.kf.setImage(with: URL(string: data.icon))
-            content.iconImageView.kf.setImage(with: URL(string: data.icon), options: [.transition(.fade(1))])
-        }
+        content.titleLabel.text = data.name
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
@@ -55,22 +47,16 @@ class ChannelItemContentView: UIView {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
-
-    lazy var backgroundImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.image =  UIImage(named: "tv_bg")
+        imageView.image = UIImage(named: "tv")
+        imageView.theme_tintColor = AppColor.secondaryTextColor
         return imageView
     }()
 
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "PingFangSC-medium", size: 14)
+        label.font = .systemFont(ofSize: 12)
         label.textAlignment = .center
-        label.textColor = .white
+        label.theme_textColor = AppColor.secondaryTextColor
         return label
     }()
 
@@ -78,13 +64,12 @@ class ChannelItemContentView: UIView {
         super.init(frame: frame)
         layer.masksToBounds = true
         layer.cornerRadius = 6
-        addSubview(backgroundImageView)
         addSubview(titleLabel)
         addSubview(iconImageView)
+        
+        layer.theme_borderColor = AppColor.borderColor
+        layer.borderWidth = 0.5
 
-        backgroundImageView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
         iconImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(8)
@@ -94,13 +79,6 @@ class ChannelItemContentView: UIView {
             $0.centerX.equalTo(snp.centerX)
             $0.top.equalTo(iconImageView.snp.bottom).offset(2)
             $0.left.equalToSuperview().offset(4)
-        }
-
-        let blur = UIBlurEffect(style: .dark)
-        let effectView = UIVisualEffectView(effect: blur)
-        backgroundImageView.addSubview(effectView)
-        effectView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
     }
 

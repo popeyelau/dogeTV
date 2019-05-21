@@ -17,18 +17,24 @@ class LivesViewController: SegementSlideViewController {
         title = "电视直播"
         view.theme_backgroundColor = AppColor.backgroundColor
         slideContentView.theme_backgroundColor =  AppColor.backgroundColor
+        /*
         let moreBarBtn = UIBarButtonItem(image: UIImage(named: "web"), style: .plain, target: self, action: #selector(more(_:)))
-        navigationItem.rightBarButtonItems = [moreBarBtn]
+        navigationItem.rightBarButtonItems = [moreBarBtn]*/
         slideSwitcherView.theme_backgroundColor = AppColor.slideSwitcherColor
-        reloadData()
-        scrollToSlide(at: 0, animated: false)
-
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(themeDidUpdated),
             name: NSNotification.Name(rawValue: "ThemeUpdateNotification"),
             object: nil
         )
+        refresh()
+    }
+    
+    var categories: [IPTV] = [] {
+        didSet {
+            reloadData()
+            scrollToSlide(at: 0, animated: false)
+        }
     }
 
     @objc func themeDidUpdated() {
@@ -48,13 +54,13 @@ class LivesViewController: SegementSlideViewController {
         config.indicatorColor = AppTheme.isDark ? .groupTableViewBackground : .darkGray
         config.normalTitleColor = .lightGray
         config.selectedTitleColor = AppTheme.isDark ? .groupTableViewBackground : .darkGray
-        config.type = .tab
+        config.type = .segement
         return config
     }
     
     
     override var titlesInSwitcher: [String] {
-        return TV.allCases.map { $0.title }
+        return categories.map { $0.category }
     }
 
     @objc func more(_ sender: UIBarButtonItem) {
@@ -63,10 +69,20 @@ class LivesViewController: SegementSlideViewController {
     }
 
     override func segementSlideContentViewController(at index: Int) -> SegementSlideContentScrollViewDelegate? {
+        let categoryId = categories[index].id
         let target = LiveViewController()
-        target.location = TV(rawValue: index)!
+        target.categoryId = categoryId
         return target
     }
 }
 
-
+extension LivesViewController {
+    func refresh() {
+        _ = APIClient.fetchIPTVCategories().done { (categories) in
+            self.categories = categories
+            }.catch({ (error) in
+                self.showError(error)
+            }).finally {
+        }
+    }
+}

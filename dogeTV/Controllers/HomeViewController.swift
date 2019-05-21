@@ -29,7 +29,6 @@ class HomeViewController: BaseViewController {
     }()
     
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -56,7 +55,7 @@ class HomeViewController: BaseViewController {
         navigationController?.pushViewController(target, animated: true)
     }
     @objc func tv(_ sender: UIBarButtonItem) {
-        let target = LiveViewController()
+        let target = LivesViewController()
         navigationController?.pushViewController(target, animated: true)
     }
     
@@ -70,6 +69,7 @@ class HomeViewController: BaseViewController {
             self?.refresh()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
         
+        renderer.target = collectionView
         renderer.adapter.didSelect = { [weak self] ctx in
             guard let self = self, let item = ctx.node.component.as(VideoItemComponent.self) else {
                 return
@@ -118,7 +118,8 @@ class HomeViewController: BaseViewController {
     override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         guard motion == .motionShake else { return }
         let target =  SettingsViewController()
-        navigationController?.presentAsStork(target, height: view.bounds.height * 0.5, showIndicator: true, hideIndicatorWhenScroll: false, showCloseButton: false, complection: nil)
+        let height = view.bounds.height * 0.5
+        navigationController?.presentAsStork(target, height: height, showIndicator: true, showCloseButton: false)
     }
 }
 

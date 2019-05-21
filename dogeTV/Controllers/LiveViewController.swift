@@ -13,9 +13,11 @@ import PromiseKit
 import SegementSlide
 import PKHUD
 
-class LiveViewController: BaseViewController, SegementSlideContentScrollViewDelegate {
-    var location: TV = .iptv
+let userAgent = ["User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36"]
 
+class LiveViewController: BaseViewController, SegementSlideContentScrollViewDelegate {
+    var categoryId: String?
+    
     var scrollView: UIScrollView {
         return collectionView
     }
@@ -31,63 +33,49 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     }()
 
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
 
     var index: Int = 1
-    var groups: [ChannelGroup] = []
+    var channels: [IPTVChannel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let toggleBarBtn = UIBarButtonItem(image: UIImage(named: "toggle"), style: .plain, target: self, action: #selector(toggle(_:)))
-        navigationItem.rightBarButtonItem = toggleBarBtn
         setupViews()
-        updateTitle()
         refresh()
     }
     
-    @objc func toggle(_ sender: UIBarButtonItem) {
-        location = location.next()
-        refresh()
-    }
-    
-    func updateTitle() {
-       title = location.title
-    }
-
     func setupViews() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
+        renderer.target = collectionView
         renderer.adapter.didSelect = { [weak self] ctx in
             guard let item = ctx.node.component.as(ChannelItemComponent.self) else{
                 return
             }
-            self?.play(with: item.data.url)
+            self?.getStreamURL(channel: item.data)
         }
     }
 
     func render() {
-        let sections = groups.map { (category) -> Section in
-            let cells = category.channels.map { CellNode(ChannelItemComponent(data: $0)) }
-            let header = groups.count > 1  ? ViewNode(VideoEpisodeHeaderComponent(title: category.categoryName))  : nil
-            let section = Section(id: category.categoryName, header: header, cells: cells)
-            return section
-        }
-        renderer.render(sections)
+        let cells = channels.map { CellNode(ChannelItemComponent(data: $0)) }
+        let section = Section(id: 0, cells: cells)
+        renderer.render(section)
     }
 }
 
 extension LiveViewController {
     func refresh() {
+        guard let tid = categoryId else {
+            return
+        }
         HUD.show(.progress)
-            _ = APIClient.fetchTV(location).done { (groups) in
-                self.groups = groups
-                self.updateTitle()
+            _ = APIClient.fetchIPTV(tid: tid).done { (channels) in
+                self.channels = channels
                 }.catch({ (error) in
                     self.showError(error)
                 }).finally {
@@ -95,6 +83,57 @@ extension LiveViewController {
                     self.render()
                     self.collectionView.setContentOffset(.zero, animated: true)
             }
+    }
+    
+    func getStreamURL(channel: IPTVChannel) {
+        guard let channelURL = URL(string: channel.url) else {
+            return
+        }
+        
+        HUD.show(.progress)
+        getHTMLBody(from: channelURL)
+            .map { ($0, "<option+.*?</option>") }
+            .then(extractURL)
+            .then(getHTMLBody)
+            .map { ($0, "url: '(.*?)'") }
+            .then(extractURL)
+            .done({ (url) in
+                self.play(with: url.absoluteString)
+            }).catch { (err) in
+                print(err)
+            }.finally {
+                HUD.hide()
+        }
+    }
+    
+    func extractURL(from body: String, regex: String) -> Promise<URL> {
+        return Promise<URL> { resolver in
+            guard let url = self.firstMatch(for: regex, in: body)?.extractURLs().first else{
+                resolver.reject(E.decodeFaild)
+                return
+            }
+            resolver.fulfill(url)
+        }
+    }
+    
+    func getHTMLBody(from url: URL) -> Promise<String> {
+        return AlamofireManager.shared.request(url, method: .get, headers: userAgent)
+            .responseString()
+            .map { $0.string }
+    }
+    
+    func firstMatch(for regex: String, in text: String) -> String? {
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            guard let result = regex.firstMatch(in: text,
+                                                range: NSRange(text.startIndex..., in: text)) else {
+                                                    return nil
+            }
+            return String(text[Range(result.range, in: text)!])
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return nil
+        }
     }
 }
 

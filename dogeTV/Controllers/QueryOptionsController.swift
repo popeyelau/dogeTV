@@ -28,7 +28,6 @@ class QueryOptionsController: BaseViewController {
     }()
     
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: QueryOptionsAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -49,6 +48,7 @@ class QueryOptionsController: BaseViewController {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0))
         }
+        renderer.target = collectionView
         renderer.adapter.didSelect = { [weak self] ctx in
             guard let self = self,
                 let item = ctx.node.component.as(QueryItemComponent.self), !item.data.isSelected else {

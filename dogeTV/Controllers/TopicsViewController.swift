@@ -23,7 +23,6 @@ class TopicsViewController: BaseViewController {
     }()
     
     lazy var renderer = Renderer(
-        target: collectionView,
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -47,6 +46,7 @@ class TopicsViewController: BaseViewController {
             self?.refresh()
             }, themeColor: .darkGray, refreshStyle: .replicatorWoody)
         
+        renderer.target = collectionView
         renderer.adapter.didSelect = { [weak self] ctx in
             guard let item = ctx.node.component.as(TopicItemComponent.self) else {
                 return

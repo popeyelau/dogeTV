@@ -137,10 +137,18 @@ struct APIClient {
             .map { $0.data }
     }
     
-    static func fetchTV(_ tv: TV) -> Promise<[ChannelGroup]> {
-        return AlamofireManager.shared.request(Router.tv(tv: tv))
+    static func fetchIPTV(tid: String = "itv") -> Promise<[IPTVChannel]> {
+        return AlamofireManager.shared.request(Router.iptvChannels(tid: tid))
             .validate(validate)
-            .responseDecodable(Response<[ChannelGroup]>.self)
+            .responseDecodable(Response<[IPTVChannel]>.self)
+            .map { $0.data }
+    }
+    
+
+    static func fetchIPTVCategories() -> Promise<[IPTV]> {
+        return AlamofireManager.shared.request(Router.iptvCategory)
+            .validate(validate)
+            .responseDecodable(Response<[IPTV]>.self)
             .map { $0.data }
     }
     
