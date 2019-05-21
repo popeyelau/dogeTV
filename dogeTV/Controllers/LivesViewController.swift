@@ -11,15 +11,23 @@ import PromiseKit
 import SegementSlide
 
 class LivesViewController: SegementSlideViewController {
+    lazy var searchViewController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.dimsBackgroundDuringPresentation = false
+        controller.searchBar.theme_tintColor = AppColor.tintColor
+        controller.searchBar.barStyle = AppTheme.isDark ? .black : .default
+        controller.searchBar.theme_keyboardAppearance = AppColor.keyboardAppearance
+        controller.searchBar.placeholder = "频道名称"
+        return controller
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "电视直播"
         view.theme_backgroundColor = AppColor.backgroundColor
-        slideContentView.theme_backgroundColor =  AppColor.backgroundColor
-        /*
-        let moreBarBtn = UIBarButtonItem(image: UIImage(named: "web"), style: .plain, target: self, action: #selector(more(_:)))
-        navigationItem.rightBarButtonItems = [moreBarBtn]*/
+        navigationItem.searchController = searchViewController
+        slideContentView.theme_backgroundColor = AppColor.backgroundColor
         slideSwitcherView.theme_backgroundColor = AppColor.slideSwitcherColor
         NotificationCenter.default.addObserver(
             self,
@@ -84,5 +92,14 @@ extension LivesViewController {
                 self.showError(error)
             }).finally {
         }
+    }
+}
+
+
+extension LivesViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let keyword = searchController.searchBar.text ?? ""
+        guard let target = currentSegementSlideContentViewController as? LiveViewController else { return }
+        target.keyword = keyword
     }
 }

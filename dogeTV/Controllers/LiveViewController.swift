@@ -17,6 +17,11 @@ let userAgent = ["User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) 
 
 class LiveViewController: BaseViewController, SegementSlideContentScrollViewDelegate {
     var categoryId: String?
+    var keyword: String? {
+        didSet {
+            refreshDataSource()
+        }
+    }
     
     var scrollView: UIScrollView {
         return collectionView
@@ -38,7 +43,12 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     )
 
     var index: Int = 1
-    var channels: [IPTVChannel] = []
+    var channels: [IPTVChannel] = [] {
+        didSet {
+            refreshDataSource()
+        }
+    }
+    var dataSource: [IPTVChannel]  = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +72,19 @@ class LiveViewController: BaseViewController, SegementSlideContentScrollViewDele
     }
 
     func render() {
-        let cells = channels.map { CellNode(ChannelItemComponent(data: $0)) }
+        let cells = dataSource.map { CellNode(ChannelItemComponent(data: $0)) }
         let section = Section(id: 0, cells: cells)
         renderer.render(section)
+    }
+    
+    func refreshDataSource() {
+        let keyword = self.keyword?.uppercased() ?? ""
+        if keyword.isEmpty {
+            dataSource = channels
+        } else {
+            dataSource = channels.filter { $0.name.contains(keyword) }
+        }
+        render()
     }
 }
 
@@ -80,7 +100,6 @@ extension LiveViewController {
                     self.showError(error)
                 }).finally {
                     HUD.hide()
-                    self.render()
                     self.collectionView.setContentOffset(.zero, animated: true)
             }
     }

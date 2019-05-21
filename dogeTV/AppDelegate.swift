@@ -52,8 +52,6 @@ extension AppDelegate {
         backButtonAppearance.setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .normal)
         backButtonAppearance.setTitleTextAttributes([.foregroundColor: UIColor.clear], for: .highlighted)
         
-        UITextField.appearance().tintColor = .black
-        
         PKHUD.sharedHUD.dimsBackground = false
         PKHUD.sharedHUD.userInteractionOnUnderlyingViewsEnabled  = true
     }
