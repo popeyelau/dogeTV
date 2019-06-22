@@ -22,6 +22,7 @@ class HomeViewController: BaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         layout.minimumInteritemSpacing = 0
+        layout.sectionHeadersPinToVisibleBounds = true
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false

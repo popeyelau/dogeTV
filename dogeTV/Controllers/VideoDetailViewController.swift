@@ -30,6 +30,7 @@ class VideoDetailViewController: BaseViewController {
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
+        layout.sectionHeadersPinToVisibleBounds = true
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.theme_backgroundColor = AppColor.backgroundColor
         collectionView.showsVerticalScrollIndicator = false

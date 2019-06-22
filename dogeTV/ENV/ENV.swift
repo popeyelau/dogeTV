@@ -9,7 +9,7 @@
 import Foundation
 
 struct ENV {
-    static let host = "https://tv.popeye.vip"
+    static let host = "http://111.231.243.232"
     static var usingnPlayer: Bool {
         get { return UserDefaults.standard.bool(forKey: "nPlayer") }
         set { UserDefaults.standard.set(newValue, forKey: "nPlayer") }

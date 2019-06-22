@@ -65,6 +65,7 @@ class VideoEpisodeHeaderContentView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        theme_backgroundColor = AppColor.backgroundColor
         addSubview(indicatorView)
         addSubview(titleLabel)
         addSubview(subTitleLabel)
